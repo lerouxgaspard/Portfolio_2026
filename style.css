@@ -441,3 +441,192 @@ body {
     background: rgba(0, 255, 80, 0.1);
     border-color: rgba(0, 255, 80, 0.7);
 }
+
+/* ═══════════════════════════════════════════════════════ */
+/* MOBILE RESPONSIVE — @media (max-width: 767px) */
+/* ═══════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+    /* ── CURSOR: DÉSACTIVER LE CURSEUR CUSTOM SUR MOBILE ── */
+    * {
+        cursor: auto !important;
+    }
+
+    #cursor {
+        display: none;
+    }
+
+    /* ── SCENE: AJUSTER OBJECT-POSITION POUR MOBILE ── */
+    #scene-image {
+        object-position: center 40%;
+    }
+
+    /* ── HOTSPOTS: AUGMENTER LA TAILLE TACTILE (MIN 44x44px) ── */
+    .hotspot {
+        cursor: auto;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .hotspot:hover {
+        background: transparent;
+        outline: none;
+    }
+
+    /* ── CHATBOX MOBILE: RÉDUIRE LA HAUTEUR ── */
+    #chatbox {
+        height: 110px;
+    }
+
+    #scene {
+        bottom: 110px;
+    }
+
+    #label-hint {
+        bottom: 118px;
+    }
+
+    #back-btn {
+        bottom: 118px;
+    }
+
+    #bureau-overlay {
+        bottom: 110px;
+    }
+
+    /* ── CHAT HEADER: PADDING RÉDUIT 30% ── */
+    #chat-header {
+        padding: 5.6px 14px;
+        gap: 10px;
+    }
+
+    #chat-name {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    #chat-status {
+        font-size: 8px;
+    }
+
+    /* ── CHAT BODY: PORTRAIT + TEXT RÉDUITS ── */
+    #chat-body {
+        padding: 7px 14px;
+        gap: 10px;
+    }
+
+    #chat-portrait {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+    }
+
+    #chat-text-area {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    #chat-text {
+        max-height: 40px;
+    }
+
+    .cursor-blink {
+        width: 7px;
+        height: 12px;
+        margin-left: 1px;
+    }
+
+    /* ── CHAT INPUT ROW: MÊME LIGNE, BOUTON COMPACT ── */
+    #chat-input-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 14px 7px;
+    }
+
+    #chat-prompt {
+        font-size: 10px;
+    }
+
+    #chat-input {
+        font-size: 11px;
+        padding: 1px 3px;
+    }
+
+    #chat-send {
+        font-size: 12px;
+        padding: 1px 8px;
+        letter-spacing: 0.5px;
+    }
+
+    #chat-send:hover {
+        background: transparent;
+        border-color: rgba(0, 255, 80, 0.4);
+    }
+
+    /* ── BACK BUTTON MOBILE ── */
+    #back-btn {
+        font-size: 14px;
+        padding: 2px 10px;
+    }
+
+    #back-btn:hover {
+        background: transparent;
+        border-color: rgba(0, 255, 80, 0.4);
+    }
+
+    /* ── BUREAU OVERLAY MOBILE ── */
+    #bureau-overlay {
+        padding-left: 5%;
+        justify-content: center;
+    }
+
+    #bureau-window {
+        width: 90%;
+        height: 80%;
+    }
+
+    #bureau-header {
+        padding: 7px 12px;
+    }
+
+    #bureau-title {
+        font-size: 12px;
+    }
+
+    #bureau-close {
+        font-size: 14px;
+        padding: 0 6px;
+    }
+
+    #bureau-content {
+        padding: 10px 14px;
+    }
+
+    .project-file {
+        font-size: 12px;
+        gap: 10px;
+        padding: 8px 4px;
+    }
+
+    .project-file-tag {
+        font-size: 10px;
+    }
+
+    /* ── LABEL HINT MOBILE ── */
+    #label-hint {
+        font-size: 14px;
+        white-space: normal;
+        max-width: 80%;
+        text-align: center;
+    }
+
+    /* ── PROJECT DETAIL MOBILE ── */
+    #project-detail {
+        font-size: 12px;
+    }
+
+    #project-back {
+        font-size: 14px;
+        padding: 2px 10px;
+    }
+}

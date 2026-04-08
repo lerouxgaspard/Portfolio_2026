@@ -2,15 +2,22 @@
 // CURSOR
 // ═══════════════════════════════════════════════════════
 const cursorEl = document.getElementById('cursor');
-cursorEl.innerHTML = `
+
+// Désactiver le curseur custom sur mobile
+if (window.innerWidth > 767) {
+    cursorEl.innerHTML = `
 <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <polygon points="3,1 3,20 8,15 11,23 14,22 11,14 18,14" fill="#00ff50"/>
 </svg>`;
 
-document.addEventListener('mousemove', e => {
-    cursorEl.style.left = e.clientX + 'px';
-    cursorEl.style.top  = e.clientY + 'px';
-});
+    document.addEventListener('mousemove', e => {
+        cursorEl.style.left = e.clientX + 'px';
+        cursorEl.style.top  = e.clientY + 'px';
+    });
+} else {
+    // Sur mobile: cacher le curseur custom et laisser le curseur natif
+    cursorEl.style.display = 'none';
+}
 
 // ═══════════════════════════════════════════════════════
 // TYPEWRITER
@@ -323,8 +330,17 @@ function loadSceneImage(scene) {
 }
 
 // ═══════════════════════════════════════════════════════
+// UTILITAIRE: DÉTECTION MOBILE
+// ═══════════════════════════════════════════════════════
+function isMobileView() {
+    return window.innerWidth <= 767;
+}
+
+// ═══════════════════════════════════════════════════════
 // HOTSPOTS
 // ═══════════════════════════════════════════════════════
+let tapLabelTimeout = null;
+
 function renderHotspots(hotspots) {
     const container = document.getElementById('hotspots-container');
     const labelHint = document.getElementById('label-hint');
@@ -340,21 +356,48 @@ function renderHotspots(hotspots) {
             div.style[prop] = val;
         });
 
-        div.addEventListener('mouseenter', () => {
-            labelHint.textContent = hs.label;
-            labelHint.style.opacity = '1';
-            typewrite(hs.reply);
-        });
+        // COMPORTEMENT DESKTOP (hover)
+        if (!isMobileView()) {
+            div.addEventListener('mouseenter', () => {
+                labelHint.textContent = hs.label;
+                labelHint.style.opacity = '1';
+                typewrite(hs.reply);
+            });
 
-        div.addEventListener('mouseleave', () => {
-            labelHint.style.opacity = '0';
-        });
+            div.addEventListener('mouseleave', () => {
+                labelHint.style.opacity = '0';
+            });
+        }
+        // COMPORTEMENT MOBILE (tap avec délai)
+        else {
+            div.addEventListener('touchstart', () => {
+                // Afficher le label après 1.5s
+                if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
+                
+                tapLabelTimeout = setTimeout(() => {
+                    labelHint.textContent = hs.label;
+                    labelHint.style.opacity = '1';
+                    
+                    // Disparaître après 2s supplémentaires
+                    setTimeout(() => {
+                        labelHint.style.opacity = '0';
+                    }, 2000);
+                }, 1500);
+                
+                // Afficher la réplique immédiatement
+                typewrite(hs.reply);
+            });
+
+            div.addEventListener('touchend', () => {
+                if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
+            });
+        }
 
         div.addEventListener('click', () => {
             if (hs.action.startsWith('scene:')) {
                 loadScene(hs.action.slice(6));
             }
-            // action 'chat' : la réplique est déjà affichée au hover
+            // action 'chat' : la réplique est déjà affichée au hover/tap
         });
 
         container.appendChild(div);
