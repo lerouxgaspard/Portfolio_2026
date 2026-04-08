@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GASPARD.exe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Custom cursor -->
+    <div id="cursor"></div>
+
+    <!-- Scene -->
+    <div id="scene">
+        <img id="scene-image" alt="">
+        <div id="hotspots-container"></div>
+        <div id="scanlines"></div>
+        <div id="vignette"></div>
+    </div>
+
+    <!-- Label hint -->
+    <div id="label-hint"></div>
+
+    <!-- Back button -->
+    <button id="back-btn">[ &#8592; RETOUR ]</button>
+
+    <!-- Bureau overlay -->
+    <div id="bureau-overlay">
+        <div id="bureau-window">
+            <div id="bureau-header">
+                <span id="bureau-title">PROJETS_GASPARD/ &mdash;&mdash; C:\USERS\GASPARD&gt;</span>
+                <button id="bureau-close">[X]</button>
+            </div>
+            <div id="bureau-content"></div>
+        </div>
+    </div>
+
+    <!-- Transition -->
+    <div id="transition"></div>
+
+    <!-- Chatbox -->
+    <div id="chatbox">
+        <div id="chat-header">
+            <span id="chat-name">GASPARD.exe</span>
+            <span id="chat-status">&#9679; en ligne &middot; alternance @ Morning</span>
+        </div>
+        <div id="chat-body">
+            <div id="chat-portrait"><span>G</span></div>
+            <div id="chat-text-area">
+                <span id="chat-text"></span><span class="cursor-blink"></span>
+            </div>
+        </div>
+        <div id="chat-input-row">
+            <span id="chat-prompt">&gt;_</span>
+            <input type="text" id="chat-input" placeholder="pose une question..." autocomplete="off" spellcheck="false">
+            <button id="chat-send">ENVOYER</button>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="data.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
