@@ -48,11 +48,13 @@ const SCENES = {
 
     main: {
         image: 'assets/rooms/room_main.png',
+        imageMobile: 'assets/rooms/room_main_mobile.png',
         introText: "Hé. Tu fouilles dans ma chambre ? Bonne idée —\nc'est comme ça qu'on apprend à se connaître.\nClique sur quelque chose.",
         hotspots: [
             {
                 id: 'hs-ordi',
                 css: { left: '58%', top: '30%', width: '22%', height: '32%' },
+                mobileCss: { left: '35%', top: '42%', width: '45%', height: '25%' },
                 label: "[ INSPECTER L'ORDINATEUR ]",
                 action: 'scene:bureau',
                 reply: "Là c'est mon QG. Python, SQL, Claude API, Make, Dust... J'ai construit des trucs qui tournent vraiment. Clique pour voir mes projets."
@@ -60,6 +62,7 @@ const SCENES = {
             {
                 id: 'hs-posters',
                 css: { left: '16%', top: '18%', width: '18%', height: '42%' },
+                mobileCss: { left: '2%', top: '48%', width: '20%', height: '20%' },
                 label: '[ REGARDER LES POSTERS ]',
                 action: 'scene:posters',
                 reply: "Mon mur créatif. Papillon Monarque de Tuerie, le Flamingo Fest, Marenner's... C'est la partie de moi que le CV montre pas."
@@ -67,6 +70,7 @@ const SCENES = {
             {
                 id: 'hs-photos',
                 css: { left: '42%', top: '25%', width: '16%', height: '28%' },
+                mobileCss: { left: '28%', top: '48%', width: '18%', height: '14%' },
                 label: '[ REGARDER LES PHOTOS ]',
                 action: 'scene:photos',
                 reply: "Rennes, Colombie, Bordeaux, Casablanca, Paris. Chaque ville avait une logique. Clique pour les voir de plus près."
@@ -74,6 +78,7 @@ const SCENES = {
             {
                 id: 'hs-lit',
                 css: { left: '18%', top: '42%', width: '24%', height: '35%' },
+                mobileCss: { left: '2%', top: '58%', width: '38%', height: '22%' },
                 label: '[ INSPECTER LE LIT ]',
                 action: 'chat',
                 reply: "Gaspard Leroux, 24 ans, Auray Morbihan. Famille entrepreneuriale — Kingoland c'est le parc de mes parents, j'ai fait la comm pendant 6 ans. Eugenia School maintenant, alternance chez Morning."
@@ -81,6 +86,7 @@ const SCENES = {
             {
                 id: 'hs-pizza',
                 css: { left: '36%', top: '72%', width: '12%', height: '12%' },
+                mobileCss: { left: '22%', top: '72%', width: '20%', height: '12%' },
                 label: '[ GANG OF PIZZA ]',
                 action: 'chat',
                 reply: "Un mois à prospecter des zones pour implanter des distributeurs automatiques de pizzas dans le Morbihan. Ouais. C'était mon premier stage."
@@ -88,6 +94,7 @@ const SCENES = {
             {
                 id: 'hs-telephone',
                 css: { right: '5%', top: '48%', width: '8%', height: '18%' },
+                mobileCss: { right: '2%', top: '58%', width: '15%', height: '14%' },
                 label: '[ TÉLÉPHONE ]',
                 action: 'chat',
                 reply: "Si t'es arrivé jusqu'ici c'est qu'on a des choses à se dire. leroux.gaspard56500@gmail.com ou LinkedIn : gaspard-leroux-11b24a202"
@@ -95,6 +102,7 @@ const SCENES = {
             {
                 id: 'hs-fenetre',
                 css: { left: '1%', top: '8%', width: '12%', height: '55%' },
+                mobileCss: { left: '0%', top: '35%', width: '10%', height: '35%' },
                 label: '[ REGARDER PAR LA FENÊTRE ]',
                 action: 'chat',
                 reply: "Paris de nuit. Je suis breton à la base — Auray, Morbihan. Rennes, Bordeaux, et maintenant Paris. Chaque étape avait une logique."
@@ -102,6 +110,7 @@ const SCENES = {
             {
                 id: 'hs-porte',
                 css: { right: '1%', top: '5%', width: '9%', height: '65%' },
+                mobileCss: { right: '0%', top: '30%', width: '12%', height: '42%' },
                 label: '[ SORTIR ]',
                 action: 'chat',
                 reply: "Tu veux partir déjà ? Passe au moins par le téléphone avant de sortir."
@@ -111,17 +120,20 @@ const SCENES = {
 
     bureau: {
         image: 'assets/rooms/room_bureau.png',
+        imageMobile: 'assets/rooms/room_bureau_mobile.png',
         introText: "Mon bureau. C'est ici que ça se passe — les agents, les scripts, les pipelines. Clique sur un fichier.",
         hotspots: []
     },
 
     photos: {
         image: 'assets/rooms/room_photos.png',
+        imageMobile: 'assets/rooms/room_photos_mobile.png',
         introText: "Mes photos. Chaque ville, une version différente de moi.",
         hotspots: [
             {
                 id: 'hs-bordeaux',
                 css: { left: '5%', top: '35%', width: '32%', height: '45%' },
+                mobileCss: { left: '2%', top: '52%', width: '40%', height: '30%' },
                 label: '[ BORDEAUX ]',
                 action: 'chat',
                 reply: "KEDGE Business School, master entrepreneuriat. Bordeaux c'est là où j'ai commencé à vraiment construire des projets."
@@ -129,6 +141,7 @@ const SCENES = {
             {
                 id: 'hs-casablanca',
                 css: { left: '28%', top: '5%', width: '32%', height: '48%' },
+                mobileCss: { left: '2%', top: '18%', width: '42%', height: '32%' },
                 label: '[ CASABLANCA ]',
                 action: 'chat',
                 reply: "HEM Business School, programme d'échange. Casablanca m'a surpris — énergie, rythme, culture."
@@ -136,6 +149,7 @@ const SCENES = {
             {
                 id: 'hs-colombie',
                 css: { right: '2%', top: '5%', width: '30%', height: '48%' },
+                mobileCss: { right: '2%', top: '18%', width: '42%', height: '32%' },
                 label: '[ COLOMBIE ]',
                 action: 'chat',
                 reply: "Universidad de la Sabana, Bogotá. Six mois à voir le monde autrement. Le genre d'expérience qui recalibre tout."
@@ -143,6 +157,7 @@ const SCENES = {
             {
                 id: 'hs-rennes',
                 css: { right: '8%', top: '42%', width: '35%', height: '50%' },
+                mobileCss: { right: '2%', top: '52%', width: '48%', height: '35%' },
                 label: '[ RENNES ]',
                 action: 'chat',
                 reply: "Rennes School of Business, bachelor marketing. Ma première vraie ville. J'ai découvert que j'aimais comprendre pourquoi les gens achètent."
@@ -150,6 +165,7 @@ const SCENES = {
             {
                 id: 'hs-paris',
                 css: { left: '42%', top: '10%', width: '20%', height: '25%' },
+                mobileCss: { left: '25%', top: '2%', width: '35%', height: '18%' },
                 label: '[ PARIS — EUGENIA ]',
                 action: 'chat',
                 reply: "Eugenia School, MSc Business Analytics. Et Morning en alternance. Paris c'est maintenant — et c'est exactement là où je voulais être."
@@ -159,11 +175,13 @@ const SCENES = {
 
     posters: {
         image: 'assets/rooms/room_posters.png',
+        imageMobile: 'assets/rooms/room_posters_mobile.png',
         introText: "Mes posters. Ce que j'ai fait en dehors du CV, en dehors des cours.",
         hotspots: [
             {
                 id: 'hs-papillon',
                 css: { left: '5%', top: '8%', width: '38%', height: '80%' },
+                mobileCss: { left: '2%', top: '15%', width: '42%', height: '65%' },
                 label: '[ TUERIE — PAPILLON MONARQUE ]',
                 action: 'chat',
                 reply: "J'ai interviewé Tuerie pour Pour Ta Culture, le média qu'on a co-fondé. Papillon Monarque c'est son album. Un artiste qui fait des trucs vraiment intéressants."
@@ -171,6 +189,7 @@ const SCENES = {
             {
                 id: 'hs-flamingo',
                 css: { left: '38%', top: '18%', width: '42%', height: '72%' },
+                mobileCss: { right: '2%', top: '25%', width: '52%', height: '60%' },
                 label: '[ FLAMINGO FEST ]',
                 action: 'chat',
                 reply: "J'ai fait la direction artistique et la communication de ce festival. Visuels, affiches, programmation. C'est aussi là que Situal a joué."
@@ -178,6 +197,7 @@ const SCENES = {
             {
                 id: 'hs-marennrs',
                 css: { left: '3%', bottom: '5%', width: '18%', height: '18%' },
+                mobileCss: { left: '2%', bottom: '8%', width: '20%', height: '15%' },
                 label: "[ MARENNER'S BDE ]",
                 action: 'chat',
                 reply: "Vice-président du BDE à Rennes. Identité visuelle, événements, communication. Mon premier rôle de direction."
@@ -313,12 +333,16 @@ function loadSceneImage(scene) {
     const old = document.getElementById('scene-placeholder');
     if (old) old.remove();
 
+    // Détecter mobile et charger la bonne image
+    const isMobile = window.innerWidth < 768;
+    const imagePath = isMobile && scene.imageMobile ? scene.imageMobile : scene.image;
+
     img.style.display = 'block';
     img.onerror = function () {
         this.style.display = 'none';
         const ph = document.createElement('div');
         ph.id = 'scene-placeholder';
-        ph.textContent = '[ place ' + scene.image.split('/').pop() + ' dans assets/rooms/ ]';
+        ph.textContent = '[ place ' + imagePath.split('/').pop() + ' dans assets/rooms/ ]';
         sceneEl.insertBefore(ph, this);
     };
     img.onload = function () {
@@ -326,7 +350,7 @@ function loadSceneImage(scene) {
         const old2 = document.getElementById('scene-placeholder');
         if (old2) old2.remove();
     };
-    img.src = scene.image;
+    img.src = imagePath;
 }
 
 // ═══════════════════════════════════════════════════════
@@ -346,18 +370,21 @@ function renderHotspots(hotspots) {
     const labelHint = document.getElementById('label-hint');
     container.innerHTML = '';
 
+    const isMobile = isMobileView();
+
     hotspots.forEach(hs => {
         const div = document.createElement('div');
         div.className = 'hotspot';
         div.id = hs.id;
 
-        // Appliquer les styles CSS en %
-        Object.entries(hs.css).forEach(([prop, val]) => {
+        // Appliquer les styles CSS — desktop ou mobile selon le device
+        const cssToUse = isMobile && hs.mobileCss ? hs.mobileCss : hs.css;
+        Object.entries(cssToUse).forEach(([prop, val]) => {
             div.style[prop] = val;
         });
 
         // COMPORTEMENT DESKTOP (hover)
-        if (!isMobileView()) {
+        if (!isMobile) {
             div.addEventListener('mouseenter', () => {
                 labelHint.textContent = hs.label;
                 labelHint.style.opacity = '1';
