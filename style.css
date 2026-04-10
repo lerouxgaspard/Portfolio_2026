@@ -58,23 +58,36 @@ body {
     padding: 20px;
 }
 
-/* ── HOTSPOTS ── */
+/* ── HOTSPOTS PNG ── */
 #hotspots-container {
     position: absolute;
     inset: 0;
     z-index: 20;
 }
 
+.hotspot-png {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    cursor: none;
+    z-index: 20;
+    transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.hotspot-png:hover {
+    opacity: 1;
+    filter: brightness(1.4) drop-shadow(0 0 12px rgba(0, 255, 80, 0.5));
+}
+
+/* ── HOTSPOT DIV (fallback, kept for safety) ── */
 .hotspot {
     position: absolute;
     cursor: none;
     background: transparent;
     transition: background 0.15s, outline 0.15s;
-}
-
-.hotspot:hover {
-    background: rgba(0, 255, 80, 0.06);
-    outline: 1px solid rgba(0, 255, 80, 0.2);
 }
 
 /* ── SCANLINES ── */
@@ -101,11 +114,11 @@ body {
     z-index: 11;
 }
 
-/* ── TRANSITION ── */
+/* ── TRANSITION (overlay blanc) ── */
 #transition {
     position: fixed;
     inset: 0;
-    background: #000;
+    background: #fff;
     opacity: 0;
     pointer-events: none;
     z-index: 100;
@@ -125,8 +138,10 @@ body {
     transform: translateX(-50%);
     font-family: 'VT323', monospace;
     font-size: 22px;
-    color: #00ff50;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+    color: #1a1a1a;
+    background: #f5f0e8;
+    border: 2px solid #1a1a1a;
+    padding: 2px 12px;
     opacity: 0;
     transition: opacity 0.15s;
     pointer-events: none;
@@ -301,15 +316,17 @@ body {
     opacity: 0.9;
 }
 
-/* ── CHATBOX ── */
+/* ── CHATBOX — STYLE POKÉMON ── */
 #chatbox {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     height: 140px;
-    background: rgba(0, 8, 0, 0.92);
-    border-top: 1px solid rgba(0, 255, 80, 0.4);
+    background: #f5f0e8;
+    border-top: 4px solid #1a1a1a;
+    box-shadow: inset 2px 2px 0 #fff, inset -2px -2px 0 #999;
+    border-radius: 0;
     z-index: 40;
     display: flex;
     flex-direction: column;
@@ -320,21 +337,21 @@ body {
     align-items: baseline;
     gap: 14px;
     padding: 8px 20px;
-    border-bottom: 1px solid rgba(0, 255, 80, 0.2);
+    background: #1a1a1a;
     flex-shrink: 0;
 }
 
 #chat-name {
     font-family: 'VT323', monospace;
     font-size: 20px;
-    color: #00ff50;
+    color: #f5f0e8;
     letter-spacing: 3px;
 }
 
 #chat-status {
     font-family: 'Share Tech Mono', monospace;
     font-size: 11px;
-    color: rgba(0, 255, 80, 0.4);
+    color: rgba(245, 240, 232, 0.6);
 }
 
 #chat-body {
@@ -349,15 +366,15 @@ body {
 #chat-portrait {
     width: 52px;
     height: 52px;
-    border: 1px solid rgba(0, 255, 80, 0.3);
-    background: rgba(0, 30, 0, 0.8);
+    border: 3px solid #1a1a1a;
+    background: #e8e0d0;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     font-family: 'VT323', monospace;
     font-size: 30px;
-    color: rgba(0, 255, 80, 0.7);
+    color: #1a1a1a;
 }
 
 #chat-text-area {
@@ -367,7 +384,7 @@ body {
     overflow: hidden;
     font-family: 'Share Tech Mono', monospace;
     font-size: 15px;
-    color: #00ff50;
+    color: #1a1a1a;
     line-height: 1.6;
 }
 
@@ -382,7 +399,7 @@ body {
     display: inline-block;
     width: 9px;
     height: 15px;
-    background: #00ff50;
+    background: #1a1a1a;
     margin-left: 2px;
     vertical-align: middle;
     flex-shrink: 0;
@@ -405,7 +422,7 @@ body {
 #chat-prompt {
     font-family: 'Share Tech Mono', monospace;
     font-size: 13px;
-    color: rgba(0, 255, 80, 0.5);
+    color: rgba(26, 26, 26, 0.5);
     flex-shrink: 0;
 }
 
@@ -413,8 +430,8 @@ body {
     flex: 1;
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(0, 255, 80, 0.3);
-    color: #00ff50;
+    border-bottom: 2px solid #1a1a1a;
+    color: #1a1a1a;
     font-family: 'Share Tech Mono', monospace;
     font-size: 13px;
     outline: none;
@@ -422,15 +439,16 @@ body {
 }
 
 #chat-input::placeholder {
-    color: rgba(0, 255, 80, 0.2);
+    color: rgba(26, 26, 26, 0.3);
 }
 
 #chat-send {
     font-family: 'VT323', monospace;
     font-size: 18px;
-    color: #00ff50;
-    background: transparent;
-    border: 1px solid rgba(0, 255, 80, 0.4);
+    color: #f5f0e8;
+    background: #1a1a1a;
+    border: none;
+    border-radius: 0;
     padding: 2px 14px;
     cursor: none;
     flex-shrink: 0;
@@ -438,8 +456,67 @@ body {
 }
 
 #chat-send:hover {
-    background: rgba(0, 255, 80, 0.1);
-    border-color: rgba(0, 255, 80, 0.7);
+    background: #333;
+}
+
+/* ── EFFETS VIVANTS — PLAN MAIN ── */
+
+/* Particules flottantes */
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(0, 255, 80, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 15;
+    animation: floatParticle 10s ease-in-out infinite, particleOpacity 7s ease-in-out infinite;
+}
+
+@keyframes floatParticle {
+    0%   { transform: translateY(0)    translateX(0);   }
+    25%  { transform: translateY(-18px) translateX(6px); }
+    50%  { transform: translateY(-8px)  translateX(-4px); }
+    75%  { transform: translateY(-22px) translateX(9px); }
+    100% { transform: translateY(0)    translateX(0);   }
+}
+
+@keyframes particleOpacity {
+    0%, 100% { opacity: 0.2; }
+    50%      { opacity: 0.6; }
+}
+
+/* Glow écran ordi */
+#screen-glow {
+    position: absolute;
+    left: 62%;
+    top: 32%;
+    width: 12%;
+    height: 16%;
+    background: radial-gradient(circle at center, rgba(0, 255, 80, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 15;
+    animation: screenPulse 2s ease-in-out infinite;
+}
+
+@keyframes screenPulse {
+    0%, 100% { opacity: 0.3; }
+    50%      { opacity: 0.8; }
+}
+
+/* Glitch au chargement */
+@keyframes glitch {
+    0%   { transform: translateX(0);   filter: none; }
+    15%  { transform: translateX(-3px); filter: hue-rotate(30deg); }
+    30%  { transform: translateX(3px);  filter: hue-rotate(-30deg); }
+    50%  { transform: translateX(-2px); filter: hue-rotate(15deg); }
+    70%  { transform: translateX(2px);  filter: none; }
+    85%  { transform: translateX(-1px); filter: hue-rotate(10deg); }
+    100% { transform: translateX(0);   filter: none; }
+}
+
+.glitch-anim {
+    animation: glitch 0.3s ease forwards;
 }
 
 /* ═══════════════════════════════════════════════════════ */
@@ -559,8 +636,7 @@ body {
     }
 
     #chat-send:hover {
-        background: transparent;
-        border-color: rgba(0, 255, 80, 0.4);
+        background: #1a1a1a;
     }
 
     /* ── BACK BUTTON MOBILE ── */

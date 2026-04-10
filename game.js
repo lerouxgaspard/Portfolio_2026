@@ -25,21 +25,39 @@ if (window.innerWidth > 767) {
 // le précédent immédiatement via incrémentation du token.
 // ═══════════════════════════════════════════════════════
 let typeToken = 0;
+let typewriterActive = false;
 
 function typewrite(text) {
     const el = document.getElementById('chat-text');
     const token = ++typeToken;
     el.textContent = '';
+    typewriterActive = true;
     let i = 0;
     function tick() {
-        if (token !== typeToken) return; // annulé
+        if (token !== typeToken) {
+            typewriterActive = false;
+            return; // annulé
+        }
         if (i < text.length) {
             el.textContent += text[i++];
             setTimeout(tick, 25);
+        } else {
+            typewriterActive = false;
+            lastClickedHotspot = null;
         }
     }
     tick();
 }
+
+// ═══════════════════════════════════════════════════════
+// ANTI-REDÉCLENCHEMENT
+// ═══════════════════════════════════════════════════════
+let lastClickedHotspot = null;
+
+// ═══════════════════════════════════════════════════════
+// SLEEP UTILITY
+// ═══════════════════════════════════════════════════════
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // ═══════════════════════════════════════════════════════
 // DONNÉES DES SCÈNES
@@ -52,65 +70,57 @@ const SCENES = {
         introText: "Hé. Tu fouilles dans ma chambre ? Bonne idée —\nc'est comme ça qu'on apprend à se connaître.\nClique sur quelque chose.",
         hotspots: [
             {
-                id: 'hs-ordi',
-                css: { left: '58%', top: '30%', width: '22%', height: '32%' },
-                mobileCss: { left: '35%', top: '42%', width: '45%', height: '25%' },
+                id: 'hs-ordinateur',
+                pngSrc: 'assets/objects/room_main_ordinateur.png',
                 label: "[ INSPECTER L'ORDINATEUR ]",
                 action: 'scene:bureau',
                 reply: "Là c'est mon QG. Python, SQL, Claude API, Make, Dust... J'ai construit des trucs qui tournent vraiment. Clique pour voir mes projets."
             },
             {
                 id: 'hs-posters',
-                css: { left: '16%', top: '18%', width: '18%', height: '42%' },
-                mobileCss: { left: '2%', top: '48%', width: '20%', height: '20%' },
+                pngSrc: 'assets/objects/room_main_posters.png',
                 label: '[ REGARDER LES POSTERS ]',
                 action: 'scene:posters',
                 reply: "Mon mur créatif. Papillon Monarque de Tuerie, le Flamingo Fest, Marenner's... C'est la partie de moi que le CV montre pas."
             },
             {
-                id: 'hs-photos',
-                css: { left: '42%', top: '25%', width: '16%', height: '28%' },
-                mobileCss: { left: '28%', top: '48%', width: '18%', height: '14%' },
+                id: 'hs-voyages',
+                pngSrc: 'assets/objects/room_main_voyages.png',
                 label: '[ REGARDER LES PHOTOS ]',
                 action: 'scene:photos',
-                reply: "Rennes, Colombie, Bordeaux, Casablanca, Paris. Chaque ville avait une logique. Clique pour les voir de plus près."
+                reply: "Rennes, Colombie, Bordeaux, Casablanca, Paris. Chaque ville avait une logique. Clique pour voir de plus près."
             },
             {
-                id: 'hs-lit',
-                css: { left: '18%', top: '42%', width: '24%', height: '35%' },
-                mobileCss: { left: '2%', top: '58%', width: '38%', height: '22%' },
-                label: '[ INSPECTER LE LIT ]',
+                id: 'hs-kingoland',
+                pngSrc: 'assets/objects/room_main_kingoland.png',
+                label: '[ PELUCHE KINGOLAND ]',
                 action: 'chat',
-                reply: "Gaspard Leroux, 24 ans, Auray Morbihan. Famille entrepreneuriale — Kingoland c'est le parc de mes parents, j'ai fait la comm pendant 6 ans. Eugenia School maintenant, alternance chez Morning."
+                reply: "Kingoland c'est le parc de loisirs de ma famille en Bretagne. J'ai géré la comm pendant 6 ans — réseaux, visuels, événements, prospection. Mon premier terrain."
             },
             {
                 id: 'hs-pizza',
-                css: { left: '36%', top: '72%', width: '12%', height: '12%' },
-                mobileCss: { left: '22%', top: '72%', width: '20%', height: '12%' },
+                pngSrc: 'assets/objects/room_main_pizza.png',
                 label: '[ GANG OF PIZZA ]',
                 action: 'chat',
-                reply: "Un mois à prospecter des zones pour implanter des distributeurs automatiques de pizzas dans le Morbihan. Ouais. C'était mon premier stage."
+                reply: "Un mois à prospecter des zones pour implanter des distributeurs automatiques de pizzas dans le Morbihan. Mon premier stage — et j'ai adoré."
+            },
+            {
+                id: 'hs-morning',
+                pngSrc: 'assets/objects/room_main_morning.png',
+                label: '[ BADGE MORNING ]',
+                action: 'chat',
+                reply: "Morning, coworking à Paris. Mon alternance actuelle depuis avril 2025. Marketing, automation, IA — c'est exactement là où je voulais atterrir."
             },
             {
                 id: 'hs-telephone',
-                css: { right: '5%', top: '48%', width: '8%', height: '18%' },
-                mobileCss: { right: '2%', top: '58%', width: '15%', height: '14%' },
+                pngSrc: 'assets/objects/room_main_telephone.png',
                 label: '[ TÉLÉPHONE ]',
                 action: 'chat',
                 reply: "Si t'es arrivé jusqu'ici c'est qu'on a des choses à se dire. leroux.gaspard56500@gmail.com ou LinkedIn : gaspard-leroux-11b24a202"
             },
             {
-                id: 'hs-fenetre',
-                css: { left: '1%', top: '8%', width: '12%', height: '55%' },
-                mobileCss: { left: '0%', top: '35%', width: '10%', height: '35%' },
-                label: '[ REGARDER PAR LA FENÊTRE ]',
-                action: 'chat',
-                reply: "Paris de nuit. Je suis breton à la base — Auray, Morbihan. Rennes, Bordeaux, et maintenant Paris. Chaque étape avait une logique."
-            },
-            {
                 id: 'hs-porte',
-                css: { right: '1%', top: '5%', width: '9%', height: '65%' },
-                mobileCss: { right: '0%', top: '30%', width: '12%', height: '42%' },
+                pngSrc: 'assets/objects/room_main_porte.png',
                 label: '[ SORTIR ]',
                 action: 'chat',
                 reply: "Tu veux partir déjà ? Passe au moins par le téléphone avant de sortir."
@@ -131,44 +141,39 @@ const SCENES = {
         introText: "Mes photos. Chaque ville, une version différente de moi.",
         hotspots: [
             {
-                id: 'hs-bordeaux',
-                css: { left: '5%', top: '35%', width: '32%', height: '45%' },
-                mobileCss: { left: '2%', top: '52%', width: '40%', height: '30%' },
-                label: '[ BORDEAUX ]',
-                action: 'chat',
-                reply: "KEDGE Business School, master entrepreneuriat. Bordeaux c'est là où j'ai commencé à vraiment construire des projets."
-            },
-            {
-                id: 'hs-casablanca',
-                css: { left: '28%', top: '5%', width: '32%', height: '48%' },
-                mobileCss: { left: '2%', top: '18%', width: '42%', height: '32%' },
-                label: '[ CASABLANCA ]',
-                action: 'chat',
-                reply: "HEM Business School, programme d'échange. Casablanca m'a surpris — énergie, rythme, culture."
-            },
-            {
                 id: 'hs-colombie',
-                css: { right: '2%', top: '5%', width: '30%', height: '48%' },
-                mobileCss: { right: '2%', top: '18%', width: '42%', height: '32%' },
-                label: '[ COLOMBIE ]',
+                pngSrc: 'assets/objects/room_photo_colombie.png',
+                label: '[ COLOMBIE — UNIVERSIDAD DE LA SABANA ]',
                 action: 'chat',
                 reply: "Universidad de la Sabana, Bogotá. Six mois à voir le monde autrement. Le genre d'expérience qui recalibre tout."
             },
             {
-                id: 'hs-rennes',
-                css: { right: '8%', top: '42%', width: '35%', height: '50%' },
-                mobileCss: { right: '2%', top: '52%', width: '48%', height: '35%' },
-                label: '[ RENNES ]',
+                id: 'hs-kedge',
+                pngSrc: 'assets/objects/room_photo_kedge.png',
+                label: '[ BORDEAUX — KEDGE ]',
                 action: 'chat',
-                reply: "Rennes School of Business, bachelor marketing. Ma première vraie ville. J'ai découvert que j'aimais comprendre pourquoi les gens achètent."
+                reply: "KEDGE Business School, master entrepreneuriat. Bordeaux c'est là où j'ai commencé à vraiment construire des projets."
+            },
+            {
+                id: 'hs-maroc',
+                pngSrc: 'assets/objects/room_photo_maroc.png',
+                label: '[ CASABLANCA — HEM ]',
+                action: 'chat',
+                reply: "HEM Business School, programme d'échange. Casablanca m'a surpris — énergie, rythme, culture. Une ville qui ne ressemble à aucune autre."
             },
             {
                 id: 'hs-paris',
-                css: { left: '42%', top: '10%', width: '20%', height: '25%' },
-                mobileCss: { left: '25%', top: '2%', width: '35%', height: '18%' },
-                label: '[ PARIS — EUGENIA ]',
+                pngSrc: 'assets/objects/room_photo_paris.png',
+                label: '[ PARIS — EUGENIA SCHOOL ]',
                 action: 'chat',
-                reply: "Eugenia School, MSc Business Analytics. Et Morning en alternance. Paris c'est maintenant — et c'est exactement là où je voulais être."
+                reply: "Eugenia School, MSc Business Analytics. Et Morning en alternance. Paris c'est maintenant — c'est exactement là où je voulais être."
+            },
+            {
+                id: 'hs-rennes',
+                pngSrc: 'assets/objects/room_photo_rennes.png',
+                label: '[ RENNES — RSB ]',
+                action: 'chat',
+                reply: "Rennes School of Business, bachelor marketing. Ma première vraie ville. J'ai découvert que j'aimais comprendre pourquoi les gens achètent."
             }
         ]
     },
@@ -179,25 +184,22 @@ const SCENES = {
         introText: "Mes posters. Ce que j'ai fait en dehors du CV, en dehors des cours.",
         hotspots: [
             {
-                id: 'hs-papillon',
-                css: { left: '5%', top: '8%', width: '38%', height: '80%' },
-                mobileCss: { left: '2%', top: '15%', width: '42%', height: '65%' },
+                id: 'hs-tuerie',
+                pngSrc: 'assets/objects/room_posters_tuerie.png',
                 label: '[ TUERIE — PAPILLON MONARQUE ]',
                 action: 'chat',
-                reply: "J'ai interviewé Tuerie pour Pour Ta Culture, le média qu'on a co-fondé. Papillon Monarque c'est son album. Un artiste qui fait des trucs vraiment intéressants."
+                reply: "J'ai interviewé Tuerie pour Pour Ta Culture, le média qu'on a co-fondé. Papillon Monarque c'est son album — un projet qui m'a vraiment marqué."
             },
             {
                 id: 'hs-flamingo',
-                css: { left: '38%', top: '18%', width: '42%', height: '72%' },
-                mobileCss: { right: '2%', top: '25%', width: '52%', height: '60%' },
+                pngSrc: 'assets/objects/room_posters_flamingo.png',
                 label: '[ FLAMINGO FEST ]',
                 action: 'chat',
-                reply: "J'ai fait la direction artistique et la communication de ce festival. Visuels, affiches, programmation. C'est aussi là que Situal a joué."
+                reply: "Direction artistique et communication du Flamingo Fest. Visuels, affiches, programmation. C'est aussi là que Situal a joué."
             },
             {
                 id: 'hs-marennrs',
-                css: { left: '3%', bottom: '5%', width: '18%', height: '18%' },
-                mobileCss: { left: '2%', bottom: '8%', width: '20%', height: '15%' },
+                pngSrc: 'assets/objects/room_poster_marennrs.png',
                 label: "[ MARENNER'S BDE ]",
                 action: 'chat',
                 reply: "Vice-président du BDE à Rennes. Identité visuelle, événements, communication. Mon premier rôle de direction."
@@ -361,7 +363,7 @@ function isMobileView() {
 }
 
 // ═══════════════════════════════════════════════════════
-// HOTSPOTS
+// HOTSPOTS PNG
 // ═══════════════════════════════════════════════════════
 let tapLabelTimeout = null;
 
@@ -372,63 +374,144 @@ function renderHotspots(hotspots) {
 
     const isMobile = isMobileView();
 
+    // Ordre dans le DOM : grands objets d'abord, petits en dernier
+    // (les derniers sont au-dessus et cliquables en priorité)
     hotspots.forEach(hs => {
-        const div = document.createElement('div');
-        div.className = 'hotspot';
-        div.id = hs.id;
-
-        // Appliquer les styles CSS — desktop ou mobile selon le device
-        const cssToUse = isMobile && hs.mobileCss ? hs.mobileCss : hs.css;
-        Object.entries(cssToUse).forEach(([prop, val]) => {
-            div.style[prop] = val;
-        });
+        const img = document.createElement('img');
+        img.className = 'hotspot-png';
+        img.id = hs.id;
+        img.src = hs.pngSrc;
+        img.alt = '';
+        img.setAttribute('data-label', hs.label);
+        img.setAttribute('data-line', hs.reply);
 
         // COMPORTEMENT DESKTOP (hover)
         if (!isMobile) {
-            div.addEventListener('mouseenter', () => {
+            img.addEventListener('mouseenter', () => {
                 labelHint.textContent = hs.label;
                 labelHint.style.opacity = '1';
                 typewrite(hs.reply);
             });
 
-            div.addEventListener('mouseleave', () => {
+            img.addEventListener('mouseleave', () => {
                 labelHint.style.opacity = '0';
             });
         }
         // COMPORTEMENT MOBILE (tap avec délai)
         else {
-            div.addEventListener('touchstart', () => {
-                // Afficher le label après 1.5s
+            img.addEventListener('touchstart', () => {
                 if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
-                
+
                 tapLabelTimeout = setTimeout(() => {
                     labelHint.textContent = hs.label;
                     labelHint.style.opacity = '1';
-                    
-                    // Disparaître après 2s supplémentaires
+
                     setTimeout(() => {
                         labelHint.style.opacity = '0';
                     }, 2000);
                 }, 1500);
-                
+
                 // Afficher la réplique immédiatement
                 typewrite(hs.reply);
             });
 
-            div.addEventListener('touchend', () => {
+            img.addEventListener('touchend', () => {
                 if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
             });
         }
 
-        div.addEventListener('click', () => {
+        img.addEventListener('click', () => {
+            // Anti-redéclenchement
+            if (lastClickedHotspot === hs.id && typewriterActive) return;
+            lastClickedHotspot = hs.id;
+
             if (hs.action.startsWith('scene:')) {
-                loadScene(hs.action.slice(6));
+                transitionTo(hs.action.slice(6));
             }
             // action 'chat' : la réplique est déjà affichée au hover/tap
         });
 
-        container.appendChild(div);
+        container.appendChild(img);
     });
+}
+
+// ═══════════════════════════════════════════════════════
+// TRANSITION ZOOM
+// ═══════════════════════════════════════════════════════
+async function transitionTo(sceneName) {
+    cleanupLivingEffects();
+
+    const roomBg = document.getElementById('scene-image');
+    const overlay = document.getElementById('transition');
+
+    roomBg.style.transition = 'transform 0.2s ease-in, filter 0.2s ease-in';
+    roomBg.style.transform = 'scale(1.15)';
+    roomBg.style.filter = 'blur(4px) brightness(1.2)';
+
+    overlay.style.background = '#fff';
+    overlay.style.transition = 'opacity 0.15s ease';
+    overlay.style.opacity = '1';
+
+    await sleep(350);
+
+    loadScene(sceneName);
+    roomBg.style.transition = 'none';
+    roomBg.style.transform = 'scale(1.15)';
+
+    await sleep(50);
+    overlay.style.transition = 'opacity 0.3s ease';
+    overlay.style.opacity = '0';
+    roomBg.style.transition = 'transform 0.3s ease-out, filter 0.3s ease-out';
+    roomBg.style.transform = 'scale(1)';
+    roomBg.style.filter = 'none';
+
+    // Activer les effets vivants après chargement de main
+    if (sceneName === 'main') {
+        await sleep(500);
+        setupLivingEffects();
+    }
+}
+
+// ═══════════════════════════════════════════════════════
+// EFFETS VIVANTS — PLAN MAIN UNIQUEMENT
+// ═══════════════════════════════════════════════════════
+let particlesEls = [];
+let screenGlowEl = null;
+
+function setupLivingEffects() {
+    const sceneEl = document.getElementById('scene');
+
+    // A) Glow pulsant écran ordi
+    screenGlowEl = document.createElement('div');
+    screenGlowEl.id = 'screen-glow';
+    sceneEl.appendChild(screenGlowEl);
+
+    // B) 15 particules flottantes — zone droite (ordi)
+    for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const left = 52 + Math.random() * 32;   // 52–84%
+        const top  = 8  + Math.random() * 62;   // 8–70%
+        const dur  = (8 + Math.random() * 7).toFixed(1);
+        const delay = -(Math.random() * 10).toFixed(1);
+        p.style.left = left + '%';
+        p.style.top  = top  + '%';
+        p.style.animationDuration = dur + 's, ' + (parseFloat(dur) * 0.7).toFixed(1) + 's';
+        p.style.animationDelay    = delay + 's, ' + delay + 's';
+        sceneEl.appendChild(p);
+        particlesEls.push(p);
+    }
+
+    // C) Glitch au chargement (une seule fois)
+    const roomBg = document.getElementById('scene-image');
+    roomBg.classList.add('glitch-anim');
+    setTimeout(() => roomBg.classList.remove('glitch-anim'), 400);
+}
+
+function cleanupLivingEffects() {
+    if (screenGlowEl) { screenGlowEl.remove(); screenGlowEl = null; }
+    particlesEls.forEach(p => p.remove());
+    particlesEls = [];
 }
 
 // ═══════════════════════════════════════════════════════
@@ -493,7 +576,7 @@ async function sendMessage(userText) {
 
     const key = window.OPENAI_API_KEY;
     if (!key || key === 'REMPLACE_PAR_TA_CLÉ') {
-        typewrite('[ configure config.js avec ta clé API ]');
+        typewrite('[ configure ta clé API dans index.html ]');
         conversationHistory.pop();
         return;
     }
@@ -539,12 +622,12 @@ async function sendMessage(userText) {
 
 // Bouton retour principal (hors bureau)
 document.getElementById('back-btn').addEventListener('click', () => {
-    loadScene('main');
+    transitionTo('main');
 });
 
 // Bouton [X] du bureau
 document.getElementById('bureau-close').addEventListener('click', () => {
-    loadScene('main');
+    transitionTo('main');
 });
 
 // Envoi du chat
@@ -565,3 +648,4 @@ document.getElementById('chat-input').addEventListener('keydown', e => {
 // INIT
 // ═══════════════════════════════════════════════════════
 loadScene('main');
+setTimeout(setupLivingEffects, 500);
