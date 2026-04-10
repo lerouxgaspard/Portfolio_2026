@@ -71,56 +71,56 @@ const SCENES = {
         hotspots: [
             {
                 id: 'hs-ordinateur',
-                pngSrc: 'assets/objects/room_main_ordinateur.png',
+                pngSrc: 'assets/rooms/room_main_ordinateur.png',
                 label: "[ INSPECTER L'ORDINATEUR ]",
                 action: 'scene:bureau',
                 reply: "Là c'est mon QG. Python, SQL, Claude API, Make, Dust... J'ai construit des trucs qui tournent vraiment. Clique pour voir mes projets."
             },
             {
                 id: 'hs-posters',
-                pngSrc: 'assets/objects/room_main_posters.png',
+                pngSrc: 'assets/rooms/room_main_posters.png',
                 label: '[ REGARDER LES POSTERS ]',
                 action: 'scene:posters',
                 reply: "Mon mur créatif. Papillon Monarque de Tuerie, le Flamingo Fest, Marenner's... C'est la partie de moi que le CV montre pas."
             },
             {
                 id: 'hs-voyages',
-                pngSrc: 'assets/objects/room_main_voyages.png',
+                pngSrc: 'assets/rooms/room_main_voyages.png',
                 label: '[ REGARDER LES PHOTOS ]',
                 action: 'scene:photos',
                 reply: "Rennes, Colombie, Bordeaux, Casablanca, Paris. Chaque ville avait une logique. Clique pour voir de plus près."
             },
             {
                 id: 'hs-kingoland',
-                pngSrc: 'assets/objects/room_main_kingoland.png',
+                pngSrc: 'assets/rooms/room_main_kingoland.png',
                 label: '[ PELUCHE KINGOLAND ]',
                 action: 'chat',
                 reply: "Kingoland c'est le parc de loisirs de ma famille en Bretagne. J'ai géré la comm pendant 6 ans — réseaux, visuels, événements, prospection. Mon premier terrain."
             },
             {
                 id: 'hs-pizza',
-                pngSrc: 'assets/objects/room_main_pizza.png',
+                pngSrc: 'assets/rooms/room_main_pizza.png',
                 label: '[ GANG OF PIZZA ]',
                 action: 'chat',
                 reply: "Un mois à prospecter des zones pour implanter des distributeurs automatiques de pizzas dans le Morbihan. Mon premier stage — et j'ai adoré."
             },
             {
                 id: 'hs-morning',
-                pngSrc: 'assets/objects/room_main_morning.png',
+                pngSrc: 'assets/rooms/room_main_morning.png',
                 label: '[ BADGE MORNING ]',
                 action: 'chat',
                 reply: "Morning, coworking à Paris. Mon alternance actuelle depuis avril 2025. Marketing, automation, IA — c'est exactement là où je voulais atterrir."
             },
             {
                 id: 'hs-telephone',
-                pngSrc: 'assets/objects/room_main_telephone.png',
+                pngSrc: 'assets/rooms/room_main_telephone.png',
                 label: '[ TÉLÉPHONE ]',
                 action: 'chat',
                 reply: "Si t'es arrivé jusqu'ici c'est qu'on a des choses à se dire. leroux.gaspard56500@gmail.com ou LinkedIn : gaspard-leroux-11b24a202"
             },
             {
                 id: 'hs-porte',
-                pngSrc: 'assets/objects/room_main_porte.png',
+                pngSrc: 'assets/rooms/room_main_porte.png',
                 label: '[ SORTIR ]',
                 action: 'chat',
                 reply: "Tu veux partir déjà ? Passe au moins par le téléphone avant de sortir."
@@ -142,35 +142,35 @@ const SCENES = {
         hotspots: [
             {
                 id: 'hs-colombie',
-                pngSrc: 'assets/objects/room_photo_colombie.png',
+                pngSrc: 'assets/rooms/room_photo_colombie.png',
                 label: '[ COLOMBIE — UNIVERSIDAD DE LA SABANA ]',
                 action: 'chat',
                 reply: "Universidad de la Sabana, Bogotá. Six mois à voir le monde autrement. Le genre d'expérience qui recalibre tout."
             },
             {
                 id: 'hs-kedge',
-                pngSrc: 'assets/objects/room_photo_kedge.png',
+                pngSrc: 'assets/rooms/room_photo_kedge.png',
                 label: '[ BORDEAUX — KEDGE ]',
                 action: 'chat',
                 reply: "KEDGE Business School, master entrepreneuriat. Bordeaux c'est là où j'ai commencé à vraiment construire des projets."
             },
             {
                 id: 'hs-maroc',
-                pngSrc: 'assets/objects/room_photo_maroc.png',
+                pngSrc: 'assets/rooms/room_photo_maroc.png',
                 label: '[ CASABLANCA — HEM ]',
                 action: 'chat',
                 reply: "HEM Business School, programme d'échange. Casablanca m'a surpris — énergie, rythme, culture. Une ville qui ne ressemble à aucune autre."
             },
             {
                 id: 'hs-paris',
-                pngSrc: 'assets/objects/room_photo_paris.png',
+                pngSrc: 'assets/rooms/room_photo_paris.png',
                 label: '[ PARIS — EUGENIA SCHOOL ]',
                 action: 'chat',
                 reply: "Eugenia School, MSc Business Analytics. Et Morning en alternance. Paris c'est maintenant — c'est exactement là où je voulais être."
             },
             {
                 id: 'hs-rennes',
-                pngSrc: 'assets/objects/room_photo_rennes.png',
+                pngSrc: 'assets/rooms/room_photo_rennes.png',
                 label: '[ RENNES — RSB ]',
                 action: 'chat',
                 reply: "Rennes School of Business, bachelor marketing. Ma première vraie ville. J'ai découvert que j'aimais comprendre pourquoi les gens achètent."
@@ -185,21 +185,21 @@ const SCENES = {
         hotspots: [
             {
                 id: 'hs-tuerie',
-                pngSrc: 'assets/objects/room_posters_tuerie.png',
+                pngSrc: 'assets/rooms/room_posters_tuerie.png',
                 label: '[ TUERIE — PAPILLON MONARQUE ]',
                 action: 'chat',
                 reply: "J'ai interviewé Tuerie pour Pour Ta Culture, le média qu'on a co-fondé. Papillon Monarque c'est son album — un projet qui m'a vraiment marqué."
             },
             {
                 id: 'hs-flamingo',
-                pngSrc: 'assets/objects/room_posters_flamingo.png',
+                pngSrc: 'assets/rooms/room_posters_flamingo.png',
                 label: '[ FLAMINGO FEST ]',
                 action: 'chat',
                 reply: "Direction artistique et communication du Flamingo Fest. Visuels, affiches, programmation. C'est aussi là que Situal a joué."
             },
             {
                 id: 'hs-marennrs',
-                pngSrc: 'assets/objects/room_poster_marennrs.png',
+                pngSrc: 'assets/rooms/room_poster_marennners.png',
                 label: "[ MARENNER'S BDE ]",
                 action: 'chat',
                 reply: "Vice-président du BDE à Rennes. Identité visuelle, événements, communication. Mon premier rôle de direction."
