@@ -71,59 +71,83 @@ const SCENES = {
         hotspots: [
             {
                 id: 'hs-ordinateur',
+                visualId: 'visual-ordinateur',
                 pngSrc: 'assets/rooms/room_main_ordinateur.png',
                 label: "[ INSPECTER L'ORDINATEUR ]",
                 action: 'scene:bureau',
-                reply: "Là c'est mon QG. Python, SQL, Claude API, Make, Dust... J'ai construit des trucs qui tournent vraiment. Clique pour voir mes projets."
+                reply: "Là c'est mon QG. Python, SQL, Claude API, Make, Dust... J'ai construit des trucs qui tournent vraiment. Clique pour voir mes projets.",
+                css: { left: '58%', top: '28%', width: '20%', height: '35%' },
+                mobileCss: { left: '35%', top: '42%', width: '45%', height: '25%' }
             },
             {
                 id: 'hs-posters',
+                visualId: 'visual-posters',
                 pngSrc: 'assets/rooms/room_main_posters.png',
                 label: '[ REGARDER LES POSTERS ]',
                 action: 'scene:posters',
-                reply: "Mon mur créatif. Papillon Monarque de Tuerie, le Flamingo Fest, Marenner's... C'est la partie de moi que le CV montre pas."
+                reply: "Mon mur créatif. Papillon Monarque de Tuerie, le Flamingo Fest, Marenner's... C'est la partie de moi que le CV montre pas.",
+                css: { left: '17%', top: '18%', width: '18%', height: '42%' },
+                mobileCss: { left: '2%', top: '48%', width: '20%', height: '20%' }
             },
             {
                 id: 'hs-voyages',
+                visualId: 'visual-voyages',
                 pngSrc: 'assets/rooms/room_main_voyages.png',
                 label: '[ REGARDER LES PHOTOS ]',
                 action: 'scene:photos',
-                reply: "Rennes, Colombie, Bordeaux, Casablanca, Paris. Chaque ville avait une logique. Clique pour voir de plus près."
+                reply: "Rennes, Colombie, Bordeaux, Casablanca, Paris. Chaque ville avait une logique. Clique pour voir de plus près.",
+                css: { left: '42%', top: '24%', width: '16%', height: '26%' },
+                mobileCss: { left: '28%', top: '48%', width: '18%', height: '14%' }
             },
             {
                 id: 'hs-kingoland',
+                visualId: 'visual-kingoland',
                 pngSrc: 'assets/rooms/room_main_kingoland.png',
                 label: '[ PELUCHE KINGOLAND ]',
                 action: 'chat',
-                reply: "Kingoland c'est le parc de loisirs de ma famille en Bretagne. J'ai géré la comm pendant 6 ans — réseaux, visuels, événements, prospection. Mon premier terrain."
+                reply: "Kingoland c'est le parc de loisirs de ma famille en Bretagne. J'ai géré la comm pendant 6 ans — réseaux, visuels, événements, prospection. Mon premier terrain.",
+                css: { left: '28%', top: '42%', width: '14%', height: '22%' },
+                mobileCss: { left: '2%', top: '58%', width: '38%', height: '22%' }
             },
             {
                 id: 'hs-pizza',
+                visualId: 'visual-pizza',
                 pngSrc: 'assets/rooms/room_main_pizza.png',
                 label: '[ GANG OF PIZZA ]',
                 action: 'chat',
-                reply: "Un mois à prospecter des zones pour implanter des distributeurs automatiques de pizzas dans le Morbihan. Mon premier stage — et j'ai adoré."
+                reply: "Un mois à prospecter des zones pour implanter des distributeurs automatiques de pizzas dans le Morbihan. Mon premier stage — et j'ai adoré.",
+                css: { left: '37%', top: '68%', width: '12%', height: '14%' },
+                mobileCss: { left: '22%', top: '72%', width: '20%', height: '12%' }
             },
             {
                 id: 'hs-morning',
+                visualId: 'visual-morning',
                 pngSrc: 'assets/rooms/room_main_morning.png',
                 label: '[ BADGE MORNING ]',
                 action: 'chat',
-                reply: "Morning, coworking à Paris. Mon alternance actuelle depuis avril 2025. Marketing, automation, IA — c'est exactement là où je voulais atterrir."
+                reply: "Morning, coworking à Paris. Mon alternance actuelle depuis avril 2025. Marketing, automation, IA — c'est exactement là où je voulais atterrir.",
+                css: { left: '60%', top: '42%', width: '8%', height: '12%' },
+                mobileCss: { right: '18%', top: '50%', width: '14%', height: '12%' }
             },
             {
                 id: 'hs-telephone',
+                visualId: 'visual-telephone',
                 pngSrc: 'assets/rooms/room_main_telephone.png',
                 label: '[ TÉLÉPHONE ]',
                 action: 'chat',
-                reply: "Si t'es arrivé jusqu'ici c'est qu'on a des choses à se dire. leroux.gaspard56500@gmail.com ou LinkedIn : gaspard-leroux-11b24a202"
+                reply: "Si t'es arrivé jusqu'ici c'est qu'on a des choses à se dire. leroux.gaspard56500@gmail.com ou LinkedIn : gaspard-leroux-11b24a202",
+                css: { right: '4%', top: '50%', width: '7%', height: '18%' },
+                mobileCss: { right: '2%', top: '58%', width: '15%', height: '14%' }
             },
             {
                 id: 'hs-porte',
+                visualId: 'visual-porte',
                 pngSrc: 'assets/rooms/room_main_porte.png',
                 label: '[ SORTIR ]',
                 action: 'chat',
-                reply: "Tu veux partir déjà ? Passe au moins par le téléphone avant de sortir."
+                reply: "Tu veux partir déjà ? Passe au moins par le téléphone avant de sortir.",
+                css: { right: '1%', top: '5%', width: '9%', height: '78%' },
+                mobileCss: { right: '0%', top: '30%', width: '12%', height: '42%' }
             }
         ]
     },
@@ -142,38 +166,53 @@ const SCENES = {
         hotspots: [
             {
                 id: 'hs-colombie',
+                visualId: 'visual-colombie',
                 pngSrc: 'assets/rooms/room_photo_colombie.png',
                 label: '[ COLOMBIE — UNIVERSIDAD DE LA SABANA ]',
                 action: 'chat',
-                reply: "Universidad de la Sabana, Bogotá. Six mois à voir le monde autrement. Le genre d'expérience qui recalibre tout."
+                reply: "Universidad de la Sabana, Bogotá. Six mois à voir le monde autrement. Le genre d'expérience qui recalibre tout.",
+                css: { right: '2%', top: '5%', width: '30%', height: '48%' },
+                mobileCss: { right: '2%', top: '18%', width: '42%', height: '32%' }
             },
             {
                 id: 'hs-kedge',
+                visualId: 'visual-kedge',
                 pngSrc: 'assets/rooms/room_photo_kedge.png',
                 label: '[ BORDEAUX — KEDGE ]',
                 action: 'chat',
-                reply: "KEDGE Business School, master entrepreneuriat. Bordeaux c'est là où j'ai commencé à vraiment construire des projets."
+                reply: "KEDGE Business School, master entrepreneuriat. Bordeaux c'est là où j'ai commencé à vraiment construire des projets.",
+                css: { left: '5%', top: '35%', width: '32%', height: '45%' },
+                mobileCss: { left: '2%', top: '52%', width: '40%', height: '30%' }
             },
             {
                 id: 'hs-maroc',
+                visualId: 'visual-maroc',
                 pngSrc: 'assets/rooms/room_photo_maroc.png',
                 label: '[ CASABLANCA — HEM ]',
                 action: 'chat',
-                reply: "HEM Business School, programme d'échange. Casablanca m'a surpris — énergie, rythme, culture. Une ville qui ne ressemble à aucune autre."
+                reply: "HEM Business School, programme d'échange. Casablanca m'a surpris — énergie, rythme, culture. Une ville qui ne ressemble à aucune autre.",
+                css: { left: '28%', top: '5%', width: '32%', height: '48%' },
+                mobileCss: { left: '2%', top: '18%', width: '42%', height: '32%' }
             },
             {
                 id: 'hs-paris',
+                visualId: 'visual-paris',
                 pngSrc: 'assets/rooms/room_photo_paris.png',
                 label: '[ PARIS — EUGENIA SCHOOL ]',
                 action: 'chat',
-                reply: "Eugenia School, MSc Business Analytics. Et Morning en alternance. Paris c'est maintenant — c'est exactement là où je voulais être."
+                reply: "Eugenia School, MSc Business Analytics. Et Morning en alternance. Paris c'est maintenant — c'est exactement là où je voulais être.",
+                css: { left: '42%', top: '10%', width: '20%', height: '25%' },
+                mobileCss: { left: '25%', top: '2%', width: '35%', height: '18%' }
             },
             {
                 id: 'hs-rennes',
+                visualId: 'visual-rennes',
                 pngSrc: 'assets/rooms/room_photo_rennes.png',
                 label: '[ RENNES — RSB ]',
                 action: 'chat',
-                reply: "Rennes School of Business, bachelor marketing. Ma première vraie ville. J'ai découvert que j'aimais comprendre pourquoi les gens achètent."
+                reply: "Rennes School of Business, bachelor marketing. Ma première vraie ville. J'ai découvert que j'aimais comprendre pourquoi les gens achètent.",
+                css: { right: '8%', top: '42%', width: '35%', height: '50%' },
+                mobileCss: { right: '2%', top: '52%', width: '48%', height: '35%' }
             }
         ]
     },
@@ -185,24 +224,33 @@ const SCENES = {
         hotspots: [
             {
                 id: 'hs-tuerie',
+                visualId: 'visual-tuerie',
                 pngSrc: 'assets/rooms/room_posters_tuerie.png',
                 label: '[ TUERIE — PAPILLON MONARQUE ]',
                 action: 'chat',
-                reply: "J'ai interviewé Tuerie pour Pour Ta Culture, le média qu'on a co-fondé. Papillon Monarque c'est son album — un projet qui m'a vraiment marqué."
+                reply: "J'ai interviewé Tuerie pour Pour Ta Culture, le média qu'on a co-fondé. Papillon Monarque c'est son album — un projet qui m'a vraiment marqué.",
+                css: { left: '5%', top: '8%', width: '38%', height: '80%' },
+                mobileCss: { left: '2%', top: '15%', width: '42%', height: '65%' }
             },
             {
                 id: 'hs-flamingo',
+                visualId: 'visual-flamingo',
                 pngSrc: 'assets/rooms/room_posters_flamingo.png',
                 label: '[ FLAMINGO FEST ]',
                 action: 'chat',
-                reply: "Direction artistique et communication du Flamingo Fest. Visuels, affiches, programmation. C'est aussi là que Situal a joué."
+                reply: "Direction artistique et communication du Flamingo Fest. Visuels, affiches, programmation. C'est aussi là que Situal a joué.",
+                css: { left: '38%', top: '18%', width: '42%', height: '72%' },
+                mobileCss: { right: '2%', top: '25%', width: '52%', height: '60%' }
             },
             {
                 id: 'hs-marennrs',
+                visualId: 'visual-marennrs',
                 pngSrc: 'assets/rooms/room_poster_marennners.png',
                 label: "[ MARENNER'S BDE ]",
                 action: 'chat',
-                reply: "Vice-président du BDE à Rennes. Identité visuelle, événements, communication. Mon premier rôle de direction."
+                reply: "Vice-président du BDE à Rennes. Identité visuelle, événements, communication. Mon premier rôle de direction.",
+                css: { left: '3%', bottom: '5%', width: '18%', height: '18%' },
+                mobileCss: { left: '2%', bottom: '8%', width: '20%', height: '15%' }
             }
         ]
     }
@@ -374,64 +422,77 @@ function renderHotspots(hotspots) {
 
     const isMobile = isMobileView();
 
-    // Ordre dans le DOM : grands objets d'abord, petits en dernier
-    // (les derniers sont au-dessus et cliquables en priorité)
     hotspots.forEach(hs => {
-        const img = document.createElement('img');
-        img.className = 'hotspot-png';
-        img.id = hs.id;
-        img.src = hs.pngSrc;
-        img.alt = '';
-        img.setAttribute('data-label', hs.label);
-        img.setAttribute('data-line', hs.reply);
 
-        // COMPORTEMENT DESKTOP (hover)
+        // ── 1. PNG VISUEL plein écran (pas cliquable) ──────────
+        const visual = document.createElement('img');
+        visual.className = 'hotspot-visual';
+        visual.id = hs.visualId;
+        visual.src = hs.pngSrc;
+        visual.alt = '';
+        visual.style.cssText = [
+            'position:absolute', 'inset:0', 'width:100%', 'height:100%',
+            'object-fit:cover', 'opacity:0', 'pointer-events:none',
+            'z-index:15', 'transition:opacity 0.2s ease, filter 0.2s ease'
+        ].join(';');
+        container.appendChild(visual);
+
+        // ── 2. DIV TRIGGER positionné (cliquable) ─────────────
+        const trigger = document.createElement('div');
+        trigger.className = 'hotspot-trigger';
+        trigger.id = hs.id;
+
+        const cssToUse = isMobile && hs.mobileCss ? hs.mobileCss : hs.css;
+        Object.entries(cssToUse).forEach(([prop, val]) => {
+            trigger.style[prop] = val;
+        });
+
+        // DESKTOP — hover
         if (!isMobile) {
-            img.addEventListener('mouseenter', () => {
+            trigger.addEventListener('mouseenter', () => {
+                visual.style.opacity = '1';
+                visual.style.filter = 'brightness(1.4) drop-shadow(0 0 12px rgba(0,255,80,0.5))';
                 labelHint.textContent = hs.label;
                 labelHint.style.opacity = '1';
                 typewrite(hs.reply);
             });
-
-            img.addEventListener('mouseleave', () => {
+            trigger.addEventListener('mouseleave', () => {
+                visual.style.opacity = '0';
+                visual.style.filter = '';
                 labelHint.style.opacity = '0';
             });
         }
-        // COMPORTEMENT MOBILE (tap avec délai)
+        // MOBILE — tap
         else {
-            img.addEventListener('touchstart', () => {
+            trigger.addEventListener('touchstart', () => {
                 if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
+                visual.style.opacity = '1';
+                visual.style.filter = 'brightness(1.4) drop-shadow(0 0 12px rgba(0,255,80,0.5))';
 
                 tapLabelTimeout = setTimeout(() => {
                     labelHint.textContent = hs.label;
                     labelHint.style.opacity = '1';
-
-                    setTimeout(() => {
-                        labelHint.style.opacity = '0';
-                    }, 2000);
+                    setTimeout(() => { labelHint.style.opacity = '0'; }, 2000);
                 }, 1500);
 
-                // Afficher la réplique immédiatement
                 typewrite(hs.reply);
             });
-
-            img.addEventListener('touchend', () => {
+            trigger.addEventListener('touchend', () => {
                 if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
+                setTimeout(() => { visual.style.opacity = '0'; visual.style.filter = ''; }, 300);
             });
         }
 
-        img.addEventListener('click', () => {
-            // Anti-redéclenchement
+        // CLIC — anti-redéclenchement + navigation
+        trigger.addEventListener('click', () => {
             if (lastClickedHotspot === hs.id && typewriterActive) return;
             lastClickedHotspot = hs.id;
-
             if (hs.action.startsWith('scene:')) {
                 transitionTo(hs.action.slice(6));
             }
-            // action 'chat' : la réplique est déjà affichée au hover/tap
         });
 
-        container.appendChild(img);
+        container.appendChild(trigger);
     });
 }
 
