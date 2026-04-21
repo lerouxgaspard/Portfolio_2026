@@ -78,12 +78,12 @@ body {
     transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
-/* Div trigger — positionné, cliquable */
-.hotspot-trigger {
+/* Overlay unique de détection — couvre toute la scène */
+.hotspot-overlay {
     position: absolute;
+    inset: 0;
     z-index: 25;
     cursor: none;
-    background: transparent;
 }
 
 /* ── SCANLINES ── */

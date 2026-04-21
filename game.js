@@ -411,89 +411,158 @@ function isMobileView() {
 }
 
 // ═══════════════════════════════════════════════════════
-// HOTSPOTS PNG
+// HOTSPOTS — DÉTECTION PIXEL PAR PIXEL (canvas alpha)
 // ═══════════════════════════════════════════════════════
 let tapLabelTimeout = null;
+
+// Cache des ImageData par src (chargés une seule fois)
+const imgDataCache = {};
+
+function preloadImageData(src) {
+    if (imgDataCache[src] !== undefined) return;
+    imgDataCache[src] = null; // marqué "en cours"
+    const tmp = new Image();
+    tmp.onload = () => {
+        try {
+            const cvs = document.createElement('canvas');
+            cvs.width  = tmp.naturalWidth;
+            cvs.height = tmp.naturalHeight;
+            const ctx = cvs.getContext('2d');
+            ctx.drawImage(tmp, 0, 0);
+            imgDataCache[src] = ctx.getImageData(0, 0, cvs.width, cvs.height);
+        } catch(e) { /* CORS ou autre — on laisse null */ }
+    };
+    tmp.src = src;
+}
+
+// Retourne l'alpha (0-255) du pixel sous le curseur
+function getAlphaAt(src, imgEl, clientX, clientY) {
+    const data = imgDataCache[src];
+    if (!data) return 0;
+    const rect   = imgEl.getBoundingClientRect();
+    const scaleX = data.width  / rect.width;
+    const scaleY = data.height / rect.height;
+    const x = Math.floor((clientX - rect.left) * scaleX);
+    const y = Math.floor((clientY - rect.top)  * scaleY);
+    if (x < 0 || y < 0 || x >= data.width || y >= data.height) return 0;
+    return data.data[(y * data.width + x) * 4 + 3];
+}
 
 function renderHotspots(hotspots) {
     const container = document.getElementById('hotspots-container');
     const labelHint = document.getElementById('label-hint');
     container.innerHTML = '';
 
+    if (hotspots.length === 0) return;
+
     const isMobile = isMobileView();
 
+    // ── Créer les PNG visuels (pointer-events: none) ──────
     hotspots.forEach(hs => {
-
-        // ── 1. PNG VISUEL plein écran (pas cliquable) ──────────
         const visual = document.createElement('img');
         visual.className = 'hotspot-visual';
         visual.id = hs.visualId;
         visual.src = hs.pngSrc;
         visual.alt = '';
-        visual.style.cssText = [
-            'position:absolute', 'inset:0', 'width:100%', 'height:100%',
-            'object-fit:cover', 'opacity:0', 'pointer-events:none',
-            'z-index:15', 'transition:opacity 0.2s ease, filter 0.2s ease'
-        ].join(';');
         container.appendChild(visual);
+        preloadImageData(hs.pngSrc); // préchargement canvas
+    });
 
-        // ── 2. DIV TRIGGER positionné (cliquable) ─────────────
-        const trigger = document.createElement('div');
-        trigger.className = 'hotspot-trigger';
-        trigger.id = hs.id;
+    // Helpers
+    const showVisual = hs => {
+        const v = document.getElementById(hs.visualId);
+        if (v) { v.style.opacity = '1'; v.style.filter = 'brightness(1.4) drop-shadow(0 0 12px rgba(0,255,80,0.5))'; }
+    };
+    const hideVisual = hs => {
+        const v = document.getElementById(hs.visualId);
+        if (v) { v.style.opacity = '0'; v.style.filter = ''; }
+    };
 
-        const cssToUse = isMobile && hs.mobileCss ? hs.mobileCss : hs.css;
-        Object.entries(cssToUse).forEach(([prop, val]) => {
-            trigger.style[prop] = val;
-        });
+    // Trouve le hotspot non-transparent sous (cx, cy)
+    // Priorité : dernier dans le tableau = le plus petit = au-dessus
+    const findAt = (cx, cy) => {
+        for (let i = hotspots.length - 1; i >= 0; i--) {
+            const hs = hotspots[i];
+            const v  = document.getElementById(hs.visualId);
+            if (!v) continue;
+            if (getAlphaAt(hs.pngSrc, v, cx, cy) > 10) return hs;
+        }
+        return null;
+    };
 
-        // DESKTOP — hover
-        if (!isMobile) {
-            trigger.addEventListener('mouseenter', () => {
-                visual.style.opacity = '1';
-                visual.style.filter = 'brightness(1.4) drop-shadow(0 0 12px rgba(0,255,80,0.5))';
-                labelHint.textContent = hs.label;
+    // ── OVERLAY unique qui capte tous les événements ──────
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:absolute;inset:0;z-index:25;cursor:none;';
+    container.appendChild(overlay);
+
+    if (!isMobile) {
+        // ─ DESKTOP ─
+        let activeHs = null;
+
+        overlay.addEventListener('mousemove', e => {
+            const found = findAt(e.clientX, e.clientY);
+            if (found === activeHs) return; // pas de changement
+
+            if (activeHs) hideVisual(activeHs);
+            activeHs = found;
+
+            if (found) {
+                showVisual(found);
+                labelHint.textContent = found.label;
                 labelHint.style.opacity = '1';
-                typewrite(hs.reply);
-            });
-            trigger.addEventListener('mouseleave', () => {
-                visual.style.opacity = '0';
-                visual.style.filter = '';
+                typewrite(found.reply);
+            } else {
                 labelHint.style.opacity = '0';
-            });
-        }
-        // MOBILE — tap
-        else {
-            trigger.addEventListener('touchstart', () => {
-                if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
-                visual.style.opacity = '1';
-                visual.style.filter = 'brightness(1.4) drop-shadow(0 0 12px rgba(0,255,80,0.5))';
-
-                tapLabelTimeout = setTimeout(() => {
-                    labelHint.textContent = hs.label;
-                    labelHint.style.opacity = '1';
-                    setTimeout(() => { labelHint.style.opacity = '0'; }, 2000);
-                }, 1500);
-
-                typewrite(hs.reply);
-            });
-            trigger.addEventListener('touchend', () => {
-                if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
-                setTimeout(() => { visual.style.opacity = '0'; visual.style.filter = ''; }, 300);
-            });
-        }
-
-        // CLIC — anti-redéclenchement + navigation
-        trigger.addEventListener('click', () => {
-            if (lastClickedHotspot === hs.id && typewriterActive) return;
-            lastClickedHotspot = hs.id;
-            if (hs.action.startsWith('scene:')) {
-                transitionTo(hs.action.slice(6));
             }
         });
 
-        container.appendChild(trigger);
-    });
+        overlay.addEventListener('mouseleave', () => {
+            if (activeHs) hideVisual(activeHs);
+            activeHs = null;
+            labelHint.style.opacity = '0';
+        });
+
+        overlay.addEventListener('click', e => {
+            const found = findAt(e.clientX, e.clientY);
+            if (!found) return;
+            if (lastClickedHotspot === found.id && typewriterActive) return;
+            lastClickedHotspot = found.id;
+            if (found.action.startsWith('scene:')) transitionTo(found.action.slice(6));
+        });
+
+    } else {
+        // ─ MOBILE ─
+        overlay.addEventListener('touchstart', e => {
+            const t  = e.touches[0];
+            const found = findAt(t.clientX, t.clientY);
+            if (!found) return;
+
+            if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
+            showVisual(found);
+            typewrite(found.reply);
+
+            tapLabelTimeout = setTimeout(() => {
+                labelHint.textContent = found.label;
+                labelHint.style.opacity = '1';
+                setTimeout(() => { labelHint.style.opacity = '0'; }, 2000);
+            }, 1500);
+        }, { passive: true });
+
+        overlay.addEventListener('touchend', e => {
+            if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
+            setTimeout(() => {
+                hotspots.forEach(hs => hideVisual(hs));
+            }, 300);
+        }, { passive: true });
+
+        overlay.addEventListener('click', e => {
+            const found = findAt(e.clientX, e.clientY);
+            if (!found) return;
+            if (lastClickedHotspot === found.id && typewriterActive) return;
+            lastClickedHotspot = found.id;
+            if (found.action.startsWith('scene:')) transitionTo(found.action.slice(6));
+        });
+    }
 }
 
 // ═══════════════════════════════════════════════════════
