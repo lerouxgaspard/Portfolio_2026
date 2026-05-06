@@ -73,11 +73,13 @@ const SCENES = {
             {
                 id: 'layer-main-meuble',
                 src: 'assets/rooms/room_main_meuble.png',
+                mobileSrc: 'assets/rooms/room_main_mobile_meuble.png',
                 zIndex: 18
             },
             {
                 id: 'layer-main-livres',
                 src: 'assets/rooms/room_main_livres.png',
+                mobileSrc: 'assets/rooms/room_main_mobile_meuble_livres.png',
                 zIndex: 40
             }
         ],
@@ -87,89 +89,98 @@ const SCENES = {
                 id: 'hs-ordinateur',
                 visualId: 'visual-ordinateur',
                 pngSrc: 'assets/rooms/room_main_ordinateur.png',
+                mobilePngSrc: 'assets/rooms/room_main_mobile_ordinateur.png',
                 label: "[ INSPECTER L'ORDINATEUR ]",
                 action: 'scene:bureau',
                 reply: "C'est le coeur du portfolio : agents IA, SEO automation, scraping Python, Make, Dust, Claude API. Clique pour voir les projets construits, pas juste les outils listés.",
                 css: { left: '61%', top: '39%', width: '16%', height: '20%' },
-                mobileCss: { left: '37%', top: '43%', width: '38%', height: '20%' }
+                mobileCss: { left: '60%', top: '48%', width: '15%', height: '10%' }
             },
             {
                 id: 'hs-posters',
                 visualId: 'visual-posters',
                 pngSrc: 'assets/rooms/room_main_posters.png',
+                mobilePngSrc: 'assets/rooms/room_main_mobile_posters.png',
                 label: '[ REGARDER LES POSTERS ]',
                 action: 'scene:posters',
                 reply: "Le mur créatif : média culturel, interviews, DA de festival, identité BDE. C'est la partie qui explique mon goût pour les expériences qui marquent.",
                 css: { left: '19%', top: '31%', width: '11%', height: '21%' },
-                mobileCss: { left: '2%', top: '48%', width: '20%', height: '20%' }
+                mobileCss: { left: '18%', top: '43%', width: '14%', height: '11%' }
             },
             {
                 id: 'hs-voyages',
                 visualId: 'visual-voyages',
                 pngSrc: 'assets/rooms/room_main_voyages.png',
+                mobilePngSrc: 'assets/rooms/room_main_mobile_voyages.png',
                 label: '[ REGARDER LES PHOTOS ]',
                 action: 'scene:photos',
                 reply: "Rennes, Bogotá, Bordeaux, Casablanca, Paris. Mon parcours n'est pas linéaire, mais il a construit mon côté hybride business, tech et culturel.",
                 css: { left: '45%', top: '41%', width: '9%', height: '13%' },
-                mobileCss: { left: '28%', top: '48%', width: '18%', height: '14%' }
+                mobileCss: { left: '45%', top: '48%', width: '13%', height: '8%' }
             },
             {
                 id: 'hs-kingoland',
                 visualId: 'visual-kingoland',
                 pngSrc: 'assets/rooms/room_main_kingoland.png',
+                mobilePngSrc: 'assets/rooms/room_main_mobile_kingoland.png',
                 label: '[ PELUCHE KINGOLAND ]',
                 action: 'chat',
                 reply: "Kingoland, c'est mon premier terrain concret : 6 ans à faire de la comm, des visuels, des réseaux sociaux et des événements pour un parc familial breton.",
                 css: { left: '33%', top: '53%', width: '10%', height: '14%' },
-                mobileCss: { left: '8%', top: '61%', width: '28%', height: '17%' }
+                mobileCss: { left: '28%', top: '57%', width: '15%', height: '11%' }
             },
             {
                 id: 'hs-pizza',
                 visualId: 'visual-pizza',
                 pngSrc: 'assets/rooms/room_main_pizza.png',
+                mobilePngSrc: 'assets/rooms/room_main_mobile_pizza.png',
                 label: '[ GANG OF PIZZA ]',
                 action: 'chat',
                 reply: "Gang of Pizza, c'était court mais formateur : prospection terrain, analyse de zones, premiers réflexes business très concrets dans le Morbihan.",
                 css: { left: '44%', top: '71%', width: '10%', height: '10%' },
-                mobileCss: { left: '22%', top: '72%', width: '20%', height: '12%' }
+                mobileCss: { left: '43%', top: '60%', width: '14%', height: '8%' }
             },
             {
                 id: 'hs-morning',
                 visualId: 'visual-morning',
                 pngSrc: 'assets/rooms/room_main_morning.png',
+                mobilePngSrc: 'assets/rooms/room_main_mobile_morning.png',
                 visualZIndex: 38,
                 triggerZIndex: 48,
                 label: '[ BADGE MORNING ]',
                 action: 'chat',
                 reply: "Morning, c'est mon alternance actuelle depuis avril 2025 : coworking parisien, marketing ops, automatisation et IA appliquée à des vrais sujets d'équipe.",
                 css: { left: '72%', top: '55%', width: '5%', height: '8%' },
-                mobileCss: { right: '20%', top: '52%', width: '10%', height: '9%' }
+                mobileCss: { left: '70%', top: '50%', width: '7%', height: '6%' }
             },
             {
                 id: 'hs-telephone',
                 visualId: 'visual-telephone',
                 pngSrc: 'assets/rooms/room_main_telephone.png',
+                mobilePngSrc: 'assets/rooms/room_main_mobile_telephone.png',
                 baseOpacity: 1,
+                baseOpacityMobile: 0,
                 visualZIndex: 36,
                 triggerZIndex: 49,
                 label: '[ TÉLÉPHONE ]',
                 action: 'chat',
                 reply: "Pour me contacter : leroux.gaspard56500@gmail.com. LinkedIn : gaspard-leroux-11b24a202. GitHub : lerouxgaspard.",
                 css: { right: '4%', top: '62%', width: '11%', height: '15%', zIndex: '35' },
-                mobileCss: { right: '1%', top: '64%', width: '15%', height: '12%', zIndex: '35' }
+                mobileCss: { right: '4%', top: '56%', width: '14%', height: '10%', zIndex: '35' }
             },
             {
                 id: 'hs-porte',
                 visualId: 'visual-porte',
                 pngSrc: 'assets/rooms/room_main_porte.png',
+                mobilePngSrc: 'assets/rooms/room_main_mobile_porte.png',
                 label: '[ SORTIR ]',
                 action: 'chat',
                 reply: "La sortie existe, mais le plus intéressant est dans la pièce. Commence par l'ordinateur si tu veux comprendre ce que je sais vraiment construire.",
                 css: { right: '7%', top: '8%', width: '10%', height: '58%', zIndex: '26' },
-                mobileCss: { right: '2%', top: '31%', width: '11%', height: '34%', zIndex: '26' },
+                mobileCss: { right: '7%', top: '36%', width: '13%', height: '29%', zIndex: '26' },
                 zones: [
-                    { css: { right: '7%', top: '8%', width: '10%', height: '58%', zIndex: '26' }, mobileCss: { right: '2%', top: '31%', width: '11%', height: '34%', zIndex: '26' } },
-                    { css: { right: '10%', top: '66%', width: '6%', height: '13%', zIndex: '26' }, mobileCss: { right: '8%', top: '65%', width: '6%', height: '12%', zIndex: '26' } }
+                    { css: { right: '7%', top: '8%', width: '10%', height: '58%', zIndex: '26' }, mobileCss: { right: '7%', top: '36%', width: '13%', height: '29%', zIndex: '26' } },
+                    { css: { right: '10%', top: '66%', width: '6%', height: '13%', zIndex: '26' }, mobileCss: { right: '11%', top: '58%', width: '7%', height: '8%', zIndex: '26' } }
                 ]
             }
         ]
@@ -195,6 +206,7 @@ const SCENES = {
                 id: 'hs-colombie',
                 visualId: 'visual-colombie',
                 pngSrc: 'assets/rooms/room_photo_colombie.png',
+                mobilePngSrc: 'assets/rooms/room_photos_mobile_colombie.png',
                 label: '[ COLOMBIE — UNIVERSIDAD DE LA SABANA ]',
                 action: 'chat',
                 reply: "Universidad de la Sabana, Bogotá. Une expérience qui m'a obligé à sortir du cadre français et à comprendre les marchés, les cultures et les gens autrement.",
@@ -205,6 +217,7 @@ const SCENES = {
                 id: 'hs-kedge',
                 visualId: 'visual-kedge',
                 pngSrc: 'assets/rooms/room_photo_kedge.png',
+                mobilePngSrc: 'assets/rooms/room_photos_mobile_kedge.png',
                 label: '[ BORDEAUX — KEDGE ]',
                 action: 'chat',
                 reply: "KEDGE Bordeaux, master entrepreneuriat. C'est là que j'ai commencé à raisonner en problème, solution, marché et exécution.",
@@ -215,6 +228,7 @@ const SCENES = {
                 id: 'hs-maroc',
                 visualId: 'visual-maroc',
                 pngSrc: 'assets/rooms/room_photo_maroc.png',
+                mobilePngSrc: 'assets/rooms/room_photos_mobile_maroc.png',
                 label: '[ CASABLANCA — HEM ]',
                 action: 'chat',
                 reply: "HEM Casablanca, programme d'échange. Une ville dense, rapide, très business, qui m'a donné un autre rapport au terrain.",
@@ -225,6 +239,7 @@ const SCENES = {
                 id: 'hs-paris',
                 visualId: 'visual-paris',
                 pngSrc: 'assets/rooms/room_photo_paris.png',
+                mobilePngSrc: 'assets/rooms/room_photos_mobile_paris.png',
                 label: '[ PARIS — EUGENIA SCHOOL ]',
                 action: 'chat',
                 reply: "Eugenia School, MSc Business Analytics. Paris, c'est le moment où mes sujets se rejoignent : data, IA, automation, marketing et produit.",
@@ -235,6 +250,7 @@ const SCENES = {
                 id: 'hs-rennes',
                 visualId: 'visual-rennes',
                 pngSrc: 'assets/rooms/room_photo_rennes.png',
+                mobilePngSrc: 'assets/rooms/room_photos_mobile_rennes.png',
                 label: '[ RENNES — RSB ]',
                 action: 'chat',
                 reply: "Rennes School of Business, bachelor marketing. Ma base : comprendre les marques, les publics, les décisions et la façon de raconter une offre.",
@@ -253,11 +269,13 @@ const SCENES = {
             {
                 id: 'layer-posters-flamingo',
                 src: 'assets/rooms/room_posters_flamingo.png',
+                mobileSrc: 'assets/rooms/room_posters_mobile_flamingo.png',
                 zIndex: 24
             },
             {
                 id: 'layer-posters-marennrs',
                 src: 'assets/rooms/room_poster_marennners.png',
+                mobileSrc: 'assets/rooms/room_posters_mobile_marenners.png',
                 zIndex: 34
             }
         ],
@@ -267,6 +285,7 @@ const SCENES = {
                 id: 'hs-tuerie',
                 visualId: 'visual-tuerie',
                 pngSrc: 'assets/rooms/room_posters_tuerie.png',
+                mobilePngSrc: 'assets/rooms/room_posters_mobile_tuerie.png',
                 label: '[ TUERIE — PAPILLON MONARQUE ]',
                 action: 'chat',
                 reply: "Pour Ta Culture, c'est un média culturel co-fondé avec une vraie envie éditoriale. L'interview de Tuerie autour de Papillon Monarque reste un moment fort.",
@@ -277,6 +296,7 @@ const SCENES = {
                 id: 'hs-flamingo',
                 visualId: 'visual-flamingo',
                 pngSrc: 'assets/rooms/room_posters_flamingo.png',
+                mobilePngSrc: 'assets/rooms/room_posters_mobile_flamingo.png',
                 visualZIndex: 25,
                 label: '[ FLAMINGO FEST ]',
                 action: 'chat',
@@ -288,6 +308,7 @@ const SCENES = {
                 id: 'hs-marennrs',
                 visualId: 'visual-marennrs',
                 pngSrc: 'assets/rooms/room_poster_marennners.png',
+                mobilePngSrc: 'assets/rooms/room_posters_mobile_marenners.png',
                 visualZIndex: 35,
                 triggerZIndex: 45,
                 label: "[ MARENNER'S BDE ]",
@@ -410,6 +431,7 @@ let currentScene = null;
 let conversationHistory = [];
 let sceneLoadToken = 0;
 const imageCache = new Map();
+let currentMobileMode = null;
 
 // ═══════════════════════════════════════════════════════
 // CHARGEMENT DE SCÈNE
@@ -422,6 +444,22 @@ function getSceneImagePath(scene) {
 function getSceneFallbackPath(scene) {
     const mobile = isMobileView();
     return mobile && scene.fallbackImageMobile ? scene.fallbackImageMobile : scene.fallbackImage;
+}
+
+function getLayerSrc(layer) {
+    const mobile = isMobileView();
+    return mobile && layer.mobileSrc ? layer.mobileSrc : layer.src;
+}
+
+function getHotspotSrc(hs) {
+    const mobile = isMobileView();
+    return mobile && hs.mobilePngSrc ? hs.mobilePngSrc : hs.pngSrc;
+}
+
+function getHotspotBaseOpacity(hs) {
+    const mobile = isMobileView();
+    if (mobile && hs.baseOpacityMobile !== undefined) return hs.baseOpacityMobile;
+    return hs.baseOpacity || 0;
 }
 
 function loadImage(src) {
@@ -524,8 +562,14 @@ function preloadSceneAssets(scene) {
         const fallbackPath = getSceneFallbackPath(scene);
         if (fallbackPath) loadImage(fallbackPath).catch(() => {});
     });
-    (scene.staticLayers || []).forEach(layer => loadImage(layer.src).catch(() => {}));
-    scene.hotspots.forEach(hs => loadImage(hs.pngSrc).catch(() => {}));
+    (scene.staticLayers || []).forEach(layer => {
+        loadImage(layer.src).catch(() => {});
+        if (layer.mobileSrc) loadImage(layer.mobileSrc).catch(() => {});
+    });
+    scene.hotspots.forEach(hs => {
+        loadImage(hs.pngSrc).catch(() => {});
+        if (hs.mobilePngSrc) loadImage(hs.mobilePngSrc).catch(() => {});
+    });
 }
 
 function preloadAllAssets() {
@@ -552,7 +596,7 @@ function renderStaticLayers(layers) {
         const img = document.createElement('img');
         img.className = 'scene-static-layer';
         img.id = layer.id;
-        img.src = layer.src;
+        img.src = getLayerSrc(layer);
         img.alt = '';
         img.style.zIndex = layer.zIndex || 18;
         container.appendChild(img);
@@ -573,10 +617,11 @@ function renderHotspots(hotspots) {
         const visual = document.createElement('img');
         visual.className = 'hotspot-visual';
         visual.id = hs.visualId;
-        visual.src = hs.pngSrc;
+        visual.src = getHotspotSrc(hs);
         visual.alt = '';
-        visual.dataset.baseOpacity = String(hs.baseOpacity || 0);
-        visual.style.opacity = hs.baseOpacity || 0;
+        const baseOpacity = getHotspotBaseOpacity(hs);
+        visual.dataset.baseOpacity = String(baseOpacity);
+        visual.style.opacity = baseOpacity;
         visual.style.zIndex = hs.visualZIndex || 15;
         container.appendChild(visual);
     });
@@ -941,6 +986,7 @@ document.addEventListener('keydown', e => {
 // INIT
 // ═══════════════════════════════════════════════════════
 async function initGame() {
+    currentMobileMode = isMobileView();
     await loadScene('main', { showTransition: false });
     setupLivingEffects();
     requestIdleCallbackSafe(preloadAllAssets);
@@ -953,5 +999,18 @@ function requestIdleCallbackSafe(callback) {
         setTimeout(callback, 700);
     }
 }
+
+let resizeSceneTimer = null;
+window.addEventListener('resize', () => {
+    const nextMobileMode = isMobileView();
+    if (nextMobileMode === currentMobileMode) return;
+    currentMobileMode = nextMobileMode;
+    clearTimeout(resizeSceneTimer);
+    resizeSceneTimer = setTimeout(() => {
+        if (currentScene && SCENES[currentScene]) {
+            loadScene(currentScene, { showTransition: false });
+        }
+    }, 120);
+});
 
 initGame();
