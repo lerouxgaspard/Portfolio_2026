@@ -608,16 +608,22 @@ function renderHotspots(hotspots) {
         });
     };
 
-    const activate = hs => {
+    const previewHotspot = hs => {
         hideAllVisuals();
         showVisual(hs);
         showLabel(hs);
-        typewrite(hs.reply);
     };
 
     const runAction = hs => {
         if (lastClickedHotspot === hs.id && typewriterActive) return;
         lastClickedHotspot = hs.id;
+        previewHotspot(hs);
+
+        if (hs.action === 'chat') {
+            typewrite(hs.reply);
+            return;
+        }
+
         if (hs.action.startsWith('scene:')) transitionTo(hs.action.slice(6));
     };
 
@@ -636,8 +642,8 @@ function renderHotspots(hotspots) {
         container.appendChild(trigger);
 
         if (!isMobile) {
-            trigger.addEventListener('mouseenter', () => activate(hs));
-            trigger.addEventListener('focus', () => activate(hs));
+            trigger.addEventListener('mouseenter', () => previewHotspot(hs));
+            trigger.addEventListener('focus', () => previewHotspot(hs));
             trigger.addEventListener('mouseleave', () => {
                 hideVisual(hs);
                 hideLabel();
@@ -649,7 +655,7 @@ function renderHotspots(hotspots) {
         } else {
             trigger.addEventListener('touchstart', () => {
                 if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
-                activate(hs);
+                previewHotspot(hs);
             }, { passive: true });
             trigger.addEventListener('touchend', () => {
                 if (tapLabelTimeout) clearTimeout(tapLabelTimeout);
