@@ -262,6 +262,8 @@ const SCENES = {
                 id: 'hs-flamingo',
                 visualId: 'visual-flamingo',
                 pngSrc: 'assets/rooms/room_posters_flamingo.png',
+                baseOpacity: 1,
+                visualZIndex: 14,
                 label: '[ FLAMINGO FEST ]',
                 action: 'chat',
                 reply: "Flamingo Fest : direction artistique, communication, affiches, identité visuelle. Un projet où il fallait donner une vraie présence à un événement.",
