@@ -15,7 +15,7 @@
 
     <!-- Scene -->
     <div id="scene">
-        <img id="scene-image" alt="">
+        <img id="scene-image" alt="" decoding="async" fetchpriority="high">
         <div id="hotspots-container"></div>
         <div id="scanlines"></div>
         <div id="vignette"></div>
@@ -60,10 +60,11 @@
         </div>
     </div>
 
+    <script>
+      window.OPENAI_API_KEY = '';
+      window.CHAT_API_ENDPOINT = '';
+    </script>
     <script src="data.js"></script>
     <script src="game.js"></script>
-    <script>
-      window.OPENAI_API_KEY = 'REMPLACE_PAR_TA_CLÉ';
-    </script>
 </body>
 </html>

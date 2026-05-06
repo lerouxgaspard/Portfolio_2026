@@ -1,66 +1,79 @@
-# GASPARD.exe — Portfolio point-and-click
+# GASPARD.exe
 
-Portfolio interactif style CD-ROM années 90-2000. Zéro framework, zéro dépendance.
+Portfolio personnel interactif en point-and-click, inspire des CD-ROMs 90-2000.
 
-## Mise en route
+Stack volontairement simple : HTML, CSS et JavaScript vanilla. Aucun framework, aucun bundler, aucun npm.
 
-### 1. Placer les images
+## Lancer le projet
 
-Dépose tes 4 images dans `assets/rooms/` avec exactement ces noms :
+Depuis la racine :
 
-```
-assets/rooms/room_main.png      ← plan principal (chambre)
-assets/rooms/room_bureau.png    ← plan bureau (fond de la fenêtre projets)
-assets/rooms/room_photos.png    ← plan photos
-assets/rooms/room_posters.png   ← plan posters
+```bash
+python3 -m http.server 8000
 ```
 
-Si une image manque, un placeholder vert s'affiche à la place — le site fonctionne quand même.
+Puis ouvrir :
 
-### 2. Configurer la clé API
-
-Ouvre `config.js` et remplace la valeur :
-
-```js
-window.OPENAI_API_KEY = 'sk-...ta-vraie-clé...';
+```text
+http://localhost:8000
 ```
 
-Sans clé, le chatbot affiche `[ configure config.js avec ta clé API ]`.
-
-### 3. Lancer
-
-Ouvre `index.html` avec **Live Server** dans VS Code (clic droit → Open with Live Server).
-
-> Ne pas ouvrir directement en `file://` : les images ne se chargeront pas à cause des restrictions CORS.
-
-## Déployer
-
-1. Push le repo sur GitHub (config.js est dans .gitignore — il ne sera pas publié)
-2. Va dans Settings → Pages → Source : `main` / `/ (root)`
-3. GitHub Pages génère une URL publique
+Eviter l'ouverture directe en `file://`, moins fiable pour tester les chargements d'assets.
 
 ## Structure
 
-```
-portfolio/
-├── index.html       — structure HTML
-├── style.css        — styles (terminal vert, scanlines, chatbox)
-├── game.js          — logique : scènes, hotspots, typewriter, chatbot
-├── data.js          — SYSTEM_PROMPT du chatbot
-├── config.js        — clé API (non versionné)
-├── .gitignore
-└── assets/
-    └── rooms/
-        ├── room_main.png
-        ├── room_bureau.png
-        ├── room_photos.png
-        └── room_posters.png
+```text
+.
+├── index.html
+├── style.css
+├── game.js
+├── data.js
+├── assets/
+│   ├── optimized/  # fonds de scenes compresses pour le web
+│   ├── rooms/      # sources PNG + calques transparents de hover
+│   └── objects/    # reserve pour de futurs objets separes
 ```
 
-## Ajuster les hotspots
+## Performance
 
-Chaque hotspot est défini dans `game.js` avec des positions en pourcentages (`left`, `top`, `width`, `height`). Modifie ces valeurs pour les aligner précisément sur tes images.
+Les fonds de scene utilises par le jeu sont dans `assets/optimized/`.
+Les PNG d'origine restent dans `assets/rooms/` comme sources et fallback.
 
-## Contact
+Les calques de hover restent en PNG car ils ont besoin de transparence.
 
-leroux.gaspard56500@gmail.com
+Le chargement fonctionne avec :
+
+- cache d'images en JavaScript ;
+- preload des assets apres l'affichage initial ;
+- transition qui attend le chargement de la scene suivante ;
+- fallback PNG si un fond optimise manque.
+
+## Hotspots
+
+Chaque hotspot a deux couches :
+
+- une image `.hotspot-visual` plein ecran, non cliquable ;
+- un bouton invisible `.hotspot-trigger` positionne en pourcentages.
+
+Les positions se modifient dans `game.js`, dans les champs `css` et `mobileCss`.
+
+## Chat
+
+Par defaut, le chat utilise un mode local scripté pour eviter d'exposer une cle API sur GitHub Pages.
+
+Deux options existent dans `index.html` :
+
+```js
+window.OPENAI_API_KEY = '';
+window.CHAT_API_ENDPOINT = '';
+```
+
+Pour une version publique professionnelle, preferer `CHAT_API_ENDPOINT` avec un proxy serverless
+plutot qu'une cle OpenAI exposee dans le navigateur.
+
+## Priorites restantes
+
+- Ajouter de vraies photos/videos dans les fiches projets.
+- Continuer la reecriture des textes objet par objet.
+- Calibrer finement les hotspots mobile.
+- Creer un endpoint serverless pour GPT si le chatbot dynamique reste dans la V1.

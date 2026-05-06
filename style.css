@@ -35,6 +35,7 @@ body {
     left: 0;
     right: 0;
     bottom: 140px;
+    contain: layout paint;
 }
 
 #scene-image {
@@ -42,6 +43,8 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+    transform: translateZ(0);
+    will-change: transform, filter;
 }
 
 #scene-placeholder {
@@ -76,14 +79,29 @@ body {
     pointer-events: none;
     z-index: 15;
     transition: opacity 0.2s ease, filter 0.2s ease;
+    will-change: opacity, filter;
 }
 
-/* Overlay unique de détection — couvre toute la scène */
-.hotspot-overlay {
+/* Trigger invisible — zone cliquable calibrée en % */
+.hotspot-trigger {
     position: absolute;
-    inset: 0;
     z-index: 25;
     cursor: none;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    touch-action: manipulation;
+}
+
+.hotspot-trigger:focus {
+    outline: 1px solid rgba(0, 255, 80, 0.75);
+    outline-offset: 2px;
+}
+
+.hotspot-trigger:focus:not(:focus-visible) {
+    outline: none;
 }
 
 /* ── SCANLINES ── */
@@ -119,6 +137,7 @@ body {
     pointer-events: none;
     z-index: 100;
     transition: opacity 0.4s ease;
+    will-change: opacity;
 }
 
 #transition.active {
@@ -515,6 +534,21 @@ body {
     animation: glitch 0.3s ease forwards;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .particle,
+    #screen-glow,
+    .glitch-anim,
+    .cursor-blink {
+        animation: none !important;
+    }
+
+    .hotspot-visual,
+    #transition,
+    #scene-image {
+        transition: none !important;
+    }
+}
+
 /* ═══════════════════════════════════════════════════════ */
 /* MOBILE RESPONSIVE — @media (max-width: 767px) */
 /* ═══════════════════════════════════════════════════════ */
@@ -534,13 +568,13 @@ body {
     }
 
     /* ── HOTSPOTS: AUGMENTER LA TAILLE TACTILE (MIN 44x44px) ── */
-    .hotspot {
+    .hotspot-trigger {
         cursor: auto;
         min-width: 44px;
         min-height: 44px;
     }
 
-    .hotspot:hover {
+    .hotspot-trigger:hover {
         background: transparent;
         outline: none;
     }
