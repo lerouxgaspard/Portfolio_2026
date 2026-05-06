@@ -246,6 +246,13 @@ const SCENES = {
         imageMobile: 'assets/optimized/room_posters_mobile.jpg',
         fallbackImage: 'assets/rooms/room_posters.png',
         fallbackImageMobile: 'assets/rooms/room_posters_mobile.png',
+        staticLayers: [
+            {
+                id: 'layer-posters-flamingo',
+                src: 'assets/rooms/room_posters_flamingo.png',
+                zIndex: 24
+            }
+        ],
         introText: "Mes projets créatifs.\nPas des lignes décoratives : des médias, des événements, des identités et des contenus publics.",
         hotspots: [
             {
@@ -262,8 +269,7 @@ const SCENES = {
                 id: 'hs-flamingo',
                 visualId: 'visual-flamingo',
                 pngSrc: 'assets/rooms/room_posters_flamingo.png',
-                baseOpacity: 1,
-                visualZIndex: 14,
+                visualZIndex: 25,
                 label: '[ FLAMINGO FEST ]',
                 action: 'chat',
                 reply: "Flamingo Fest : direction artistique, communication, affiches, identité visuelle. Un projet où il fallait donner une vraie présence à un événement.",
