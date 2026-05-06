@@ -573,7 +573,9 @@ body.debug-hotspots .hotspot-trigger {
     }
 
     /* ── SCENE: AJUSTER OBJECT-POSITION POUR MOBILE ── */
-    #scene-image {
+    #scene-image,
+    .hotspot-visual,
+    .scene-static-layer {
         object-position: center 40%;
     }
 
