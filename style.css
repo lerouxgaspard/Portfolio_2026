@@ -544,10 +544,10 @@ body.debug-hotspots .hotspot-trigger {
 
 #phone-screen {
     position: absolute;
-    left: 20.6%;
-    top: 19.1%;
-    width: 72.4%;
-    height: 64.4%;
+    left: 21.4%;
+    top: 20.1%;
+    width: 70.6%;
+    height: 63.2%;
     z-index: 1;
     overflow: hidden;
     background:
@@ -558,6 +558,9 @@ body.debug-hotspots .hotspot-trigger {
     border-radius: 1px;
     color: #101616;
     font-family: 'Share Tech Mono', monospace;
+    transform: perspective(520px) rotateX(2.2deg) rotateY(-4.2deg) skewY(3.6deg);
+    transform-origin: 50% 0;
+    clip-path: polygon(0 0, 100% 5.5%, 100% 100%, 0 100%);
 }
 
 .phone-status {
