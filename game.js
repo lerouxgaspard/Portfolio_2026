@@ -78,7 +78,7 @@ const SCENES = {
                 label: "[ INSPECTER L'ORDINATEUR ]",
                 action: 'scene:bureau',
                 reply: "C'est le coeur du portfolio : agents IA, SEO automation, scraping Python, Make, Dust, Claude API. Clique pour voir les projets construits, pas juste les outils listés.",
-                css: { left: '59%', top: '31%', width: '17%', height: '23%' },
+                css: { left: '61%', top: '39%', width: '16%', height: '20%' },
                 mobileCss: { left: '37%', top: '43%', width: '38%', height: '20%' }
             },
             {
@@ -88,7 +88,7 @@ const SCENES = {
                 label: '[ REGARDER LES POSTERS ]',
                 action: 'scene:posters',
                 reply: "Le mur créatif : média culturel, interviews, DA de festival, identité BDE. C'est la partie qui explique mon goût pour les expériences qui marquent.",
-                css: { left: '17%', top: '18%', width: '18%', height: '42%' },
+                css: { left: '19%', top: '31%', width: '11%', height: '21%' },
                 mobileCss: { left: '2%', top: '48%', width: '20%', height: '20%' }
             },
             {
@@ -98,7 +98,7 @@ const SCENES = {
                 label: '[ REGARDER LES PHOTOS ]',
                 action: 'scene:photos',
                 reply: "Rennes, Bogotá, Bordeaux, Casablanca, Paris. Mon parcours n'est pas linéaire, mais il a construit mon côté hybride business, tech et culturel.",
-                css: { left: '42%', top: '24%', width: '16%', height: '26%' },
+                css: { left: '45%', top: '41%', width: '9%', height: '13%' },
                 mobileCss: { left: '28%', top: '48%', width: '18%', height: '14%' }
             },
             {
@@ -108,7 +108,7 @@ const SCENES = {
                 label: '[ PELUCHE KINGOLAND ]',
                 action: 'chat',
                 reply: "Kingoland, c'est mon premier terrain concret : 6 ans à faire de la comm, des visuels, des réseaux sociaux et des événements pour un parc familial breton.",
-                css: { left: '31%', top: '45%', width: '11%', height: '18%' },
+                css: { left: '33%', top: '53%', width: '10%', height: '14%' },
                 mobileCss: { left: '8%', top: '61%', width: '28%', height: '17%' }
             },
             {
@@ -118,7 +118,7 @@ const SCENES = {
                 label: '[ GANG OF PIZZA ]',
                 action: 'chat',
                 reply: "Gang of Pizza, c'était court mais formateur : prospection terrain, analyse de zones, premiers réflexes business très concrets dans le Morbihan.",
-                css: { left: '37%', top: '68%', width: '12%', height: '14%' },
+                css: { left: '44%', top: '71%', width: '10%', height: '10%' },
                 mobileCss: { left: '22%', top: '72%', width: '20%', height: '12%' }
             },
             {
@@ -128,7 +128,7 @@ const SCENES = {
                 label: '[ BADGE MORNING ]',
                 action: 'chat',
                 reply: "Morning, c'est mon alternance actuelle depuis avril 2025 : coworking parisien, marketing ops, automatisation et IA appliquée à des vrais sujets d'équipe.",
-                css: { left: '69%', top: '48%', width: '5%', height: '10%' },
+                css: { left: '72%', top: '55%', width: '5%', height: '8%' },
                 mobileCss: { right: '20%', top: '52%', width: '10%', height: '9%' }
             },
             {
@@ -138,7 +138,7 @@ const SCENES = {
                 label: '[ TÉLÉPHONE ]',
                 action: 'chat',
                 reply: "Pour me contacter : leroux.gaspard56500@gmail.com. LinkedIn : gaspard-leroux-11b24a202. GitHub : lerouxgaspard.",
-                css: { right: '1.8%', top: '68%', width: '10%', height: '15%', zIndex: '35' },
+                css: { right: '4%', top: '62%', width: '11%', height: '15%', zIndex: '35' },
                 mobileCss: { right: '1%', top: '64%', width: '15%', height: '12%', zIndex: '35' }
             },
             {
@@ -148,11 +148,11 @@ const SCENES = {
                 label: '[ SORTIR ]',
                 action: 'chat',
                 reply: "La sortie existe, mais le plus intéressant est dans la pièce. Commence par l'ordinateur si tu veux comprendre ce que je sais vraiment construire.",
-                css: { right: '5%', top: '6%', width: '10%', height: '61%', zIndex: '26' },
+                css: { right: '7%', top: '8%', width: '10%', height: '58%', zIndex: '26' },
                 mobileCss: { right: '2%', top: '31%', width: '11%', height: '34%', zIndex: '26' },
                 zones: [
-                    { css: { right: '5%', top: '6%', width: '10%', height: '61%', zIndex: '26' }, mobileCss: { right: '2%', top: '31%', width: '11%', height: '34%', zIndex: '26' } },
-                    { css: { right: '8%', top: '67%', width: '6%', height: '17%', zIndex: '26' }, mobileCss: { right: '8%', top: '65%', width: '6%', height: '12%', zIndex: '26' } }
+                    { css: { right: '7%', top: '8%', width: '10%', height: '58%', zIndex: '26' }, mobileCss: { right: '2%', top: '31%', width: '11%', height: '34%', zIndex: '26' } },
+                    { css: { right: '10%', top: '66%', width: '6%', height: '13%', zIndex: '26' }, mobileCss: { right: '8%', top: '65%', width: '6%', height: '12%', zIndex: '26' } }
                 ]
             }
         ]
