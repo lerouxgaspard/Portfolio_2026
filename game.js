@@ -74,6 +74,11 @@ const SCENES = {
                 id: 'layer-main-meuble',
                 src: 'assets/rooms/room_main_meuble.png',
                 zIndex: 18
+            },
+            {
+                id: 'layer-main-livres',
+                src: 'assets/rooms/room_main_livres.png',
+                zIndex: 24
             }
         ],
         introText: "Bienvenue dans mon bureau-chambre.\nChaque objet ouvre une vraie partie de mon parcours : IA, marketing, data, culture.\nClique sur quelque chose.",
@@ -142,6 +147,8 @@ const SCENES = {
                 id: 'hs-telephone',
                 visualId: 'visual-telephone',
                 pngSrc: 'assets/rooms/room_main_telephone.png',
+                baseOpacity: 1,
+                visualZIndex: 36,
                 label: '[ TÉLÉPHONE ]',
                 action: 'chat',
                 reply: "Pour me contacter : leroux.gaspard56500@gmail.com. LinkedIn : gaspard-leroux-11b24a202. GitHub : lerouxgaspard.",
@@ -550,6 +557,9 @@ function renderHotspots(hotspots) {
         visual.id = hs.visualId;
         visual.src = hs.pngSrc;
         visual.alt = '';
+        visual.dataset.baseOpacity = String(hs.baseOpacity || 0);
+        visual.style.opacity = hs.baseOpacity || 0;
+        visual.style.zIndex = hs.visualZIndex || 15;
         container.appendChild(visual);
     });
 
@@ -559,7 +569,7 @@ function renderHotspots(hotspots) {
     };
     const hideVisual = hs => {
         const v = document.getElementById(hs.visualId);
-        if (v) { v.style.opacity = '0'; v.style.filter = ''; }
+        if (v) { v.style.opacity = v.dataset.baseOpacity || '0'; v.style.filter = ''; }
     };
 
     const hideAllVisuals = () => {
