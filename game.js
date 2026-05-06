@@ -69,6 +69,13 @@ const SCENES = {
         imageMobile: 'assets/optimized/room_main_mobile.jpg',
         fallbackImage: 'assets/rooms/room_main.png',
         fallbackImageMobile: 'assets/rooms/room_main_mobile.png',
+        staticLayers: [
+            {
+                id: 'layer-main-meuble',
+                src: 'assets/rooms/room_main_meuble.png',
+                zIndex: 18
+            }
+        ],
         introText: "Bienvenue dans mon bureau-chambre.\nChaque objet ouvre une vraie partie de mon parcours : IA, marketing, data, culture.\nClique sur quelque chose.",
         hotspots: [
             {
@@ -444,6 +451,7 @@ async function applyScene(name, scene, token) {
     await loadSceneImage(scene, token);
     if (token !== sceneLoadToken) return;
 
+    renderStaticLayers(scene.staticLayers || []);
     renderHotspots(scene.hotspots);
     typewrite(scene.introText);
 }
@@ -491,6 +499,7 @@ function preloadSceneAssets(scene) {
         const fallbackPath = getSceneFallbackPath(scene);
         if (fallbackPath) loadImage(fallbackPath).catch(() => {});
     });
+    (scene.staticLayers || []).forEach(layer => loadImage(layer.src).catch(() => {}));
     scene.hotspots.forEach(hs => loadImage(hs.pngSrc).catch(() => {}));
 }
 
@@ -510,10 +519,25 @@ function isMobileView() {
 // ═══════════════════════════════════════════════════════
 let tapLabelTimeout = null;
 
+function renderStaticLayers(layers) {
+    const container = document.getElementById('hotspots-container');
+    container.querySelectorAll('.scene-static-layer').forEach(layer => layer.remove());
+
+    layers.forEach(layer => {
+        const img = document.createElement('img');
+        img.className = 'scene-static-layer';
+        img.id = layer.id;
+        img.src = layer.src;
+        img.alt = '';
+        img.style.zIndex = layer.zIndex || 18;
+        container.appendChild(img);
+    });
+}
+
 function renderHotspots(hotspots) {
     const container = document.getElementById('hotspots-container');
     const labelHint = document.getElementById('label-hint');
-    container.innerHTML = '';
+    container.querySelectorAll('.hotspot-visual, .hotspot-trigger').forEach(el => el.remove());
 
     if (hotspots.length === 0) return;
 

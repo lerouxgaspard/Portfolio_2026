@@ -82,6 +82,15 @@ body {
     will-change: opacity, filter;
 }
 
+.scene-static-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
 /* Trigger invisible — zone cliquable calibrée en % */
 .hotspot-trigger {
     position: absolute;
