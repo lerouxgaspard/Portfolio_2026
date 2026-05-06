@@ -251,6 +251,11 @@ const SCENES = {
                 id: 'layer-posters-flamingo',
                 src: 'assets/rooms/room_posters_flamingo.png',
                 zIndex: 24
+            },
+            {
+                id: 'layer-posters-marennrs',
+                src: 'assets/rooms/room_poster_marennners.png',
+                zIndex: 26
             }
         ],
         introText: "Mes projets créatifs.\nPas des lignes décoratives : des médias, des événements, des identités et des contenus publics.",
@@ -280,6 +285,7 @@ const SCENES = {
                 id: 'hs-marennrs',
                 visualId: 'visual-marennrs',
                 pngSrc: 'assets/rooms/room_poster_marennners.png',
+                visualZIndex: 27,
                 label: "[ MARENNER'S BDE ]",
                 action: 'chat',
                 reply: "Marenner's : vice-présidence BDE, identité visuelle, événements et communication. Un premier rôle de coordination avec des enjeux très visibles.",
