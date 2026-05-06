@@ -78,8 +78,8 @@ const SCENES = {
                 label: "[ INSPECTER L'ORDINATEUR ]",
                 action: 'scene:bureau',
                 reply: "C'est le coeur du portfolio : agents IA, SEO automation, scraping Python, Make, Dust, Claude API. Clique pour voir les projets construits, pas juste les outils listés.",
-                css: { left: '58%', top: '28%', width: '20%', height: '35%' },
-                mobileCss: { left: '35%', top: '42%', width: '45%', height: '25%' }
+                css: { left: '59%', top: '31%', width: '17%', height: '23%' },
+                mobileCss: { left: '37%', top: '43%', width: '38%', height: '20%' }
             },
             {
                 id: 'hs-posters',
@@ -108,8 +108,8 @@ const SCENES = {
                 label: '[ PELUCHE KINGOLAND ]',
                 action: 'chat',
                 reply: "Kingoland, c'est mon premier terrain concret : 6 ans à faire de la comm, des visuels, des réseaux sociaux et des événements pour un parc familial breton.",
-                css: { left: '28%', top: '42%', width: '14%', height: '22%' },
-                mobileCss: { left: '2%', top: '58%', width: '38%', height: '22%' }
+                css: { left: '31%', top: '45%', width: '11%', height: '18%' },
+                mobileCss: { left: '8%', top: '61%', width: '28%', height: '17%' }
             },
             {
                 id: 'hs-pizza',
@@ -128,8 +128,8 @@ const SCENES = {
                 label: '[ BADGE MORNING ]',
                 action: 'chat',
                 reply: "Morning, c'est mon alternance actuelle depuis avril 2025 : coworking parisien, marketing ops, automatisation et IA appliquée à des vrais sujets d'équipe.",
-                css: { left: '60%', top: '42%', width: '8%', height: '12%' },
-                mobileCss: { right: '18%', top: '50%', width: '14%', height: '12%' }
+                css: { left: '69%', top: '48%', width: '5%', height: '10%' },
+                mobileCss: { right: '20%', top: '52%', width: '10%', height: '9%' }
             },
             {
                 id: 'hs-telephone',
@@ -138,8 +138,8 @@ const SCENES = {
                 label: '[ TÉLÉPHONE ]',
                 action: 'chat',
                 reply: "Pour me contacter : leroux.gaspard56500@gmail.com. LinkedIn : gaspard-leroux-11b24a202. GitHub : lerouxgaspard.",
-                css: { right: '4%', top: '50%', width: '7%', height: '18%' },
-                mobileCss: { right: '2%', top: '58%', width: '15%', height: '14%' }
+                css: { right: '3%', top: '67%', width: '8%', height: '15%' },
+                mobileCss: { right: '2%', top: '63%', width: '13%', height: '12%' }
             },
             {
                 id: 'hs-porte',
@@ -148,8 +148,8 @@ const SCENES = {
                 label: '[ SORTIR ]',
                 action: 'chat',
                 reply: "La sortie existe, mais le plus intéressant est dans la pièce. Commence par l'ordinateur si tu veux comprendre ce que je sais vraiment construire.",
-                css: { right: '1%', top: '5%', width: '9%', height: '78%' },
-                mobileCss: { right: '0%', top: '30%', width: '12%', height: '42%' }
+                css: { right: '4%', top: '6%', width: '8%', height: '69%' },
+                mobileCss: { right: '2%', top: '31%', width: '10%', height: '39%' }
             }
         ]
     },
@@ -527,7 +527,7 @@ function renderHotspots(hotspots) {
 
     const showVisual = hs => {
         const v = document.getElementById(hs.visualId);
-        if (v) { v.style.opacity = '1'; v.style.filter = 'brightness(1.4) drop-shadow(0 0 12px rgba(0,255,80,0.5))'; }
+        if (v) { v.style.opacity = '1'; v.style.filter = 'brightness(1.16) drop-shadow(0 0 7px rgba(0,255,80,0.42))'; }
     };
     const hideVisual = hs => {
         const v = document.getElementById(hs.visualId);
@@ -859,6 +859,14 @@ function handleSend() {
 document.getElementById('chat-send').addEventListener('click', handleSend);
 document.getElementById('chat-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') handleSend();
+});
+
+document.addEventListener('keydown', e => {
+    const activeTag = document.activeElement && document.activeElement.tagName;
+    if (activeTag === 'INPUT' || activeTag === 'TEXTAREA') return;
+    if (e.key.toLowerCase() === 'h') {
+        document.body.classList.toggle('debug-hotspots');
+    }
 });
 
 // ═══════════════════════════════════════════════════════

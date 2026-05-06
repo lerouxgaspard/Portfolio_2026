@@ -96,12 +96,13 @@ body {
 }
 
 .hotspot-trigger:focus {
-    outline: 1px solid rgba(0, 255, 80, 0.75);
-    outline-offset: 2px;
+    outline: none;
 }
 
-.hotspot-trigger:focus:not(:focus-visible) {
-    outline: none;
+body.debug-hotspots .hotspot-trigger {
+    outline: 1px solid rgba(0, 255, 80, 0.75);
+    outline-offset: -1px;
+    background: rgba(0, 255, 80, 0.06);
 }
 
 /* ── SCANLINES ── */
