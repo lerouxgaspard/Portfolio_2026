@@ -78,7 +78,7 @@ const SCENES = {
             {
                 id: 'layer-main-livres',
                 src: 'assets/rooms/room_main_livres.png',
-                zIndex: 24
+                zIndex: 40
             }
         ],
         introText: "Bienvenue dans mon bureau-chambre.\nChaque objet ouvre une vraie partie de mon parcours : IA, marketing, data, culture.\nClique sur quelque chose.",
@@ -137,6 +137,8 @@ const SCENES = {
                 id: 'hs-morning',
                 visualId: 'visual-morning',
                 pngSrc: 'assets/rooms/room_main_morning.png',
+                visualZIndex: 38,
+                triggerZIndex: 48,
                 label: '[ BADGE MORNING ]',
                 action: 'chat',
                 reply: "Morning, c'est mon alternance actuelle depuis avril 2025 : coworking parisien, marketing ops, automatisation et IA appliquée à des vrais sujets d'équipe.",
@@ -149,6 +151,7 @@ const SCENES = {
                 pngSrc: 'assets/rooms/room_main_telephone.png',
                 baseOpacity: 1,
                 visualZIndex: 36,
+                triggerZIndex: 49,
                 label: '[ TÉLÉPHONE ]',
                 action: 'chat',
                 reply: "Pour me contacter : leroux.gaspard56500@gmail.com. LinkedIn : gaspard-leroux-11b24a202. GitHub : lerouxgaspard.",
