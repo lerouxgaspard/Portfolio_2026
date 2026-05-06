@@ -28,7 +28,8 @@ let typeToken = 0;
 let typewriterActive = false;
 
 function typewrite(text) {
-    const el = document.getElementById('chat-text');
+    const el = document.getElementById('phone-bubble-text') || document.getElementById('chat-text');
+    if (!el) return;
     const token = ++typeToken;
     el.textContent = '';
     typewriterActive = true;
@@ -124,7 +125,7 @@ const SCENES = {
                 pngSrc: 'assets/rooms/room_main_kingoland.png',
                 mobilePngSrc: 'assets/rooms/room_main_mobile_kingoland.png',
                 label: '[ PELUCHE KINGOLAND ]',
-                action: 'chat',
+                action: 'phone:kingoland',
                 reply: "Kingoland, c'est mon premier terrain concret : 6 ans à faire de la comm, des visuels, des réseaux sociaux et des événements pour un parc familial breton.",
                 css: { left: '33%', top: '53%', width: '10%', height: '14%' },
                 mobileCss: { left: '28%', top: '57%', width: '15%', height: '11%' }
@@ -135,7 +136,7 @@ const SCENES = {
                 pngSrc: 'assets/rooms/room_main_pizza.png',
                 mobilePngSrc: 'assets/rooms/room_main_mobile_pizza.png',
                 label: '[ GANG OF PIZZA ]',
-                action: 'chat',
+                action: 'phone:pizza',
                 reply: "Gang of Pizza, c'était court mais formateur : prospection terrain, analyse de zones, premiers réflexes business très concrets dans le Morbihan.",
                 css: { left: '44%', top: '71%', width: '10%', height: '10%' },
                 mobileCss: { left: '43%', top: '60%', width: '14%', height: '8%' }
@@ -148,7 +149,7 @@ const SCENES = {
                 visualZIndex: 38,
                 triggerZIndex: 48,
                 label: '[ BADGE MORNING ]',
-                action: 'chat',
+                action: 'phone:morning',
                 reply: "Morning, c'est mon alternance actuelle depuis avril 2025 : coworking parisien, marketing ops, automatisation et IA appliquée à des vrais sujets d'équipe.",
                 css: { left: '72%', top: '55%', width: '5%', height: '8%' },
                 mobileCss: { left: '70%', top: '50%', width: '7%', height: '6%' }
@@ -163,7 +164,7 @@ const SCENES = {
                 visualZIndex: 36,
                 triggerZIndex: 49,
                 label: '[ TÉLÉPHONE ]',
-                action: 'chat',
+                action: 'phone:contact',
                 reply: "Pour me contacter : leroux.gaspard56500@gmail.com. LinkedIn : gaspard-leroux-11b24a202. GitHub : lerouxgaspard.",
                 css: { right: '4%', top: '62%', width: '11%', height: '15%', zIndex: '35' },
                 mobileCss: { right: '4%', top: '56%', width: '14%', height: '10%', zIndex: '35' }
@@ -174,7 +175,7 @@ const SCENES = {
                 pngSrc: 'assets/rooms/room_main_porte.png',
                 mobilePngSrc: 'assets/rooms/room_main_mobile_porte.png',
                 label: '[ SORTIR ]',
-                action: 'chat',
+                action: 'phone:exit',
                 reply: "La sortie existe, mais le plus intéressant est dans la pièce. Commence par l'ordinateur si tu veux comprendre ce que je sais vraiment construire.",
                 css: { right: '7%', top: '8%', width: '10%', height: '58%', zIndex: '26' },
                 mobileCss: { right: '7%', top: '36%', width: '13%', height: '29%', zIndex: '26' },
@@ -208,7 +209,7 @@ const SCENES = {
                 pngSrc: 'assets/rooms/room_photo_colombie.png',
                 mobilePngSrc: 'assets/rooms/room_photos_mobile_colombie.png',
                 label: '[ COLOMBIE — UNIVERSIDAD DE LA SABANA ]',
-                action: 'chat',
+                action: 'phone:colombie',
                 reply: "Universidad de la Sabana, Bogotá. Une expérience qui m'a obligé à sortir du cadre français et à comprendre les marchés, les cultures et les gens autrement.",
                 css: { right: '2%', top: '5%', width: '30%', height: '48%' },
                 mobileCss: { right: '2%', top: '18%', width: '42%', height: '32%' }
@@ -219,7 +220,7 @@ const SCENES = {
                 pngSrc: 'assets/rooms/room_photo_kedge.png',
                 mobilePngSrc: 'assets/rooms/room_photos_mobile_kedge.png',
                 label: '[ BORDEAUX — KEDGE ]',
-                action: 'chat',
+                action: 'phone:kedge',
                 reply: "KEDGE Bordeaux, master entrepreneuriat. C'est là que j'ai commencé à raisonner en problème, solution, marché et exécution.",
                 css: { left: '5%', top: '35%', width: '32%', height: '45%' },
                 mobileCss: { left: '2%', top: '52%', width: '40%', height: '30%' }
@@ -230,7 +231,7 @@ const SCENES = {
                 pngSrc: 'assets/rooms/room_photo_maroc.png',
                 mobilePngSrc: 'assets/rooms/room_photos_mobile_maroc.png',
                 label: '[ CASABLANCA — HEM ]',
-                action: 'chat',
+                action: 'phone:maroc',
                 reply: "HEM Casablanca, programme d'échange. Une ville dense, rapide, très business, qui m'a donné un autre rapport au terrain.",
                 css: { left: '28%', top: '5%', width: '32%', height: '48%' },
                 mobileCss: { left: '2%', top: '18%', width: '42%', height: '32%' }
@@ -241,7 +242,7 @@ const SCENES = {
                 pngSrc: 'assets/rooms/room_photo_paris.png',
                 mobilePngSrc: 'assets/rooms/room_photos_mobile_paris.png',
                 label: '[ PARIS — EUGENIA SCHOOL ]',
-                action: 'chat',
+                action: 'phone:paris',
                 reply: "Eugenia School, MSc Business Analytics. Paris, c'est le moment où mes sujets se rejoignent : data, IA, automation, marketing et produit.",
                 css: { left: '42%', top: '10%', width: '20%', height: '25%' },
                 mobileCss: { left: '25%', top: '2%', width: '35%', height: '18%' }
@@ -252,7 +253,7 @@ const SCENES = {
                 pngSrc: 'assets/rooms/room_photo_rennes.png',
                 mobilePngSrc: 'assets/rooms/room_photos_mobile_rennes.png',
                 label: '[ RENNES — RSB ]',
-                action: 'chat',
+                action: 'phone:rennes',
                 reply: "Rennes School of Business, bachelor marketing. Ma base : comprendre les marques, les publics, les décisions et la façon de raconter une offre.",
                 css: { right: '8%', top: '42%', width: '35%', height: '50%' },
                 mobileCss: { right: '2%', top: '52%', width: '48%', height: '35%' }
@@ -287,7 +288,7 @@ const SCENES = {
                 pngSrc: 'assets/rooms/room_posters_tuerie.png',
                 mobilePngSrc: 'assets/rooms/room_posters_mobile_tuerie.png',
                 label: '[ TUERIE — PAPILLON MONARQUE ]',
-                action: 'chat',
+                action: 'phone:tuerie',
                 reply: "Pour Ta Culture, c'est un média culturel co-fondé avec une vraie envie éditoriale. L'interview de Tuerie autour de Papillon Monarque reste un moment fort.",
                 css: { left: '5%', top: '8%', width: '38%', height: '80%' },
                 mobileCss: { left: '2%', top: '15%', width: '42%', height: '65%' }
@@ -299,7 +300,7 @@ const SCENES = {
                 mobilePngSrc: 'assets/rooms/room_posters_mobile_flamingo.png',
                 visualZIndex: 25,
                 label: '[ FLAMINGO FEST ]',
-                action: 'chat',
+                action: 'phone:flamingo',
                 reply: "Flamingo Fest : direction artistique, communication, affiches, identité visuelle. Un projet où il fallait donner une vraie présence à un événement.",
                 css: { left: '38%', top: '18%', width: '42%', height: '72%' },
                 mobileCss: { right: '2%', top: '25%', width: '52%', height: '60%' }
@@ -312,7 +313,7 @@ const SCENES = {
                 visualZIndex: 35,
                 triggerZIndex: 45,
                 label: "[ MARENNER'S BDE ]",
-                action: 'chat',
+                action: 'phone:marennrs',
                 reply: "Marenner's : vice-présidence BDE, identité visuelle, événements et communication. Un premier rôle de coordination avec des enjeux très visibles.",
                 css: { left: '3%', bottom: '5%', width: '18%', height: '18%' },
                 mobileCss: { left: '2%', bottom: '8%', width: '20%', height: '15%' }
@@ -432,6 +433,12 @@ let conversationHistory = [];
 let sceneLoadToken = 0;
 const imageCache = new Map();
 let currentMobileMode = null;
+const phoneState = {
+    currentContentId: null,
+    mediaIndex: 0,
+    ambientPlaying: false,
+    voicePlaying: false
+};
 
 // ═══════════════════════════════════════════════════════
 // CHARGEMENT DE SCÈNE
@@ -577,6 +584,261 @@ function preloadAllAssets() {
 }
 
 // ═══════════════════════════════════════════════════════
+// PHONE MODULE — HUB MÉDIA NARRATIF
+// ═══════════════════════════════════════════════════════
+function getPhoneContent(contentId) {
+    return PHONE_CONTENT && PHONE_CONTENT[contentId] ? PHONE_CONTENT[contentId] : null;
+}
+
+function setPhoneBubble(text) {
+    const bubbleText = document.getElementById('phone-bubble-text');
+    if (!bubbleText) return;
+    typewrite(text || PHONE_HOME.bubbleText);
+}
+
+function setPhoneOpen(isOpen) {
+    const module = document.getElementById('phone-module');
+    if (!module) return;
+    module.classList.toggle('is-open', isOpen);
+}
+
+function setPhoneMode(mode) {
+    const module = document.getElementById('phone-module');
+    if (!module) return;
+    module.classList.toggle('is-home', mode === 'home');
+    module.classList.toggle('is-content', mode === 'content');
+}
+
+function renderPhoneHome() {
+    const screen = document.getElementById('phone-screen');
+    const template = document.getElementById('phone-home-template');
+    if (!screen || !template) return;
+
+    phoneState.currentContentId = null;
+    phoneState.mediaIndex = 0;
+    stopVoiceAudio();
+    setPhoneMode('home');
+
+    screen.innerHTML = template.innerHTML;
+    const title = screen.querySelector('.phone-home-title');
+    const subtitle = screen.querySelector('.phone-home-subtitle');
+    if (title) title.textContent = PHONE_HOME.title;
+    if (subtitle) subtitle.textContent = PHONE_HOME.subtitle;
+
+    const ambient = document.getElementById('ambient-audio');
+    if (ambient && PHONE_HOME.ambientAudio && ambient.getAttribute('src') !== PHONE_HOME.ambientAudio) {
+        ambient.src = PHONE_HOME.ambientAudio;
+    }
+
+    const toggle = document.getElementById('ambient-toggle');
+    if (toggle) {
+        toggle.addEventListener('click', toggleAmbientAudio);
+        updateAmbientButton();
+    }
+
+    const minimize = document.getElementById('phone-minimize');
+    if (minimize) {
+        minimize.addEventListener('click', () => setPhoneOpen(false));
+    }
+
+    setPhoneBubble(PHONE_HOME.bubbleText);
+}
+
+function openPhoneContent(contentId) {
+    const content = getPhoneContent(contentId);
+    if (!content) {
+        renderPhoneHome();
+        setPhoneOpen(true);
+        return;
+    }
+
+    phoneState.currentContentId = contentId;
+    phoneState.mediaIndex = 0;
+    setPhoneOpen(true);
+    setPhoneMode('content');
+    renderPhoneMedia(contentId);
+    setPhoneBubble(content.bubbleText);
+}
+
+function renderPhoneMedia(contentId) {
+    const content = getPhoneContent(contentId);
+    const screen = document.getElementById('phone-screen');
+    if (!content || !screen) return;
+
+    const media = content.media && content.media.length ? content.media : [{ type: 'placeholder', caption: 'Média à ajouter.' }];
+    const index = Math.max(0, Math.min(phoneState.mediaIndex, media.length - 1));
+    phoneState.mediaIndex = index;
+    const item = media[index];
+
+    screen.innerHTML = '';
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'phone-content';
+
+    const header = document.createElement('div');
+    header.className = 'phone-content-header';
+
+    const top = document.createElement('div');
+    top.className = 'phone-content-top';
+
+    const title = document.createElement('div');
+    title.className = 'phone-content-title';
+    title.textContent = content.title;
+
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'phone-close-button';
+    close.textContent = 'HOME';
+    close.addEventListener('click', () => {
+        setPhoneOpen(false);
+        renderPhoneHome();
+    });
+
+    top.appendChild(title);
+    top.appendChild(close);
+
+    const subtitle = document.createElement('div');
+    subtitle.className = 'phone-content-subtitle';
+    subtitle.textContent = content.subtitle || '';
+
+    header.appendChild(top);
+    header.appendChild(subtitle);
+
+    const frame = document.createElement('div');
+    frame.className = 'phone-media-frame';
+
+    if (item.type === 'image' && item.src) {
+        const img = document.createElement('img');
+        img.src = item.src;
+        img.alt = item.caption || content.title;
+        img.loading = 'lazy';
+        frame.appendChild(img);
+    } else if (item.type === 'video' && item.src) {
+        const video = document.createElement('video');
+        video.src = item.src;
+        video.controls = true;
+        video.preload = 'metadata';
+        video.playsInline = true;
+        frame.appendChild(video);
+    } else {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'phone-placeholder';
+        placeholder.textContent = item.caption || 'Photo ou vidéo à ajouter.';
+        frame.appendChild(placeholder);
+    }
+
+    const caption = document.createElement('div');
+    caption.className = 'phone-caption';
+    caption.textContent = item.caption || content.ctaLabel || '';
+
+    const controls = document.createElement('div');
+    controls.className = 'phone-controls';
+
+    const prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'phone-nav-button';
+    prev.textContent = '<';
+    prev.disabled = media.length < 2;
+    prev.addEventListener('click', () => {
+        phoneState.mediaIndex = (phoneState.mediaIndex - 1 + media.length) % media.length;
+        renderPhoneMedia(contentId);
+    });
+
+    const counter = document.createElement('span');
+    counter.className = 'phone-counter';
+    counter.textContent = (index + 1) + ' / ' + media.length;
+
+    const next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'phone-nav-button';
+    next.textContent = '>';
+    next.disabled = media.length < 2;
+    next.addEventListener('click', () => {
+        phoneState.mediaIndex = (phoneState.mediaIndex + 1) % media.length;
+        renderPhoneMedia(contentId);
+    });
+
+    const voice = document.createElement('button');
+    voice.type = 'button';
+    voice.className = 'phone-voice-button';
+    voice.textContent = phoneState.voicePlaying ? 'STOP VOIX' : 'VOIX';
+    voice.disabled = !content.voiceAudio;
+    voice.addEventListener('click', () => toggleVoiceAudio(contentId));
+
+    controls.appendChild(prev);
+    controls.appendChild(counter);
+    controls.appendChild(next);
+    controls.appendChild(voice);
+
+    wrapper.appendChild(header);
+    wrapper.appendChild(frame);
+    wrapper.appendChild(caption);
+    wrapper.appendChild(controls);
+    screen.appendChild(wrapper);
+}
+
+async function toggleAmbientAudio() {
+    const ambient = document.getElementById('ambient-audio');
+    if (!ambient) return;
+
+    if (!ambient.src && PHONE_HOME.ambientAudio) {
+        ambient.src = PHONE_HOME.ambientAudio;
+    }
+
+    try {
+        if (ambient.paused) {
+            await ambient.play();
+            phoneState.ambientPlaying = true;
+        } else {
+            ambient.pause();
+            phoneState.ambientPlaying = false;
+        }
+    } catch (e) {
+        phoneState.ambientPlaying = false;
+    }
+
+    updateAmbientButton();
+}
+
+function updateAmbientButton() {
+    const ambient = document.getElementById('ambient-audio');
+    const toggle = document.getElementById('ambient-toggle');
+    if (!toggle || !ambient) return;
+    phoneState.ambientPlaying = !ambient.paused;
+    toggle.textContent = phoneState.ambientPlaying ? 'PAUSE' : 'PLAY';
+    toggle.classList.toggle('is-playing', phoneState.ambientPlaying);
+}
+
+async function toggleVoiceAudio(contentId) {
+    const content = getPhoneContent(contentId);
+    const voice = document.getElementById('voice-audio');
+    if (!content || !content.voiceAudio || !voice) return;
+
+    if (voice.src && !voice.paused) {
+        stopVoiceAudio();
+        renderPhoneMedia(contentId);
+        return;
+    }
+
+    voice.src = content.voiceAudio;
+    try {
+        await voice.play();
+        phoneState.voicePlaying = true;
+    } catch (e) {
+        phoneState.voicePlaying = false;
+    }
+    renderPhoneMedia(contentId);
+}
+
+function stopVoiceAudio() {
+    const voice = document.getElementById('voice-audio');
+    if (!voice) return;
+    voice.pause();
+    voice.removeAttribute('src');
+    phoneState.voicePlaying = false;
+}
+
+// ═══════════════════════════════════════════════════════
 // UTILITAIRE: DÉTECTION MOBILE
 // ═══════════════════════════════════════════════════════
 function isMobileView() {
@@ -668,7 +930,13 @@ function renderHotspots(hotspots) {
         previewHotspot(hs);
 
         if (hs.action === 'chat') {
-            typewrite(hs.reply);
+            setPhoneOpen(true);
+            setPhoneBubble(hs.reply);
+            return;
+        }
+
+        if (hs.action.startsWith('phone:')) {
+            openPhoneContent(hs.action.slice(6));
             return;
         }
 
@@ -969,10 +1237,14 @@ function handleSend() {
     sendMessage(msg);
 }
 
-document.getElementById('chat-send').addEventListener('click', handleSend);
-document.getElementById('chat-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') handleSend();
-});
+const chatSendButton = document.getElementById('chat-send');
+const chatInput = document.getElementById('chat-input');
+if (chatSendButton && chatInput) {
+    chatSendButton.addEventListener('click', handleSend);
+    chatInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') handleSend();
+    });
+}
 
 document.addEventListener('keydown', e => {
     const activeTag = document.activeElement && document.activeElement.tagName;
@@ -987,6 +1259,15 @@ document.addEventListener('keydown', e => {
 // ═══════════════════════════════════════════════════════
 async function initGame() {
     currentMobileMode = isMobileView();
+    renderPhoneHome();
+    const phoneShell = document.getElementById('phone-shell');
+    const phoneModule = document.getElementById('phone-module');
+    if (phoneShell && phoneModule) {
+        phoneShell.addEventListener('click', event => {
+            if (event.target.closest('button')) return;
+            if (!phoneModule.classList.contains('is-open')) setPhoneOpen(true);
+        });
+    }
     await loadScene('main', { showTransition: false });
     setupLivingEffects();
     requestIdleCallbackSafe(preloadAllAssets);

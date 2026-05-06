@@ -41,23 +41,37 @@
     <!-- Transition -->
     <div id="transition"></div>
 
-    <!-- Chatbox -->
-    <div id="chatbox">
-        <div id="chat-header">
-            <span id="chat-name">GASPARD.exe</span>
-            <span id="chat-status">&#9679; en ligne &middot; alternance @ Morning</span>
+    <!-- Phone module -->
+    <div id="phone-module" class="is-home">
+        <div id="phone-shell" aria-label="Téléphone média narratif">
+            <div id="phone-speaker"></div>
+            <div id="phone-screen"></div>
+            <div id="phone-home-button" aria-hidden="true"></div>
         </div>
-        <div id="chat-body">
-            <div id="chat-portrait"><span>G</span></div>
-            <div id="chat-text-area">
-                <span id="chat-text"></span><span class="cursor-blink"></span>
+        <div id="phone-bubble" aria-live="polite">
+            <p id="phone-bubble-text"></p>
+        </div>
+        <audio id="ambient-audio" preload="none" loop></audio>
+        <audio id="voice-audio" preload="none"></audio>
+        <template id="phone-home-template">
+            <div class="phone-status">
+                <span>3G</span>
+                <span>9:41 AM</span>
+                <span>100%</span>
             </div>
-        </div>
-        <div id="chat-input-row">
-            <span id="chat-prompt">&gt;_</span>
-            <input type="text" id="chat-input" placeholder="pose une question..." autocomplete="off" spellcheck="false">
-            <button id="chat-send">ENVOYER</button>
-        </div>
+            <div class="phone-home">
+                <button id="phone-minimize" class="phone-close-button phone-home-minimize" type="button">MIN</button>
+                <div class="phone-home-title">GASPARD.fm</div>
+                <div class="phone-home-subtitle">Aucun objet sélectionné</div>
+                <button id="ambient-toggle" class="phone-round-button" type="button">PLAY</button>
+                <div class="phone-app-grid" aria-hidden="true">
+                    <span>MSG</span>
+                    <span>PHOTOS</span>
+                    <span>NOTES</span>
+                    <span>VOICE</span>
+                </div>
+            </div>
+        </template>
     </div>
 
     <script>
