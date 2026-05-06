@@ -488,10 +488,10 @@ body.debug-hotspots .hotspot-trigger {
 #phone-module {
     position: fixed;
     left: 26px;
-    bottom: -132px;
+    bottom: -340px;
     width: min(720px, 48vw);
     min-width: 560px;
-    height: 430px;
+    height: 520px;
     z-index: 60;
     display: flex;
     align-items: flex-end;
@@ -511,13 +511,12 @@ body.debug-hotspots .hotspot-trigger {
 
 #phone-shell {
     position: relative;
-    width: 245px;
-    height: 408px;
-    padding: 42px 18px 50px;
-    background: linear-gradient(115deg, #c7d2dc 0%, #f4f7f9 22%, #090909 23%, #010101 100%);
-    border: 3px solid #080808;
-    border-radius: 36px;
-    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.55), inset 10px 0 16px rgba(255, 255, 255, 0.38);
+    width: 250px;
+    height: 480px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.5);
     pointer-events: auto;
     transform: rotate(-4deg);
 }
@@ -526,40 +525,37 @@ body.debug-hotspots .hotspot-trigger {
     transform: rotate(-2deg);
 }
 
-#phone-speaker {
+#phone-shell::after {
+    content: '';
     position: absolute;
-    top: 22px;
-    left: 50%;
-    width: 58px;
-    height: 8px;
-    transform: translateX(-50%);
-    background: #0c1318;
-    border-radius: 8px;
-    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.35);
+    inset: 0;
+    z-index: 2;
+    background: url('assets/ui/iphone_vintage_cropped.png') center / contain no-repeat;
+    pointer-events: none;
+}
+
+#phone-speaker {
+    display: none;
 }
 
 #phone-home-button {
-    position: absolute;
-    left: 50%;
-    bottom: 13px;
-    width: 28px;
-    height: 28px;
-    transform: translateX(-50%);
-    border: 2px solid rgba(255, 255, 255, 0.45);
-    border-radius: 50%;
-    background: #080808;
+    display: none;
 }
 
 #phone-screen {
-    position: relative;
-    height: 100%;
+    position: absolute;
+    left: 20.6%;
+    top: 19.1%;
+    width: 72.4%;
+    height: 64.4%;
+    z-index: 1;
     overflow: hidden;
     background:
         linear-gradient(rgba(255, 255, 255, 0.05) 50%, rgba(0, 0, 0, 0.08) 50%),
         linear-gradient(160deg, #bcd6df 0%, #7fa5a8 42%, #253b3f 100%);
     background-size: 100% 3px, cover;
-    border: 2px solid #050505;
-    border-radius: 6px;
+    border: 0;
+    border-radius: 1px;
     color: #101616;
     font-family: 'Share Tech Mono', monospace;
 }
@@ -1063,10 +1059,10 @@ body.debug-hotspots .hotspot-trigger {
     #phone-module {
         left: 0;
         right: 0;
-        bottom: -285px;
+        bottom: -330px;
         width: 100vw;
         min-width: 0;
-        height: 392px;
+        height: 468px;
         padding: 0 12px 10px;
         align-items: flex-end;
         justify-content: center;
@@ -1079,10 +1075,8 @@ body.debug-hotspots .hotspot-trigger {
     }
 
     #phone-shell {
-        width: min(58vw, 235px);
-        height: 360px;
-        padding: 36px 14px 42px;
-        border-radius: 30px;
+        width: min(64vw, 225px);
+        height: min(122vw, 432px);
         transform: rotate(-2deg);
     }
 
@@ -1090,22 +1084,11 @@ body.debug-hotspots .hotspot-trigger {
         transform: rotate(0);
     }
 
-    #phone-speaker {
-        top: 19px;
-        width: 48px;
-    }
-
-    #phone-home-button {
-        bottom: 10px;
-        width: 24px;
-        height: 24px;
-    }
-
     #phone-bubble {
         position: absolute;
         left: 14px;
         right: 14px;
-        bottom: 354px;
+        bottom: 408px;
         width: auto;
         min-height: 0;
         margin: 0;
