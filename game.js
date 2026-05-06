@@ -138,8 +138,8 @@ const SCENES = {
                 label: '[ TÉLÉPHONE ]',
                 action: 'chat',
                 reply: "Pour me contacter : leroux.gaspard56500@gmail.com. LinkedIn : gaspard-leroux-11b24a202. GitHub : lerouxgaspard.",
-                css: { right: '3%', top: '67%', width: '8%', height: '15%' },
-                mobileCss: { right: '2%', top: '63%', width: '13%', height: '12%' }
+                css: { right: '1.8%', top: '68%', width: '10%', height: '15%', zIndex: '35' },
+                mobileCss: { right: '1%', top: '64%', width: '15%', height: '12%', zIndex: '35' }
             },
             {
                 id: 'hs-porte',
@@ -148,8 +148,12 @@ const SCENES = {
                 label: '[ SORTIR ]',
                 action: 'chat',
                 reply: "La sortie existe, mais le plus intéressant est dans la pièce. Commence par l'ordinateur si tu veux comprendre ce que je sais vraiment construire.",
-                css: { right: '4%', top: '6%', width: '8%', height: '69%' },
-                mobileCss: { right: '2%', top: '31%', width: '10%', height: '39%' }
+                css: { right: '5%', top: '6%', width: '10%', height: '61%', zIndex: '26' },
+                mobileCss: { right: '2%', top: '31%', width: '11%', height: '34%', zIndex: '26' },
+                zones: [
+                    { css: { right: '5%', top: '6%', width: '10%', height: '61%', zIndex: '26' }, mobileCss: { right: '2%', top: '31%', width: '11%', height: '34%', zIndex: '26' } },
+                    { css: { right: '8%', top: '67%', width: '6%', height: '17%', zIndex: '26' }, mobileCss: { right: '8%', top: '65%', width: '6%', height: '12%', zIndex: '26' } }
+                ]
             }
         ]
     },
@@ -547,8 +551,9 @@ function renderHotspots(hotspots) {
         labelHint.style.opacity = '0';
     };
 
-    const applyPosition = (el, hs) => {
-        const css = isMobile && hs.mobileCss ? hs.mobileCss : hs.css;
+    const applyPosition = (el, hs, zone = null) => {
+        const source = zone || hs;
+        const css = isMobile && source.mobileCss ? source.mobileCss : source.css;
         Object.entries(css).forEach(([prop, value]) => {
             el.style[prop] = value;
         });
@@ -569,12 +574,15 @@ function renderHotspots(hotspots) {
 
     // ── Créer les triggers invisibles au-dessus des PNG ──────
     hotspots.forEach(hs => {
+        const zones = hs.zones && hs.zones.length ? hs.zones : [null];
+
+        zones.forEach((zone, index) => {
         const trigger = document.createElement('button');
         trigger.type = 'button';
         trigger.className = 'hotspot-trigger';
-        trigger.id = hs.id;
+        trigger.id = zone ? hs.id + '-' + index : hs.id;
         trigger.setAttribute('aria-label', hs.label.replace(/[\[\]]/g, '').trim());
-        applyPosition(trigger, hs);
+        applyPosition(trigger, hs, zone);
         container.appendChild(trigger);
 
         if (!isMobile) {
@@ -603,6 +611,7 @@ function renderHotspots(hotspots) {
         }
 
         trigger.addEventListener('click', () => runAction(hs));
+        });
     });
 }
 
