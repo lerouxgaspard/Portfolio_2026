@@ -255,7 +255,7 @@ const SCENES = {
             {
                 id: 'layer-posters-marennrs',
                 src: 'assets/rooms/room_poster_marennners.png',
-                zIndex: 26
+                zIndex: 34
             }
         ],
         introText: "Mes projets créatifs.\nPas des lignes décoratives : des médias, des événements, des identités et des contenus publics.",
@@ -285,7 +285,8 @@ const SCENES = {
                 id: 'hs-marennrs',
                 visualId: 'visual-marennrs',
                 pngSrc: 'assets/rooms/room_poster_marennners.png',
-                visualZIndex: 27,
+                visualZIndex: 35,
+                triggerZIndex: 45,
                 label: "[ MARENNER'S BDE ]",
                 action: 'chat',
                 reply: "Marenner's : vice-présidence BDE, identité visuelle, événements et communication. Un premier rôle de coordination avec des enjeux très visibles.",
@@ -631,6 +632,7 @@ function renderHotspots(hotspots) {
         trigger.id = zone ? hs.id + '-' + index : hs.id;
         trigger.setAttribute('aria-label', hs.label.replace(/[\[\]]/g, '').trim());
         applyPosition(trigger, hs, zone);
+        trigger.style.zIndex = hs.triggerZIndex || 25;
         container.appendChild(trigger);
 
         if (!isMobile) {
