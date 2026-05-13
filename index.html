@@ -65,39 +65,6 @@
         </div>
     </div>
 
-    <!-- Phone module -->
-    <div id="phone-module" class="is-home">
-        <div id="phone-shell" aria-label="Téléphone média narratif">
-            <div id="phone-speaker"></div>
-            <div id="phone-screen"></div>
-            <div id="phone-home-button" aria-hidden="true"></div>
-        </div>
-        <div id="phone-bubble" aria-live="polite">
-            <p id="phone-bubble-text"></p>
-        </div>
-        <audio id="ambient-audio" preload="none" loop></audio>
-        <audio id="voice-audio" preload="none"></audio>
-        <template id="phone-home-template">
-            <div class="phone-status">
-                <span>3G</span>
-                <span>9:41 AM</span>
-                <span>100%</span>
-            </div>
-            <div class="phone-home">
-                <button id="phone-minimize" class="phone-close-button phone-home-minimize" type="button">MIN</button>
-                <div class="phone-home-title">GASPARD.fm</div>
-                <div class="phone-home-subtitle">Aucun objet sélectionné</div>
-                <button id="ambient-toggle" class="phone-round-button" type="button">PLAY</button>
-                <div class="phone-app-grid" aria-hidden="true">
-                    <span>MSG</span>
-                    <span>PHOTOS</span>
-                    <span>NOTES</span>
-                    <span>VOICE</span>
-                </div>
-            </div>
-        </template>
-    </div>
-
     <script>
       window.OPENAI_API_KEY = '';
       window.CHAT_API_ENDPOINT = '';

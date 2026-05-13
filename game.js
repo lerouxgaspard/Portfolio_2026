@@ -942,7 +942,7 @@ function renderHotspots(hotspots) {
         }
 
         if (hs.action.startsWith('phone:')) {
-            openPhoneContent(hs.action.slice(6));
+            showIphone();
             return;
         }
 
@@ -1263,11 +1263,13 @@ const IOS_DOCK = [
 ];
 
 function buildIphoneContent() {
-    if (iphoneBuilt) return;
-    iphoneBuilt = true;
-
     const grid  = document.getElementById('ios-app-grid');
     const dock  = document.getElementById('ios-dock-icons');
+    const home = document.getElementById('ios-home');
+
+    if (!grid || !dock || !home) return;
+    if (iphoneBuilt) return;
+    iphoneBuilt = true;
 
     const makeIcon = (app) => {
         const wrap = document.createElement('div');
@@ -1308,10 +1310,41 @@ function buildIphoneContent() {
     updateIosClock();
 }
 
+function showIosMessage(text) {
+    const home = document.getElementById('ios-home');
+    const dock = document.getElementById('ios-dock');
+    if (!home) return;
+
+    home.innerHTML = '';
+    if (dock) dock.classList.add('is-hidden');
+
+    const panel = document.createElement('div');
+    panel.className = 'ios-message-panel';
+
+    const message = document.createElement('p');
+    message.textContent = text;
+
+    const back = document.createElement('button');
+    back.type = 'button';
+    back.className = 'ios-back-button';
+    back.textContent = 'RETOUR';
+    back.addEventListener('click', () => {
+        home.innerHTML = '<div id="ios-app-grid"></div>';
+        const dockIcons = document.getElementById('ios-dock-icons');
+        if (dockIcons) dockIcons.innerHTML = '';
+        if (dock) dock.classList.remove('is-hidden');
+        iphoneBuilt = false;
+        buildIphoneContent();
+    });
+
+    panel.appendChild(message);
+    panel.appendChild(back);
+    home.appendChild(panel);
+}
+
 function handleIosAction(action) {
     if (action.startsWith('reply:')) {
-        typewrite(action.slice(6));
-        hideIphone();
+        showIosMessage(action.slice(6));
     } else if (action.startsWith('scene:')) {
         hideIphone();
         transitionTo(action.slice(6));
@@ -1331,7 +1364,6 @@ function showIphone() {
     buildIphoneContent();
     const overlay = document.getElementById('iphone-overlay');
     overlay.classList.add('visible');
-    typewrite("Attends, laisse-moi chercher mon téléphone...");
     if (iosClockInterval) clearInterval(iosClockInterval);
     iosClockInterval = setInterval(updateIosClock, 30000);
 }
@@ -1340,6 +1372,13 @@ function hideIphone() {
     const overlay = document.getElementById('iphone-overlay');
     overlay.classList.remove('visible');
     if (iosClockInterval) { clearInterval(iosClockInterval); iosClockInterval = null; }
+    const home = document.getElementById('ios-home');
+    const dock = document.getElementById('ios-dock');
+    const dockIcons = document.getElementById('ios-dock-icons');
+    if (home) home.innerHTML = '<div id="ios-app-grid"></div>';
+    if (dock) dock.classList.remove('is-hidden');
+    if (dockIcons) dockIcons.innerHTML = '';
+    iphoneBuilt = false;
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1387,15 +1426,6 @@ document.addEventListener('keydown', e => {
 // ═══════════════════════════════════════════════════════
 async function initGame() {
     currentMobileMode = isMobileView();
-    renderPhoneHome();
-    const phoneShell = document.getElementById('phone-shell');
-    const phoneModule = document.getElementById('phone-module');
-    if (phoneShell && phoneModule) {
-        phoneShell.addEventListener('click', event => {
-            if (event.target.closest('button')) return;
-            if (!phoneModule.classList.contains('is-open')) setPhoneOpen(true);
-        });
-    }
     await loadScene('main', { showTransition: false });
     setupLivingEffects();
     requestIdleCallbackSafe(preloadAllAssets);
