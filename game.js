@@ -151,6 +151,7 @@ const SCENES = {
                 label: '[ BADGE MORNING ]',
                 action: 'phone:morning',
                 reply: "Morning, c'est mon alternance actuelle depuis avril 2025 : coworking parisien, marketing ops, automatisation et IA appliquée à des vrais sujets d'équipe.",
+                baseOpacity: 1,
                 css: { left: '72%', top: '55%', width: '5%', height: '8%' },
                 mobileCss: { left: '70%', top: '50%', width: '7%', height: '6%' }
             },
@@ -164,8 +165,8 @@ const SCENES = {
                 visualZIndex: 36,
                 triggerZIndex: 49,
                 label: '[ TÉLÉPHONE ]',
-                action: 'phone:contact',
-                reply: "Pour me contacter : leroux.gaspard56500@gmail.com. LinkedIn : gaspard-leroux-11b24a202. GitHub : lerouxgaspard.",
+                action: 'ios',
+                reply: "Attends, laisse-moi chercher mon téléphone...",
                 css: { right: '4%', top: '62%', width: '11%', height: '15%', zIndex: '35' },
                 mobileCss: { right: '4%', top: '56%', width: '14%', height: '10%', zIndex: '35' }
             },
@@ -935,6 +936,11 @@ function renderHotspots(hotspots) {
             return;
         }
 
+        if (hs.action === 'ios') {
+            showIphone();
+            return;
+        }
+
         if (hs.action.startsWith('phone:')) {
             openPhoneContent(hs.action.slice(6));
             return;
@@ -1045,21 +1051,38 @@ function setupLivingEffects() {
     screenGlowEl.id = 'screen-glow';
     sceneEl.appendChild(screenGlowEl);
 
-    // B) 15 particules flottantes — zone droite (ordi)
-    for (let i = 0; i < 15; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const left = 52 + Math.random() * 32;   // 52–84%
-        const top  = 8  + Math.random() * 62;   // 8–70%
-        const dur  = (8 + Math.random() * 7).toFixed(1);
-        const delay = -(Math.random() * 10).toFixed(1);
-        p.style.left = left + '%';
-        p.style.top  = top  + '%';
-        p.style.animationDuration = dur + 's, ' + (parseFloat(dur) * 0.7).toFixed(1) + 's';
-        p.style.animationDelay    = delay + 's, ' + delay + 's';
-        sceneEl.appendChild(p);
-        particlesEls.push(p);
-    }
+    // B) Particules flottantes — ambiance chambre entière
+    const PARTICLE_CONFIGS = [
+        // Micro poussières vertes autour de l'ordi (zone droite)
+        { count: 12, leftRange: [50, 85], topRange: [10, 72], sizeRange: [2, 3.5], color: 'rgba(0,255,80,', opacRange: [0.25, 0.55] },
+        // Particules diffuses côté gauche (posters)
+        { count: 6,  leftRange: [5, 40],  topRange: [15, 65], sizeRange: [1.5, 2.5], color: 'rgba(0,200,255,', opacRange: [0.1, 0.3] },
+        // Grosses particules lumineuses rares
+        { count: 3,  leftRange: [20, 80], topRange: [20, 60], sizeRange: [4, 6], color: 'rgba(0,255,80,', opacRange: [0.08, 0.2] },
+    ];
+
+    PARTICLE_CONFIGS.forEach(cfg => {
+        for (let i = 0; i < cfg.count; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const left  = cfg.leftRange[0] + Math.random() * (cfg.leftRange[1] - cfg.leftRange[0]);
+            const top   = cfg.topRange[0]  + Math.random() * (cfg.topRange[1]  - cfg.topRange[0]);
+            const size  = (cfg.sizeRange[0] + Math.random() * (cfg.sizeRange[1] - cfg.sizeRange[0])).toFixed(1);
+            const maxOp = (cfg.opacRange[0] + Math.random() * (cfg.opacRange[1] - cfg.opacRange[0])).toFixed(2);
+            const dur   = (9 + Math.random() * 8).toFixed(1);
+            const delay = -(Math.random() * 12).toFixed(1);
+            p.style.left   = left + '%';
+            p.style.top    = top  + '%';
+            p.style.width  = size + 'px';
+            p.style.height = size + 'px';
+            p.style.background = cfg.color + maxOp + ')';
+            p.style.boxShadow  = `0 0 ${parseFloat(size) * 2.5}px ${cfg.color + maxOp + ')'}`;
+            p.style.animationDuration = dur + 's, ' + (parseFloat(dur) * 0.8).toFixed(1) + 's';
+            p.style.animationDelay    = delay + 's, ' + delay + 's';
+            sceneEl.appendChild(p);
+            particlesEls.push(p);
+        }
+    });
 
     // C) Glitch au chargement (une seule fois)
     const roomBg = document.getElementById('scene-image');
@@ -1212,6 +1235,111 @@ function getLocalReply(userText) {
     }
 
     return "Je peux te parler de mes projets IA, de mon parcours, de Morning, de mes expériences créatives ou de comment me contacter. Le mode local répond court ; le vrai GPT peut être branché via un endpoint.";
+}
+
+// ═══════════════════════════════════════════════════════
+// IPHONE 3GS — OVERLAY IOS
+// ═══════════════════════════════════════════════════════
+
+let iphoneBuilt = false;
+let iosClockInterval = null;
+
+const IOS_APPS = [
+    { icon: '📞', label: 'Appeler',   bg: 'linear-gradient(160deg,#34c759,#1d7b33)', action: 'tel:+33600000000' },
+    { icon: '✉️', label: 'Mail',      bg: 'linear-gradient(160deg,#3b87f5,#0a52d4)', action: 'mailto:leroux.gaspard56500@gmail.com' },
+    { icon: 'in', label: 'LinkedIn',  bg: 'linear-gradient(160deg,#0b7bb5,#084e76)', action: 'https://linkedin.com/in/gaspard-leroux-11b24a202/' },
+    { icon: '⌨',  label: 'GitHub',   bg: 'linear-gradient(160deg,#444,#111)',        action: 'https://github.com/lerouxgaspard' },
+    { icon: '🤖', label: 'Agents IA', bg: 'linear-gradient(160deg,#7b5ea7,#4a3068)', action: 'reply:J\'ai construit 8 agents IA pour le hackathon PayFit — pipeline SEO entier, 1er prix. Dust, Claude API, Make. C\'est mon terrain de jeu.' },
+    { icon: '🎨', label: 'Design',    bg: 'linear-gradient(160deg,#ff6b35,#c43b00)', action: 'reply:Flamingo Fest, Pour Ta Culture, Marenner\'s... Le design c\'est comme la musique : soit ça claque, soit ça claque pas.' },
+    { icon: '🌊', label: 'Surf',      bg: 'linear-gradient(160deg,#00b4d8,#0077b6)', action: 'reply:Auray, Bretagne. J\'ai grandi avec l\'océan à 20 minutes. Le surf c\'est le seul moment où mon cerveau ferme vraiment sa gueule.' },
+    { icon: '🏗',  label: 'Projet',   bg: 'linear-gradient(160deg,#f9c74f,#c47a00)', action: 'reply:Un parc d\'art immersif itinérant pour les familles — éducation émotionnelle par l\'art dans les villes françaises. Inspiré du Puy du Fou mais centré sur la culture. C\'est mon ambition.' },
+];
+
+const IOS_DOCK = [
+    { icon: '💬', label: 'Messages', bg: 'linear-gradient(160deg,#34c759,#1d7b33)', action: 'reply:Tu peux m\'écrire à leroux.gaspard56500@gmail.com. Je réponds vite.' },
+    { icon: '🌐', label: 'Safari',   bg: 'linear-gradient(160deg,#3b87f5,#0a52d4)', action: 'https://lerouxgaspard.github.io/Portfolio_2026/' },
+    { icon: '🎵', label: 'Musique',  bg: 'linear-gradient(160deg,#ff3b30,#c0392b)', action: 'reply:French Touch, électro, tout ce qui a une texture. Daft Punk, Gesaffelstein, Polo & Pan. La musique me sert d\'architecture mentale.' },
+    { icon: '📷', label: 'Photos',   bg: 'linear-gradient(160deg,#aaa,#555)',       action: 'scene:photos' },
+];
+
+function buildIphoneContent() {
+    if (iphoneBuilt) return;
+    iphoneBuilt = true;
+
+    const grid  = document.getElementById('ios-app-grid');
+    const dock  = document.getElementById('ios-dock-icons');
+
+    const makeIcon = (app) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'ios-icon';
+
+        const inner = document.createElement('div');
+        inner.className = 'ios-icon-inner';
+        inner.style.background = app.bg;
+
+        const emoji = document.createElement('span');
+        emoji.className = 'ios-icon-emoji';
+        emoji.textContent = app.icon;
+
+        const gloss = document.createElement('div');
+        gloss.className = 'ios-icon-gloss';
+
+        inner.appendChild(emoji);
+        inner.appendChild(gloss);
+
+        const label = document.createElement('span');
+        label.className = 'ios-icon-label';
+        label.textContent = app.label;
+
+        wrap.appendChild(inner);
+        wrap.appendChild(label);
+
+        wrap.addEventListener('click', e => {
+            e.stopPropagation();
+            handleIosAction(app.action);
+        });
+
+        return wrap;
+    };
+
+    IOS_APPS.forEach(app => grid.appendChild(makeIcon(app)));
+    IOS_DOCK.forEach(app => dock.appendChild(makeIcon(app)));
+
+    updateIosClock();
+}
+
+function handleIosAction(action) {
+    if (action.startsWith('reply:')) {
+        typewrite(action.slice(6));
+        hideIphone();
+    } else if (action.startsWith('scene:')) {
+        hideIphone();
+        transitionTo(action.slice(6));
+    } else if (action.startsWith('http') || action.startsWith('mailto:') || action.startsWith('tel:')) {
+        window.open(action, '_blank');
+    }
+}
+
+function updateIosClock() {
+    const el = document.getElementById('ios-time');
+    if (!el) return;
+    const now = new Date();
+    el.textContent = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+}
+
+function showIphone() {
+    buildIphoneContent();
+    const overlay = document.getElementById('iphone-overlay');
+    overlay.classList.add('visible');
+    typewrite("Attends, laisse-moi chercher mon téléphone...");
+    if (iosClockInterval) clearInterval(iosClockInterval);
+    iosClockInterval = setInterval(updateIosClock, 30000);
+}
+
+function hideIphone() {
+    const overlay = document.getElementById('iphone-overlay');
+    overlay.classList.remove('visible');
+    if (iosClockInterval) { clearInterval(iosClockInterval); iosClockInterval = null; }
 }
 
 // ═══════════════════════════════════════════════════════

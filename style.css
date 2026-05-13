@@ -114,16 +114,16 @@ body.debug-hotspots .hotspot-trigger {
     background: rgba(0, 255, 80, 0.06);
 }
 
-/* ── SCANLINES ── */
+/* ── SCANLINES — ultra discret ── */
 #scanlines {
     position: absolute;
     inset: 0;
     background: repeating-linear-gradient(
         to bottom,
         transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.07) 2px,
-        rgba(0, 0, 0, 0.07) 4px
+        transparent 3px,
+        rgba(0, 0, 0, 0.025) 3px,
+        rgba(0, 0, 0, 0.025) 4px
     );
     pointer-events: none;
     z-index: 10;
@@ -783,12 +783,9 @@ body.debug-hotspots .hotspot-trigger {
 
 /* ── EFFETS VIVANTS — PLAN MAIN ── */
 
-/* Particules flottantes */
+/* Particules flottantes — taille et couleur gérées en JS */
 .particle {
     position: absolute;
-    width: 2px;
-    height: 2px;
-    background: rgba(0, 255, 80, 0.4);
     border-radius: 50%;
     pointer-events: none;
     z-index: 15;
@@ -854,6 +851,233 @@ body.debug-hotspots .hotspot-trigger {
     #scene-image {
         transition: none !important;
     }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* IPHONE 3GS — OVERLAY IOS                              */
+/* ═══════════════════════════════════════════════════════ */
+
+#iphone-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 140px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 80;
+    backdrop-filter: blur(4px);
+    animation: iphoneFadeIn 0.25s ease;
+}
+
+#iphone-overlay.visible {
+    display: flex;
+}
+
+@keyframes iphoneFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* Wrapper positionné */
+#iphone-container {
+    position: relative;
+    height: 88%;
+    aspect-ratio: 1024 / 1536;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Image du téléphone */
+#iphone-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 1;
+    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.8));
+}
+
+/* Zone écran — positionnée dans le cadre */
+#ios-screen {
+    position: absolute;
+    top: 9.5%;
+    left: 8%;
+    width: 84%;
+    height: 62%;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(160deg, #1a1a2e 0%, #0f2044 60%, #0f3460 100%);
+}
+
+/* Status bar style iOS 3 */
+#ios-statusbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 8px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    flex-shrink: 0;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+#ios-carrier {
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 8px;
+}
+
+#ios-time {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+#ios-battery {
+    font-size: 8px;
+    color: #aaffc0;
+    letter-spacing: -1px;
+}
+
+/* Zone home (icônes) */
+#ios-home {
+    flex: 1;
+    overflow: hidden;
+    padding: 10px 8px 4px;
+}
+
+/* Grille 4 colonnes */
+#ios-app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px 4px;
+}
+
+/* Dock en bas */
+#ios-dock {
+    position: relative;
+    height: 18%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#ios-dock-bg {
+    position: absolute;
+    inset: 4px 6px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.18) 0%,
+        rgba(255,255,255,0.06) 50%,
+        rgba(0,0,0,0.15) 100%
+    );
+    border-radius: 12px;
+    border: 0.5px solid rgba(255,255,255,0.25);
+}
+
+#ios-dock-icons {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    width: 100%;
+    padding: 4px 8px;
+}
+
+/* Icône iOS générique */
+.ios-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    cursor: none;
+}
+
+.ios-icon:active .ios-icon-inner {
+    transform: scale(0.9);
+}
+
+.ios-icon-inner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 22%;
+    box-shadow:
+        0 2px 6px rgba(0,0,0,0.6),
+        0 0 0 0.5px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease;
+}
+
+.ios-icon-emoji {
+    font-size: clamp(10px, 2.2vh, 20px);
+    z-index: 2;
+    line-height: 1;
+    user-select: none;
+}
+
+/* Reflet / gloss iOS classique */
+.ios-icon-gloss {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 52%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.55) 0%,
+        rgba(255,255,255,0.08) 100%
+    );
+    border-radius: 22% 22% 0 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.ios-icon-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(6px, 0.8vh, 9px);
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+    line-height: 1;
+}
+
+/* Bouton fermer sous le téléphone */
+#iphone-close-btn {
+    position: absolute;
+    bottom: -8%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    color: rgba(245, 240, 232, 0.7);
+    background: transparent;
+    border: 1px solid rgba(245, 240, 232, 0.3);
+    padding: 3px 18px;
+    cursor: none;
+    letter-spacing: 2px;
+    z-index: 5;
+    white-space: nowrap;
+}
+
+#iphone-close-btn:hover {
+    color: #f5f0e8;
+    border-color: rgba(245, 240, 232, 0.7);
 }
 
 /* ═══════════════════════════════════════════════════════ */
@@ -1057,6 +1281,20 @@ body.debug-hotspots .hotspot-trigger {
     #back-btn {
         bottom: 18px;
         left: 12px;
+    }
+
+    /* ── IPHONE OVERLAY MOBILE ── */
+    #iphone-overlay {
+        bottom: 0;
+    }
+
+    #iphone-container {
+        height: 80%;
+    }
+
+    #iphone-close-btn {
+        font-size: 14px;
+        bottom: -10%;
     }
 
     #phone-module {
