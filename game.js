@@ -66,7 +66,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 const SCENES = {
 
     main: {
-        image: 'assets/optimized/room_main.jpg',
+        image: 'assets/rooms/room_main.png',
         imageMobile: 'assets/optimized/room_main_mobile.jpg',
         fallbackImage: 'assets/rooms/room_main.png',
         fallbackImageMobile: 'assets/rooms/room_main_mobile.png',
