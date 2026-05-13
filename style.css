@@ -488,10 +488,10 @@ body.debug-hotspots .hotspot-trigger {
 #phone-module {
     position: fixed;
     left: 26px;
-    bottom: -340px;
+    bottom: -240px;
     width: min(720px, 48vw);
     min-width: 560px;
-    height: 520px;
+    height: 500px;
     z-index: 60;
     display: flex;
     align-items: flex-end;
@@ -512,7 +512,8 @@ body.debug-hotspots .hotspot-trigger {
 #phone-shell {
     position: relative;
     width: 250px;
-    height: 480px;
+    height: auto;
+    aspect-ratio: 1024 / 1536;
     background: transparent;
     border: 0;
     border-radius: 0;
@@ -530,7 +531,7 @@ body.debug-hotspots .hotspot-trigger {
     position: absolute;
     inset: 0;
     z-index: 2;
-    background: url('assets/ui/iphone_vintage_cropped.png') center / contain no-repeat;
+    background: url('assets/rooms/iphone_3gs.png') center / contain no-repeat;
     pointer-events: none;
 }
 
@@ -544,10 +545,10 @@ body.debug-hotspots .hotspot-trigger {
 
 #phone-screen {
     position: absolute;
-    left: 21.4%;
-    top: 20.1%;
-    width: 70.6%;
-    height: 63.2%;
+    left: 8%;
+    top: 9.5%;
+    width: 84%;
+    height: 62%;
     z-index: 1;
     overflow: hidden;
     background:
@@ -558,9 +559,7 @@ body.debug-hotspots .hotspot-trigger {
     border-radius: 1px;
     color: #101616;
     font-family: 'Share Tech Mono', monospace;
-    transform: perspective(520px) rotateX(2.2deg) rotateY(-4.2deg) skewY(3.6deg);
-    transform-origin: 50% 0;
-    clip-path: polygon(0 0, 100% 5.5%, 100% 100%, 0 100%);
+    border-radius: 4px;
 }
 
 .phone-status {

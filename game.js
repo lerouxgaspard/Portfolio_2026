@@ -165,7 +165,7 @@ const SCENES = {
                 visualZIndex: 36,
                 triggerZIndex: 49,
                 label: '[ TÉLÉPHONE ]',
-                action: 'ios',
+                action: 'phone:contact',
                 reply: "Attends, laisse-moi chercher mon téléphone...",
                 css: { right: '4%', top: '62%', width: '11%', height: '15%', zIndex: '35' },
                 mobileCss: { right: '4%', top: '56%', width: '14%', height: '10%', zIndex: '35' }
@@ -942,7 +942,7 @@ function renderHotspots(hotspots) {
         }
 
         if (hs.action.startsWith('phone:')) {
-            showIphone();
+            openPhoneContent(hs.action.slice(6));
             return;
         }
 
@@ -1426,6 +1426,15 @@ document.addEventListener('keydown', e => {
 // ═══════════════════════════════════════════════════════
 async function initGame() {
     currentMobileMode = isMobileView();
+    renderPhoneHome();
+    const phoneShell = document.getElementById('phone-shell');
+    const phoneModule = document.getElementById('phone-module');
+    if (phoneShell && phoneModule) {
+        phoneShell.addEventListener('click', event => {
+            if (event.target.closest('button')) return;
+            if (!phoneModule.classList.contains('is-open')) setPhoneOpen(true);
+        });
+    }
     await loadScene('main', { showTransition: false });
     setupLivingEffects();
     requestIdleCallbackSafe(preloadAllAssets);
