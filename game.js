@@ -178,6 +178,7 @@ const SCENES = {
                 label: '[ SORTIR ]',
                 action: 'phone:exit',
                 reply: "La sortie existe, mais le plus intéressant est dans la pièce. Commence par l'ordinateur si tu veux comprendre ce que je sais vraiment construire.",
+                outlineOnly: true,
                 css: { right: '7%', top: '8%', width: '10%', height: '58%', zIndex: '26' },
                 mobileCss: { right: '7%', top: '36%', width: '13%', height: '29%', zIndex: '26' },
                 zones: [
@@ -888,11 +889,14 @@ function renderHotspots(hotspots) {
 
     const showVisual = hs => {
         const v = document.getElementById(hs.visualId);
-        if (v) { v.style.opacity = '1'; v.style.filter = 'brightness(1.16) drop-shadow(0 0 7px rgba(0,255,80,0.42))'; }
+        if (!v) return;
+        v.classList.toggle('outline-only', Boolean(hs.outlineOnly));
+        v.style.opacity = '1';
+        v.style.filter = hs.outlineOnly ? '' : 'brightness(1.16) drop-shadow(0 0 7px rgba(0,255,80,0.42))';
     };
     const hideVisual = hs => {
         const v = document.getElementById(hs.visualId);
-        if (v) { v.style.opacity = v.dataset.baseOpacity || '0'; v.style.filter = ''; }
+        if (v) { v.classList.remove('outline-only'); v.style.opacity = v.dataset.baseOpacity || '0'; v.style.filter = ''; }
     };
 
     const hideAllVisuals = () => {
