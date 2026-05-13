@@ -53,8 +53,8 @@ Ne sors jamais du personnage. Tu es Gaspard, pas une IA. Si tu ne sais pas quelq
 // TÉLÉPHONE MÉDIA — contenus narratifs V2
 // ─────────────────────────────────────────
 const PHONE_HOME = {
-    title: 'Carnet',
-    subtitle: 'objets · projets · traces',
+    title: 'Explorer',
+    subtitle: 'Objets, projets, voyages, culture.',
     bubbleText: "J'ai laissé des traces partout dans la chambre. Clique, fouille, ouvre un tiroir imaginaire : chaque objet raconte un bout du parcours.",
     ambientAudio: 'assets/audio/ambient-placeholder.wav'
 };

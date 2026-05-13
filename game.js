@@ -803,7 +803,7 @@ function updateAmbientButton() {
     const toggle = document.getElementById('ambient-toggle');
     if (!toggle || !ambient) return;
     phoneState.ambientPlaying = !ambient.paused;
-    toggle.textContent = phoneState.ambientPlaying ? 'Ⅱ' : '▶';
+    toggle.textContent = phoneState.ambientPlaying ? 'ambiance on' : 'ambiance off';
     toggle.classList.toggle('is-playing', phoneState.ambientPlaying);
 }
 
@@ -1050,14 +1050,12 @@ function setupLivingEffects() {
 
     // B) Particules flottantes — ambiance chambre entière
     const PARTICLE_CONFIGS = [
-        // Confettis lumineux autour de l'ordi et de la lampe
-        { count: 14, leftRange: [48, 86], topRange: [10, 72], sizeRange: [2, 4], color: 'rgba(124,255,174,', opacRange: [0.24, 0.58] },
-        // Lueurs cyan côté posters/photos
-        { count: 8,  leftRange: [6, 46],  topRange: [14, 68], sizeRange: [1.5, 3], color: 'rgba(0,229,255,', opacRange: [0.14, 0.36] },
-        // Notes magenta façon vieux CD-ROM culturel
-        { count: 6,  leftRange: [12, 74], topRange: [12, 58], sizeRange: [2, 4.5], color: 'rgba(255,79,169,', opacRange: [0.12, 0.32] },
-        // Poussières ambre chaudes près du sol/lampe
-        { count: 5,  leftRange: [28, 80], topRange: [45, 82], sizeRange: [2, 5], color: 'rgba(255,198,76,', opacRange: [0.1, 0.28] },
+        // Micro poussières vertes autour de l'ordi (zone droite)
+        { count: 12, leftRange: [50, 85], topRange: [10, 72], sizeRange: [2, 3.5], color: 'rgba(0,255,80,', opacRange: [0.25, 0.55] },
+        // Particules diffuses côté gauche (posters)
+        { count: 6,  leftRange: [5, 40],  topRange: [15, 65], sizeRange: [1.5, 2.5], color: 'rgba(0,200,255,', opacRange: [0.1, 0.3] },
+        // Grosses particules lumineuses rares
+        { count: 3,  leftRange: [20, 80], topRange: [20, 60], sizeRange: [4, 6], color: 'rgba(0,255,80,', opacRange: [0.08, 0.2] },
     ];
 
     PARTICLE_CONFIGS.forEach(cfg => {
