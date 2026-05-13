@@ -487,10 +487,10 @@ body.debug-hotspots .hotspot-trigger {
 /* ── PHONE MODULE — HUB MÉDIA ── */
 #phone-module {
     position: fixed;
-    left: 26px;
-    bottom: -240px;
-    width: min(720px, 48vw);
-    min-width: 560px;
+    left: 28px;
+    bottom: -265px;
+    width: min(650px, 45vw);
+    min-width: 500px;
     height: 500px;
     z-index: 60;
     display: flex;
@@ -501,7 +501,7 @@ body.debug-hotspots .hotspot-trigger {
 }
 
 #phone-module.is-open {
-    bottom: 22px;
+    bottom: 18px;
 }
 
 #phone-module:not(.is-open) #phone-bubble {
@@ -511,19 +511,19 @@ body.debug-hotspots .hotspot-trigger {
 
 #phone-shell {
     position: relative;
-    width: 250px;
+    width: 235px;
     height: auto;
     aspect-ratio: 1024 / 1536;
     background: transparent;
     border: 0;
     border-radius: 0;
-    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
     pointer-events: auto;
-    transform: rotate(-4deg);
+    transform: rotate(-2deg);
 }
 
 #phone-module.is-open #phone-shell {
-    transform: rotate(-2deg);
+    transform: rotate(-1deg);
 }
 
 #phone-shell::after {
@@ -545,117 +545,151 @@ body.debug-hotspots .hotspot-trigger {
 
 #phone-screen {
     position: absolute;
-    left: 8%;
-    top: 9.5%;
-    width: 84%;
-    height: 62%;
+    left: 14.8%;
+    top: 18.6%;
+    width: 70.4%;
+    height: 60.6%;
     z-index: 1;
     overflow: hidden;
     background:
-        linear-gradient(rgba(255, 255, 255, 0.05) 50%, rgba(0, 0, 0, 0.08) 50%),
-        linear-gradient(160deg, #bcd6df 0%, #7fa5a8 42%, #253b3f 100%);
-    background-size: 100% 3px, cover;
-    border: 0;
-    border-radius: 1px;
-    color: #101616;
-    font-family: 'Share Tech Mono', monospace;
-    border-radius: 4px;
+        radial-gradient(circle at 24% 16%, rgba(105, 190, 255, 0.34), transparent 32%),
+        radial-gradient(circle at 78% 76%, rgba(0, 255, 128, 0.14), transparent 34%),
+        linear-gradient(160deg, #0f203e 0%, #0a1326 55%, #05070d 100%);
+    color: #f6f8fb;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    border-radius: 2px;
 }
 
 .phone-status {
-    height: 22px;
+    height: 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 8px;
-    background: rgba(255, 255, 255, 0.45);
-    color: #263337;
-    font-size: 9px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+    padding: 0 7px;
+    background: rgba(0, 0, 0, 0.56);
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
 }
 
 .phone-home {
     position: relative;
-    height: calc(100% - 22px);
-    padding: 18px 14px;
+    height: calc(100% - 18px);
+    padding: 18px 10px 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.75), transparent 34%);
+    justify-content: flex-start;
+    gap: 10px;
 }
 
 .phone-home-minimize {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 1px 7px;
+    top: 8px;
+    right: 8px;
+    padding: 2px 6px;
 }
 
 .phone-home-title {
-    font-family: 'VT323', monospace;
-    font-size: 31px;
-    letter-spacing: 1px;
-    color: #102222;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+    max-width: 70%;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
 }
 
 .phone-home-subtitle,
 .phone-content-subtitle {
-    font-size: 10px;
+    font-size: 8px;
     line-height: 1.35;
-    color: rgba(16, 34, 34, 0.72);
+    color: rgba(255, 255, 255, 0.62);
 }
 
 .phone-round-button,
 .phone-nav-button,
 .phone-close-button,
 .phone-voice-button {
-    font-family: 'VT323', monospace;
-    border: 2px solid rgba(10, 20, 20, 0.8);
-    background: #f5f0e8;
-    color: #111;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    border: 0;
+    background: linear-gradient(#ffffff, #d7dde6);
+    color: #10131a;
     cursor: none;
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    font-weight: 700;
 }
 
 .phone-round-button {
     align-self: center;
-    width: 86px;
-    height: 86px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
-    font-size: 25px;
+    margin: 4px 0 2px;
+    font-size: 15px;
 }
 
 .phone-round-button.is-playing {
-    background: #00ff50;
+    background: linear-gradient(#8ff4a7, #21b656);
+    color: #07140d;
 }
 
 .phone-app-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    font-family: 'VT323', monospace;
-    font-size: 14px;
+    gap: 9px 8px;
+    margin-top: auto;
+    font-size: 8px;
 }
 
 .phone-app-grid span {
-    padding: 8px 4px;
-    background: rgba(245, 240, 232, 0.7);
-    border: 1px solid rgba(0, 0, 0, 0.18);
+    min-height: 42px;
+    padding: 6px 3px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
     text-align: center;
+}
+
+.phone-app-grid strong {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 7px;
+    background: linear-gradient(#78d594, #138342);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+    color: #fff;
+}
+
+.phone-app-grid span:nth-child(2) strong {
+    background: linear-gradient(#78b9ff, #1f63c8);
+}
+
+.phone-app-grid span:nth-child(3) strong {
+    background: linear-gradient(#ff9a76, #d64b21);
+}
+
+.phone-app-grid span:nth-child(4) strong {
+    background: linear-gradient(#b89cff, #6540ba);
 }
 
 .phone-content {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background: #eef4ed;
+    background: #f6f7f4;
+    color: #151816;
 }
 
 .phone-content-header {
-    padding: 9px 10px 7px;
-    background: linear-gradient(#f9faf9, #d7e4d7);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+    padding: 8px 8px 6px;
+    background: linear-gradient(#f9faf8, #e5e8e2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .phone-content-top {
@@ -666,23 +700,25 @@ body.debug-hotspots .hotspot-trigger {
 }
 
 .phone-content-title {
-    font-family: 'VT323', monospace;
-    font-size: 22px;
-    color: #162320;
+    font-size: 13px;
+    font-weight: 800;
+    color: #111;
     line-height: 1;
 }
 
 .phone-close-button {
-    padding: 1px 8px;
-    font-size: 17px;
+    padding: 3px 7px;
+    border-radius: 7px;
+    font-size: 8px;
 }
 
 .phone-media-frame {
     position: relative;
     flex: 1;
     margin: 10px;
-    background: #101716;
-    border: 2px solid #1b2622;
+    background: #0b0f12;
+    border: 0;
+    border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -706,20 +742,20 @@ body.debug-hotspots .hotspot-trigger {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #00ff50;
+    color: #dff9ea;
     background:
         linear-gradient(rgba(0, 255, 80, 0.08) 50%, transparent 50%),
         radial-gradient(circle at center, rgba(0, 255, 80, 0.16), transparent 62%),
         #07100b;
     background-size: 100% 4px, cover, cover;
-    font-size: 12px;
+    font-size: 9px;
     line-height: 1.45;
 }
 
 .phone-caption {
     padding: 0 10px 8px;
-    color: #1f2d28;
-    font-size: 10px;
+    color: #333936;
+    font-size: 8px;
     line-height: 1.35;
     min-height: 34px;
 }
@@ -734,8 +770,9 @@ body.debug-hotspots .hotspot-trigger {
 
 .phone-nav-button,
 .phone-voice-button {
-    padding: 2px 9px;
-    font-size: 17px;
+    padding: 4px 8px;
+    border-radius: 7px;
+    font-size: 9px;
 }
 
 .phone-voice-button:disabled {
@@ -743,23 +780,23 @@ body.debug-hotspots .hotspot-trigger {
 }
 
 .phone-counter {
-    font-size: 10px;
-    color: #263337;
+    font-size: 8px;
+    color: #57605c;
 }
 
 #phone-bubble {
     position: relative;
-    width: min(420px, 28vw);
-    min-height: 116px;
-    margin-bottom: 30px;
-    padding: 18px 20px;
-    background: #f5f0e8;
-    color: #1a1a1a;
-    border: 4px solid #1a1a1a;
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.35);
+    width: min(390px, 25vw);
+    min-height: 94px;
+    margin-bottom: 36px;
+    padding: 15px 17px;
+    background: rgba(245, 240, 232, 0.94);
+    color: #151515;
+    border: 3px solid #171717;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.42);
     font-family: 'Share Tech Mono', monospace;
-    font-size: 14px;
-    line-height: 1.55;
+    font-size: 12px;
+    line-height: 1.45;
     pointer-events: auto;
 }
 
@@ -771,8 +808,8 @@ body.debug-hotspots .hotspot-trigger {
     margin-left: -36px;
     margin-top: 18px;
     background: #f5f0e8;
-    border-left: 4px solid #1a1a1a;
-    border-bottom: 4px solid #1a1a1a;
+    border-left: 3px solid #1a1a1a;
+    border-bottom: 3px solid #1a1a1a;
     transform: rotate(45deg);
 }
 
