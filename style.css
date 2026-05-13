@@ -487,11 +487,11 @@ body.debug-hotspots .hotspot-trigger {
 /* ── PHONE MODULE — HUB MÉDIA ── */
 #phone-module {
     position: fixed;
-    left: 28px;
-    bottom: -265px;
-    width: min(650px, 45vw);
-    min-width: 500px;
-    height: 500px;
+    left: 34px;
+    bottom: -350px;
+    width: min(760px, 54vw);
+    min-width: 620px;
+    height: 590px;
     z-index: 60;
     display: flex;
     align-items: flex-end;
@@ -511,7 +511,7 @@ body.debug-hotspots .hotspot-trigger {
 
 #phone-shell {
     position: relative;
-    width: 235px;
+    width: 300px;
     height: auto;
     aspect-ratio: 1024 / 1536;
     background: transparent;
@@ -540,15 +540,31 @@ body.debug-hotspots .hotspot-trigger {
 }
 
 #phone-home-button {
-    display: none;
+    position: absolute;
+    left: 43.5%;
+    bottom: 8.2%;
+    width: 13%;
+    aspect-ratio: 1;
+    z-index: 5;
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.01);
+    cursor: none;
+}
+
+#phone-home-button:hover {
+    background: radial-gradient(circle, rgba(0, 255, 117, 0.18), rgba(0, 255, 117, 0) 68%);
+    box-shadow: 0 0 18px rgba(0, 255, 117, 0.28);
 }
 
 #phone-screen {
     position: absolute;
-    left: 14.8%;
-    top: 18.6%;
-    width: 70.4%;
-    height: 60.6%;
+    left: 16.2%;
+    top: 19.1%;
+    width: 67.6%;
+    height: 58.8%;
     z-index: 1;
     overflow: hidden;
     background:
@@ -576,23 +592,15 @@ body.debug-hotspots .hotspot-trigger {
 .phone-home {
     position: relative;
     height: calc(100% - 18px);
-    padding: 18px 10px 10px;
+    padding: 18px 12px 12px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 10px;
-}
-
-.phone-home-minimize {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 2px 6px;
+    gap: 8px;
 }
 
 .phone-home-title {
-    max-width: 70%;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     letter-spacing: 0;
     color: #fff;
@@ -621,29 +629,37 @@ body.debug-hotspots .hotspot-trigger {
 
 .phone-round-button {
     align-self: center;
-    width: 72px;
-    height: 72px;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
-    margin: 4px 0 2px;
-    font-size: 15px;
+    margin: 4px 0 0;
+    font-size: 20px;
+    line-height: 1;
+    background:
+        linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.1) 48%, rgba(255,255,255,0.05) 49%),
+        linear-gradient(160deg, #3fdc78, #0c8a42);
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
 .phone-round-button.is-playing {
-    background: linear-gradient(#8ff4a7, #21b656);
-    color: #07140d;
+    background:
+        linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.08) 48%, rgba(255,255,255,0.04) 49%),
+        linear-gradient(160deg, #ff6b5e, #b71f35);
+    color: #fff;
 }
 
 .phone-app-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 9px 8px;
+    gap: 8px;
     margin-top: auto;
     font-size: 8px;
 }
 
 .phone-app-grid span {
-    min-height: 42px;
-    padding: 6px 3px 4px;
+    min-height: 50px;
+    padding: 4px 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -655,15 +671,19 @@ body.debug-hotspots .hotspot-trigger {
 }
 
 .phone-app-grid strong {
-    width: 28px;
-    height: 28px;
+    width: 34px;
+    height: 34px;
     display: grid;
     place-items: center;
-    border-radius: 7px;
+    border-radius: 9px;
     background: linear-gradient(#78d594, #138342);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    font-size: 14px;
+    font-size: 16px;
     color: #fff;
+}
+
+.phone-app-grid em {
+    font-style: normal;
 }
 
 .phone-app-grid span:nth-child(2) strong {

@@ -53,8 +53,8 @@ Ne sors jamais du personnage. Tu es Gaspard, pas une IA. Si tu ne sais pas quelq
 // TÉLÉPHONE MÉDIA — contenus narratifs V2
 // ─────────────────────────────────────────
 const PHONE_HOME = {
-    title: 'Gaspard',
-    subtitle: 'Portfolio media',
+    title: 'Carnet',
+    subtitle: 'objets · projets · traces',
     bubbleText: "Bienvenue. Le téléphone sert de carnet média : quand tu cliques sur un objet, il affiche des photos, des traces et le contexte derrière le projet.",
     ambientAudio: 'assets/audio/ambient-placeholder.wav'
 };

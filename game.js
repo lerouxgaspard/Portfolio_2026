@@ -637,11 +637,6 @@ function renderPhoneHome() {
         updateAmbientButton();
     }
 
-    const minimize = document.getElementById('phone-minimize');
-    if (minimize) {
-        minimize.addEventListener('click', () => setPhoneOpen(false));
-    }
-
     setPhoneBubble(PHONE_HOME.bubbleText);
 }
 
@@ -689,7 +684,8 @@ function renderPhoneMedia(contentId) {
     const close = document.createElement('button');
     close.type = 'button';
     close.className = 'phone-close-button';
-    close.textContent = 'HOME';
+    close.textContent = '×';
+    close.setAttribute('aria-label', 'Réduire le téléphone');
     close.addEventListener('click', () => {
         setPhoneOpen(false);
         renderPhoneHome();
@@ -806,7 +802,7 @@ function updateAmbientButton() {
     const toggle = document.getElementById('ambient-toggle');
     if (!toggle || !ambient) return;
     phoneState.ambientPlaying = !ambient.paused;
-    toggle.textContent = phoneState.ambientPlaying ? 'PAUSE' : 'PLAY';
+    toggle.textContent = phoneState.ambientPlaying ? 'Ⅱ' : '▶';
     toggle.classList.toggle('is-playing', phoneState.ambientPlaying);
 }
 
@@ -1429,10 +1425,22 @@ async function initGame() {
     renderPhoneHome();
     const phoneShell = document.getElementById('phone-shell');
     const phoneModule = document.getElementById('phone-module');
+    const phoneHomeButton = document.getElementById('phone-home-button');
     if (phoneShell && phoneModule) {
         phoneShell.addEventListener('click', event => {
             if (event.target.closest('button')) return;
             if (!phoneModule.classList.contains('is-open')) setPhoneOpen(true);
+        });
+    }
+    if (phoneHomeButton && phoneModule) {
+        phoneHomeButton.addEventListener('click', event => {
+            event.stopPropagation();
+            if (phoneState.currentContentId) {
+                renderPhoneHome();
+                setPhoneOpen(true);
+            } else {
+                setPhoneOpen(!phoneModule.classList.contains('is-open'));
+            }
         });
     }
     await loadScene('main', { showTransition: false });

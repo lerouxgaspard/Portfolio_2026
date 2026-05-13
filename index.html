@@ -70,7 +70,7 @@
         <div id="phone-shell" aria-label="Téléphone média narratif">
             <div id="phone-speaker"></div>
             <div id="phone-screen"></div>
-            <div id="phone-home-button" aria-hidden="true"></div>
+            <button id="phone-home-button" type="button" aria-label="Accueil du téléphone"></button>
         </div>
         <div id="phone-bubble" aria-live="polite">
             <p id="phone-bubble-text"></p>
@@ -84,15 +84,14 @@
                 <span>▮▮▮</span>
             </div>
             <div class="phone-home">
-                <button id="phone-minimize" class="phone-close-button phone-home-minimize" type="button">MIN</button>
-                <div class="phone-home-title">Gaspard</div>
-                <div class="phone-home-subtitle">Portfolio media</div>
-                <button id="ambient-toggle" class="phone-round-button" type="button">PLAY</button>
+                <div class="phone-home-title">Carnet</div>
+                <div class="phone-home-subtitle">objets · projets · traces</div>
+                <button id="ambient-toggle" class="phone-round-button" type="button" aria-label="Lire ou mettre en pause l'ambiance sonore">▶</button>
                 <div class="phone-app-grid" aria-hidden="true">
-                    <span><strong>✦</strong> IA</span>
-                    <span><strong>▧</strong> Photos</span>
-                    <span><strong>@</strong> Contact</span>
-                    <span><strong>♪</strong> Audio</span>
+                    <span><strong>✦</strong><em>IA</em></span>
+                    <span><strong>▧</strong><em>Photos</em></span>
+                    <span><strong>@</strong><em>Contact</em></span>
+                    <span><strong>♪</strong><em>Audio</em></span>
                 </div>
             </div>
         </template>
