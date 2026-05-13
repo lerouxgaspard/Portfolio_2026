@@ -507,6 +507,7 @@ async function loadScene(name, options = {}) {
 
 async function applyScene(name, scene, token) {
     currentScene = name;
+    document.body.classList.toggle('phone-dock-right', name === 'bureau' || name === 'posters');
 
     document.getElementById('back-btn').style.display =
         name !== 'main' ? 'block' : 'none';

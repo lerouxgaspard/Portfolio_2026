@@ -504,6 +504,12 @@ body.debug-hotspots .hotspot-trigger {
     bottom: 18px;
 }
 
+body.phone-dock-right #phone-module {
+    left: auto;
+    right: 34px;
+    flex-direction: row-reverse;
+}
+
 #phone-module:not(.is-open) #phone-bubble {
     opacity: 0;
     pointer-events: none;
@@ -831,6 +837,12 @@ body.debug-hotspots .hotspot-trigger {
     border-left: 3px solid #1a1a1a;
     border-bottom: 3px solid #1a1a1a;
     transform: rotate(45deg);
+}
+
+body.phone-dock-right #phone-bubble::before {
+    right: -14px;
+    margin-left: 0;
+    transform: rotate(225deg);
 }
 
 #phone-bubble-text {
@@ -1411,6 +1423,12 @@ body.debug-hotspots .hotspot-trigger {
         justify-content: center;
         gap: 10px;
         transform: none;
+    }
+
+    body.phone-dock-right #phone-module {
+        left: 0;
+        right: 0;
+        flex-direction: row;
     }
 
     #phone-module.is-open {
