@@ -187,8 +187,8 @@ body.debug-hotspots .hotspot-trigger {
 /* ── BACK BUTTON ── */
 #back-btn {
     position: fixed;
-    bottom: 28px;
-    left: 20px;
+    top: 22px;
+    left: 22px;
     font-family: 'VT323', monospace;
     font-size: 20px;
     color: #00ff50;
@@ -196,7 +196,7 @@ body.debug-hotspots .hotspot-trigger {
     border: 1px solid rgba(0, 255, 80, 0.4);
     padding: 4px 14px;
     cursor: none;
-    z-index: 35;
+    z-index: 70;
     display: none;
     text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
     letter-spacing: 1px;
@@ -325,10 +325,13 @@ body.debug-hotspots .hotspot-trigger {
 
 /* ── PROJECT DETAIL ── */
 #project-back {
+    position: sticky;
+    top: 0;
+    z-index: 3;
     font-family: 'VT323', monospace;
     font-size: 20px;
     color: #00ff50;
-    background: transparent;
+    background: rgba(0, 13, 0, 0.94);
     border: 1px solid rgba(0, 255, 80, 0.4);
     padding: 3px 12px;
     cursor: none;
@@ -1410,7 +1413,8 @@ body.phone-dock-right #phone-bubble::before {
     }
 
     #back-btn {
-        bottom: 18px;
+        top: 14px;
+        bottom: auto;
         left: 12px;
     }
 

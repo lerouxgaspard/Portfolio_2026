@@ -60,6 +60,19 @@ const PHONE_HOME = {
 };
 
 const PHONE_CONTENT = {
+    mirakl: {
+        title: 'Hackathon Mirakl',
+        subtitle: 'IA · marketplace · prototype',
+        bubbleText: "Hackathon Mirakl : un format intense où il fallait passer vite de l'idée au prototype. Ce type de projet montre bien mon terrain : IA, produit, automatisation, démo claire et travail en équipe.",
+        ctaLabel: 'Hackathon Mirakl',
+        voiceAudio: '',
+        media: [
+            { type: 'image', src: 'assets/media/hackathon-mirakl/img_3328.jpg', caption: 'Session de travail pendant le hackathon Mirakl.' },
+            { type: 'image', src: 'assets/media/hackathon-mirakl/img_3330.jpg', caption: 'Atelier, cadrage et construction du prototype.' },
+            { type: 'image', src: 'assets/media/hackathon-mirakl/img_9555.jpg', caption: 'Moment de restitution et démo du projet.' },
+            { type: 'image', src: 'assets/media/hackathon-mirakl/img_9908.jpg', caption: 'Équipe et ambiance hackathon.' }
+        ]
+    },
     kingoland: {
         title: 'Kingoland',
         subtitle: 'Bretagne · 6 ans de terrain',

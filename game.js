@@ -329,24 +329,22 @@ const SCENES = {
 // ═══════════════════════════════════════════════════════
 const PROJECTS = [
     {
-        filename: 'hackathon_payfit.exe',
-        tag: '1er PRIX — 4 JOURS',
-        detail: `HACKATHON PAYFIT — 1er prix / 4 jours
-Problème : industrialiser un pipeline éditorial SEO sans perdre
-la qualité, la conformité légale et les signaux EEAT.
+        filename: 'hackathon_mirakl.exe',
+        tag: 'IA — PROTOTYPE',
+        contentId: 'mirakl',
+        detail: `HACKATHON MIRAKL — prototype IA
+Problème : passer très vite d'une intuition produit à une démo
+compréhensible, crédible et présentable.
 
 Rôle : conception du système multi-agents, orchestration,
-prompt engineering, automatisations et démo produit.
+prompt engineering, automatisations et narration de la démo.
 
-Stack : Dust · Lovable · Claude Code · Zapier
-8 agents : KPI · Content · Concurrence · Créateur ·
-Législatif · EEAT · Backlinks · GEO
+Stack : IA générative · prototypage · automatisation
+Objectif : transformer un cas d'usage marketplace en expérience
+produit claire, avec une logique métier lisible.
 
-Résultat : 1er prix, pipeline SEO complet, dashboard live,
-score de conformité par article et simulateur utilisable.
-
-Dashboard  -> payfit-pied.vercel.app
-Simulateur -> payfit-calculator-buddy.lovable.app`
+Résultat : prototype fonctionnel, présentation finale et
+galerie de photos documentant le sprint.`
     },
     {
         filename: 'btz_seo_agents.exe',
@@ -1141,6 +1139,7 @@ function renderProjectDetail(proj) {
     detail.textContent = proj.detail;
     content.appendChild(detail);
 
+    if (proj.contentId) openPhoneContent(proj.contentId);
     typewrite(proj.filename + ' — ' + proj.tag);
 }
 
